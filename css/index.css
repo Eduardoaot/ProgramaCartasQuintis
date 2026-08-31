@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #2b1622;
+}
+/*Apartado de del navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #8e2453;
+    color: #fff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+nav .logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+nav ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #e9548c;
+}
+/*Apartado de del header */
+
+.hero {
+    background-color: #e9548c;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.boton {
+    display: inline-block;
+    background-color: #8e2453;
+    color: #fff;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.boton:hover {
+    background-color: #6d1a3f;
+}
+/*Apartado de de las secciones */
+
+.seccion {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.seccion.alt {
+    background-color: #fff5fa;
+}
+
+.seccion h2 {
+    color: #8e2453;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
+.seccion p {
+    color: #8e2453;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+/*Apartado de las cartas */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+}
+
+.card {
+    background-color: #fff;
+    border: 2px solid #e9548c;
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card h3 {
+    color: #e9548c;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    font-size: 0.95rem;
+    min-height: 3.5rem;
+}
+
+.cardImages {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.cardWide {
+    width: 450px;
+}
+
+.cardWide .cardImages {
+    flex-direction: row;
+}
+
+.cardWide .cardImages .imageCardGame {
+    width: 50%;
+}
+
+/*Apartado de del footer */
+footer {
+    background-color: #8e2453;
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.imageHeader{
+    height: 60%;
+    width: 60%;
+    margin: 10px;
+    border-radius: 5%;
+}
+
+.imageCardGame{
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
+
+header{
+    font-family: Arial, Helvetica, sans-serif;
+}
