@@ -8,7 +8,9 @@ export default function Section({ id, eyebrow, title, intro, alt = false, childr
   return (
     <section
       id={id}
-      className={`scroll-mt-20 px-6 py-20 sm:py-24 ${alt ? 'bg-rosa-claro' : 'bg-white'}`}
+      className={`scroll-mt-20 px-6 py-20 sm:py-24 ${
+        alt ? 'bg-[var(--surface-alt)]' : 'bg-[var(--page-bg)]'
+      }`}
     >
       <div className="mx-auto max-w-6xl">
         <Reveal className="text-center">
@@ -17,12 +19,14 @@ export default function Section({ id, eyebrow, title, intro, alt = false, childr
               {eyebrow}
             </p>
           )}
-          <h2 className="relative inline-block pb-3 text-3xl font-extrabold text-vino sm:text-4xl">
+          <h2 className="relative inline-block pb-3 text-3xl font-extrabold text-vino sm:text-4xl dark:text-rosa">
             {title}
             <span className="absolute bottom-0 left-1/2 h-1 w-16 -translate-x-1/2 rounded bg-gradient-to-r from-rosa to-dorado" />
           </h2>
           {intro && (
-            <p className="mx-auto mt-5 max-w-2xl text-base text-vino/80">{intro}</p>
+            <p className="mx-auto mt-5 max-w-2xl text-base text-vino/80 dark:text-rosa-claro/70">
+              {intro}
+            </p>
           )}
         </Reveal>
 

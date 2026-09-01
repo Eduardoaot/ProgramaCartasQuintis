@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Modo oscuro por clase en <html> (en vez de solo prefers-color-scheme) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ===== Tema (paleta heredada de la rama IA) ===== */
 @theme {
   --color-vino: #8e2453;
@@ -44,6 +47,28 @@
 }
 
 /* ===== Base ===== */
+:root {
+  --nav-bg: rgba(142, 36, 83, 0.9);
+  --nav-panel-bg: rgba(142, 36, 83, 0.97);
+  --page-bg: #ffffff;
+  --page-text: #2b1622;
+  --surface: #ffffff;
+  --surface-alt: #fff5fa;
+  --surface-sunken: #fff5fa;
+  --hairline: rgba(233, 84, 140, 0.25);
+}
+
+.dark {
+  --nav-bg: rgba(18, 10, 15, 0.82);
+  --nav-panel-bg: rgba(18, 10, 15, 0.97);
+  --page-bg: #120a0f;
+  --page-text: #f2e3ec;
+  --surface: #211521;
+  --surface-alt: #190f16;
+  --surface-sunken: #0d070b;
+  --hairline: rgba(233, 84, 140, 0.28);
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
@@ -52,10 +77,13 @@ html {
 body {
   margin: 0;
   font-family: var(--font-body);
-  color: var(--color-tinta);
-  background-color: #fff;
+  color: var(--page-text);
+  background-color: var(--page-bg);
   overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
+
+.dark ::-webkit-scrollbar-track { background: #1a0f16; }
 
 h1, h2, h3, .font-display {
   font-family: var(--font-display);

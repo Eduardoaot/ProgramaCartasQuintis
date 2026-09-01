@@ -1,151 +1,207 @@
-// Seccion "Las rarezas que hay". Dos grupos: comunes y paralelas.
+// Seccion "Las rarezas que hay".
+// Info normalizada por carta:
+//   codigo         -> sigla oficial (C, U, R, RR, GR, ER, +, RR+, HR, SP, SSP, HSP, ISP, GSP, SSSP)
+//   nombre         -> nombre correcto de la rareza
+//   porCarton      -> cuantas copias de esa carta salen por carton
+//   aparicion      -> en que parte del sobre aparece
+//   caracteristicas-> rasgos visuales (ilustracion, textura, foil, firma, numeracion...)
 const IMG = 'https://5hanayome-cardgame.com/wordpress/wp-content/images/cardlist'
 
 export const rarezas = {
   intro:
-    'Desde las comunes (C, U) hasta la codiciada SSSP: firmada por el autor y única en el mundo.',
+    'Un carton contiene varios sobres y cada sobre reparte las cartas por orden de rareza. Aqui esta cada rareza con su nombre correcto, cuantas veces sale por carton, donde aparece en el sobre y como se reconoce.',
   grupos: [
     {
-      nombre: 'Cartas comunes',
-      nota: 'Estas son las cartas que aparecen dentro de las primeras 4 de cada sobre, con excepción de GR y ER que aparecen hasta el final del sobre.',
+      nombre: 'Cartas base',
+      nota:
+        'Ocupan las primeras 4 posiciones de cada sobre. Las GR y ER son la excepcion: aparecen al final del sobre.',
       cartas: [
         {
-          titulo: '"C" Común',
-          parrafos: [
-            'Carta común, de un cartón salen 8-9 cartas por carta.',
-            'Se caracteriza por ser un screenshot del anime sin textura ni foil.',
-          ],
-          images: [{ src: `${IMG}/BP5/GYC-BP5-036_4C.png`, alt: 'Carta común del volumen 5' }],
+          codigo: 'C',
+          nombre: 'Comun',
+          porCarton: '8 a 9 copias por carta',
+          aparicion: 'Primeras 4 cartas del sobre',
+          caracteristicas: ['Captura del anime', 'Sin textura', 'Sin foil'],
+          images: [{ src: `${IMG}/BP5/GYC-BP5-036_4C.png`, alt: 'Carta Comun (C)' }],
         },
         {
-          titulo: '"U" Poco Común',
-          parrafos: [
-            'Carta poco común, de un cartón salen 7-8 cartas por carta.',
-            'Se caracteriza por ser un screenshot del manga sin textura ni foil.',
-          ],
-          images: [{ src: `${IMG}/BP5/GYC-BP5-019_4C.png`, alt: 'Carta poco común del volumen 5' }],
+          codigo: 'U',
+          nombre: 'Poco Comun',
+          porCarton: '7 a 8 copias por carta',
+          aparicion: 'Primeras 4 cartas del sobre',
+          caracteristicas: ['Captura del manga', 'Sin textura', 'Sin foil'],
+          images: [{ src: `${IMG}/BP5/GYC-BP5-019_4C.png`, alt: 'Carta Poco Comun (U)' }],
         },
         {
-          titulo: '"R" Rara',
-          parrafos: [
-            'Carta rara, de un cartón salen 6 cartas por carta.',
-            'Se caracteriza por ser una ilustración de anime sin textura ni foil.',
-          ],
-          images: [{ src: `${IMG}/BP5/GYC-BP5-044P_4C.png`, alt: 'Carta rara del volumen 5' }],
+          codigo: 'R',
+          nombre: 'Rara',
+          porCarton: '6 copias por carta',
+          aparicion: 'Primeras 4 cartas del sobre',
+          caracteristicas: ['Ilustracion de anime', 'Sin textura', 'Sin foil'],
+          images: [{ src: `${IMG}/BP5/GYC-BP5-044P_4C.png`, alt: 'Carta Rara (R)' }],
         },
         {
-          titulo: '"RR" Doble Rara',
-          parrafos: [
-            'Carta doblemente rara, de un cartón salen 5 cartas por carta.',
-            'Se caracteriza por ser una ilustración de anime especial o ilustración original sin textura ni foil.',
+          codigo: 'RR',
+          nombre: 'Doble Rara',
+          porCarton: '5 copias por carta',
+          aparicion: 'Primeras 4 cartas del sobre',
+          caracteristicas: [
+            'Ilustracion de anime especial o ilustracion original',
+            'Sin textura',
+            'Sin foil',
           ],
-          images: [{ src: `${IMG}/BP5/GYC-BP5-016_4C.png`, alt: 'Carta doble rara del volumen 5' }],
+          images: [{ src: `${IMG}/BP5/GYC-BP5-016_4C.png`, alt: 'Carta Doble Rara (RR)' }],
         },
         {
-          titulo: '"GR" "Go-toubun" Rara',
-          parrafos: [
-            'Carta "Go-toubun" Rara, de un cartón salen 4 cartas por carta.',
-            'Se caracteriza por ser una ilustración del manga a color con textura y foil.',
-          ],
-          images: [{ src: `${IMG}/BP5/GYC-BP5-049_4C.png`, alt: 'Carta Go-toubun rara del volumen 5' }],
+          codigo: 'GR',
+          nombre: 'Go-toubun Rara',
+          porCarton: '4 copias por carta',
+          aparicion: 'Al final del sobre',
+          caracteristicas: ['Ilustracion del manga a color', 'Con textura', 'Con foil'],
+          images: [{ src: `${IMG}/BP5/GYC-BP5-049_4C.png`, alt: 'Carta Go-toubun Rara (GR)' }],
         },
         {
-          titulo: '"ER" "Echara" Rara',
-          parrafos: [
-            'Carta "Echara" Rara, de un cartón salen 2 de las 5 posibles.',
-            'Se caracteriza por ser una ilustración especial del anime con color en el borde, además de tener textura y foil.',
+          codigo: 'ER',
+          nombre: 'Echara Rara',
+          porCarton: '2 de las 5 posibles por carton',
+          aparicion: 'Al final del sobre',
+          caracteristicas: [
+            'Ilustracion especial del anime',
+            'Color en el borde',
+            'Con textura',
+            'Con foil',
           ],
-          images: [{ src: `${IMG}/BP7/GYC-BP7-008_IMG.png`, alt: 'Carta Echara rara del volumen 7' }],
+          images: [{ src: `${IMG}/BP7/GYC-BP7-008_IMG.png`, alt: 'Carta Echara Rara (ER)' }],
         },
       ],
     },
     {
       nombre: 'Cartas paralelas',
-      nota: 'Todas se caracterizan por tener foil y en ocasiones textura. Además de aparecer siempre en la última carta de cada sobre.',
+      nota:
+        'Todas llevan foil y en ocasiones textura. Aparecen siempre en la ultima carta del sobre, una por sobre.',
       cartas: [
         {
-          titulo: 'Cartas +',
-          wide: true,
-          parrafos: [
-            'Son las C+, U+ y R+. Se caracterizan por tener únicamente foil. Las U+ y C+ aparecen 2 por carta en un cartón, mientras que las R+ aparecen unas 11 de cada 15.',
+          codigo: '+',
+          nombre: 'Paralela + (C+, U+, R+)',
+          porCarton: 'C+ y U+: 2 por carton · R+: unas 11 de cada 15',
+          aparicion: 'Ultima carta del sobre',
+          caracteristicas: [
+            'Misma ilustracion que la version base',
+            'Solo foil (sin textura extra)',
           ],
+          wide: true,
           images: [
-            { src: `${IMG}/BP7/GYC-BP7-004_4C.png`, alt: 'Carta base de las cartas +' },
-            { src: `${IMG}/BP7/GYC-BP7-004P_4C.png`, alt: 'Versión paralela de las cartas +' },
+            { src: `${IMG}/BP7/GYC-BP7-004_4C.png`, alt: 'Version base de la carta +' },
+            { src: `${IMG}/BP7/GYC-BP7-004P_4C.png`, alt: 'Version paralela + (foil)' },
           ],
         },
         {
-          titulo: 'Cartas RR+',
-          wide: true,
-          parrafos: [
-            'Las doble rara +. Se caracterizan por tener textura y foil, además de mostrar la ilustración de forma completa o expandida.',
+          codigo: 'RR+',
+          nombre: 'Doble Rara Paralela',
+          porCarton: 'Aprox. 1 cada varios cartones',
+          aparicion: 'Ultima carta del sobre',
+          caracteristicas: [
+            'Con textura y foil',
+            'Ilustracion completa o expandida respecto a la RR base',
           ],
+          wide: true,
           images: [
-            { src: `${IMG}/BP7/GYC-BP7-025_4c.png`, alt: 'Carta base de las cartas RR+' },
-            { src: `${IMG}/BP7/GYC-BP7-025P_4c.png`, alt: 'Versión paralela de las cartas RR+' },
+            { src: `${IMG}/BP7/GYC-BP7-025_4c.png`, alt: 'Version base de la RR+' },
+            { src: `${IMG}/BP7/GYC-BP7-025P_4c.png`, alt: 'Version paralela RR+' },
           ],
         },
         {
-          titulo: 'Cartas HR',
-          wide: true,
-          parrafos: [
-            'Hanayome Rare. Son cartas R con foil y texturizado dorado en las letras y en el fondo.',
+          codigo: 'HR',
+          nombre: 'Hanayome Rare',
+          porCarton: 'Insercion baja (tirada corta)',
+          aparicion: 'Ultima carta del sobre',
+          caracteristicas: [
+            'Basada en una carta R',
+            'Foil en toda la carta',
+            'Texturizado dorado en letras y fondo',
           ],
+          wide: true,
           images: [
-            { src: `${IMG}/BP7/GYC-BP7-038_4c.png`, alt: 'Carta base de las cartas HR' },
-            { src: `${IMG}/BP7/GYC-BP7-038P_IMG.png`, alt: 'Versión paralela de las cartas HR' },
+            { src: `${IMG}/BP7/GYC-BP7-038_4c.png`, alt: 'Version base de la HR' },
+            { src: `${IMG}/BP7/GYC-BP7-038P_IMG.png`, alt: 'Carta Hanayome Rare (HR)' },
           ],
         },
         {
-          titulo: 'Cartas SP',
-          wide: true,
-          parrafos: [
-            'Especiales. Texturizado especial dorado y el nombre de las chicas en grande, con ilustraciones del anime.',
+          codigo: 'SP',
+          nombre: 'Special',
+          porCarton: 'Insercion baja',
+          aparicion: 'Ultima carta del sobre',
+          caracteristicas: [
+            'Ilustracion del anime',
+            'Texturizado dorado especial',
+            'Nombre de la hermana en grande',
           ],
+          wide: true,
           images: [
-            { src: `${IMG}/BP7/GYC-BP7-031P_img.png`, alt: 'Primera carta SP' },
-            { src: `${IMG}/BP7/GYC-BP7-058P1_img.png`, alt: 'Segunda carta SP' },
+            { src: `${IMG}/BP7/GYC-BP7-031P_img.png`, alt: 'Carta Special (SP)' },
+            { src: `${IMG}/BP7/GYC-BP7-058P1_img.png`, alt: 'Otra carta Special (SP)' },
           ],
         },
         {
-          titulo: 'Cartas SSP',
-          wide: true,
-          parrafos: [
-            'Doblemente especiales. Texturizado especial dorado y la firma de las actrices de voz, con ilustraciones originales del juego o del autor a color.',
+          codigo: 'SSP',
+          nombre: 'Super Special',
+          porCarton: 'Insercion muy baja',
+          aparicion: 'Ultima carta del sobre',
+          caracteristicas: [
+            'Ilustracion original del juego o del autor a color',
+            'Texturizado dorado especial',
+            'Firma de las actrices de voz impresa',
           ],
+          wide: true,
           images: [
-            { src: `${IMG}/BP7/GYC-BP7-024P1_img.png`, alt: 'Primera carta SSP' },
-            { src: `${IMG}/BP7/GYC-BP7-008P_IMG.png`, alt: 'Segunda carta SSP' },
+            { src: `${IMG}/BP7/GYC-BP7-024P1_img.png`, alt: 'Carta Super Special (SSP)' },
+            { src: `${IMG}/BP7/GYC-BP7-008P_IMG.png`, alt: 'Otra carta Super Special (SSP)' },
           ],
         },
         {
-          titulo: 'Cartas HSP y ISP',
-          wide: true,
-          parrafos: [
-            '"Itsutsugo" especiales y "Hero" especiales. Misma rareza; las "Hero" incluyen a Futaro y se usan como cartas de héroe, mientras que las Itsutsugo son tipo "Manga" a color con ilustración del autor.',
+          codigo: 'HSP / ISP',
+          nombre: 'Hero Special / Itsutsugo Special',
+          porCarton: 'Insercion muy baja',
+          aparicion: 'Ultima carta del sobre',
+          caracteristicas: [
+            'Misma rareza, dos variantes',
+            'HSP: incluye a Futaro y funciona como carta de heroe',
+            'ISP: tipo "Manga" a color con ilustracion del autor',
           ],
+          wide: true,
           images: [
-            { src: `${IMG}/BP6/GYC-BP6-080P1_IMG.png`, alt: 'Carta HSP' },
-            { src: `${IMG}/BP7/GYC-BP7-012P1_IMG.png`, alt: 'Carta ISP' },
+            { src: `${IMG}/BP6/GYC-BP6-080P1_IMG.png`, alt: 'Carta Hero Special (HSP)' },
+            { src: `${IMG}/BP7/GYC-BP7-012P1_IMG.png`, alt: 'Carta Itsutsugo Special (ISP)' },
           ],
         },
         {
-          titulo: 'Cartas GSP',
-          wide: true,
-          parrafos: [
-            '"Go-toubun" especiales. Es la 2ª categoría más alta y prácticamente la más difícil de obtener; solo tiene foil como las "+" normales, pero con la ilustración de la secreta súper especial.',
+          codigo: 'GSP',
+          nombre: 'Go-toubun Special',
+          porCarton: 'La mas dificil de obtener del set',
+          aparicion: 'Ultima carta del sobre',
+          caracteristicas: [
+            'Segunda categoria mas alta',
+            'Solo foil, como las paralelas "+"',
+            'Usa la ilustracion de la secreta super especial',
           ],
+          wide: true,
           images: [
-            { src: `${IMG}/BP6/GYC-BP6-065P2_4C.png`, alt: 'Primera carta GSP' },
-            { src: `${IMG}/BP6/GYC-BP6-008_4C.png`, alt: 'Segunda carta GSP' },
+            { src: `${IMG}/BP6/GYC-BP6-065P2_4C.png`, alt: 'Carta Go-toubun Special (GSP)' },
+            { src: `${IMG}/BP6/GYC-BP6-008_4C.png`, alt: 'Otra carta Go-toubun Special (GSP)' },
           ],
         },
         {
-          titulo: 'Cartas SSSP',
-          parrafos: [
-            'Ilustración especial del propio autor para el juego de cartas, con su firma, texturizado especial y foil especial y, sobre todo, numerada del 0 al 99 (aunque existen versiones no numeradas).',
+          codigo: 'SSSP',
+          nombre: 'Special Super Super (secreta)',
+          porCarton: 'Numerada del 0 al 99 por set (existen copias sin numerar)',
+          aparicion: 'Ultima carta del sobre',
+          caracteristicas: [
+            'Ilustracion especial del autor hecha para el TCG',
+            'Firma del autor impresa',
+            'Texturizado y foil especiales',
+            'Numeracion serigrafiada 000/099',
           ],
-          images: [{ src: `${IMG}/BP1/GYC-BP1-001P2_4c.png`, alt: 'Carta SSSP' }],
+          images: [{ src: `${IMG}/BP1/GYC-BP1-001P2_4c.png`, alt: 'Carta secreta (SSSP)' }],
         },
       ],
     },

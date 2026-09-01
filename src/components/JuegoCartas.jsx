@@ -29,10 +29,10 @@ export default function JuegoCartas() {
           {juego.arena.partes.map((p) => (
             <div
               key={p.nombre}
-              className="rounded-xl border-2 border-rosa/25 bg-white p-4 text-left transition duration-300 hover:border-rosa hover:shadow-lg"
+              className="rounded-xl border-2 border-[var(--hairline)] bg-[var(--surface)] p-4 text-left transition duration-300 hover:border-rosa hover:shadow-lg"
             >
-              <p className="font-bold text-vino">{p.nombre}</p>
-              <p className="text-sm text-tinta/80">{p.texto}</p>
+              <p className="font-bold text-vino dark:text-rosa">{p.nombre}</p>
+              <p className="text-sm text-[var(--page-text)]/75">{p.texto}</p>
             </div>
           ))}
         </div>
@@ -53,10 +53,10 @@ export default function JuegoCartas() {
           {juego.tiposCarta.map((t) => (
             <div
               key={t.nombre}
-              className="rounded-xl border-t-4 border-dorado bg-white p-4 text-left shadow-md"
+              className="rounded-xl border-t-4 border-dorado bg-[var(--surface)] p-4 text-left shadow-md"
             >
-              <p className="font-bold text-vino">{t.nombre}</p>
-              <p className="text-sm text-tinta/80">{t.texto}</p>
+              <p className="font-bold text-vino dark:text-rosa">{t.nombre}</p>
+              <p className="text-sm text-[var(--page-text)]/75">{t.texto}</p>
             </div>
           ))}
         </div>
