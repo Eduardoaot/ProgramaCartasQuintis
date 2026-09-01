@@ -5,6 +5,8 @@
 //   porCarton      -> cuantas copias de esa carta salen por carton
 //   aparicion      -> en que parte del sobre aparece
 //   caracteristicas-> rasgos visuales (ilustracion, textura, foil, firma, numeracion...)
+//
+// La SSSP NO va en `grupos`: tiene su propio showcase (objeto `secreta`).
 const IMG = 'https://5hanayome-cardgame.com/wordpress/wp-content/images/cardlist'
 
 export const rarezas = {
@@ -13,6 +15,7 @@ export const rarezas = {
   grupos: [
     {
       nombre: 'Cartas base',
+      columnas: 3,
       nota:
         'Ocupan las primeras 4 posiciones de cada sobre. Las GR y ER son la excepcion: aparecen al final del sobre.',
       cartas: [
@@ -77,8 +80,9 @@ export const rarezas = {
     },
     {
       nombre: 'Cartas paralelas',
+      columnas: 2,
       nota:
-        'Todas llevan foil y en ocasiones textura. Aparecen siempre en la ultima carta del sobre, una por sobre.',
+        'Todas llevan foil y en ocasiones textura. Aparecen siempre en la ultima carta del sobre, una por sobre. Cada tarjeta muestra la version base y la paralela.',
       cartas: [
         {
           codigo: '+',
@@ -89,7 +93,6 @@ export const rarezas = {
             'Misma ilustracion que la version base',
             'Solo foil (sin textura extra)',
           ],
-          wide: true,
           images: [
             { src: `${IMG}/BP7/GYC-BP7-004_4C.png`, alt: 'Version base de la carta +' },
             { src: `${IMG}/BP7/GYC-BP7-004P_4C.png`, alt: 'Version paralela + (foil)' },
@@ -104,7 +107,6 @@ export const rarezas = {
             'Con textura y foil',
             'Ilustracion completa o expandida respecto a la RR base',
           ],
-          wide: true,
           images: [
             { src: `${IMG}/BP7/GYC-BP7-025_4c.png`, alt: 'Version base de la RR+' },
             { src: `${IMG}/BP7/GYC-BP7-025P_4c.png`, alt: 'Version paralela RR+' },
@@ -120,7 +122,6 @@ export const rarezas = {
             'Foil en toda la carta',
             'Texturizado dorado en letras y fondo',
           ],
-          wide: true,
           images: [
             { src: `${IMG}/BP7/GYC-BP7-038_4c.png`, alt: 'Version base de la HR' },
             { src: `${IMG}/BP7/GYC-BP7-038P_IMG.png`, alt: 'Carta Hanayome Rare (HR)' },
@@ -136,7 +137,6 @@ export const rarezas = {
             'Texturizado dorado especial',
             'Nombre de la hermana en grande',
           ],
-          wide: true,
           images: [
             { src: `${IMG}/BP7/GYC-BP7-031P_img.png`, alt: 'Carta Special (SP)' },
             { src: `${IMG}/BP7/GYC-BP7-058P1_img.png`, alt: 'Otra carta Special (SP)' },
@@ -152,7 +152,6 @@ export const rarezas = {
             'Texturizado dorado especial',
             'Firma de las actrices de voz impresa',
           ],
-          wide: true,
           images: [
             { src: `${IMG}/BP7/GYC-BP7-024P1_img.png`, alt: 'Carta Super Special (SSP)' },
             { src: `${IMG}/BP7/GYC-BP7-008P_IMG.png`, alt: 'Otra carta Super Special (SSP)' },
@@ -168,7 +167,6 @@ export const rarezas = {
             'HSP: incluye a Futaro y funciona como carta de heroe',
             'ISP: tipo "Manga" a color con ilustracion del autor',
           ],
-          wide: true,
           images: [
             { src: `${IMG}/BP6/GYC-BP6-080P1_IMG.png`, alt: 'Carta Hero Special (HSP)' },
             { src: `${IMG}/BP7/GYC-BP7-012P1_IMG.png`, alt: 'Carta Itsutsugo Special (ISP)' },
@@ -184,26 +182,35 @@ export const rarezas = {
             'Solo foil, como las paralelas "+"',
             'Usa la ilustracion de la secreta super especial',
           ],
-          wide: true,
           images: [
             { src: `${IMG}/BP6/GYC-BP6-065P2_4C.png`, alt: 'Carta Go-toubun Special (GSP)' },
             { src: `${IMG}/BP6/GYC-BP6-008_4C.png`, alt: 'Otra carta Go-toubun Special (GSP)' },
           ],
         },
-        {
-          codigo: 'SSSP',
-          nombre: 'Special Super Super (secreta)',
-          porCarton: 'Numerada del 0 al 99 por set (existen copias sin numerar)',
-          aparicion: 'Ultima carta del sobre',
-          caracteristicas: [
-            'Ilustracion especial del autor hecha para el TCG',
-            'Firma del autor impresa',
-            'Texturizado y foil especiales',
-            'Numeracion serigrafiada 000/099',
-          ],
-          images: [{ src: `${IMG}/BP1/GYC-BP1-001P2_4c.png`, alt: 'Carta secreta (SSSP)' }],
-        },
       ],
     },
   ],
+
+  // La joya de la corona: se muestra en grande, sobre fondo oscuro, sin tarjeta.
+  secreta: {
+    codigo: 'SSSP',
+    nombre: 'Special Super Super Parallel',
+    titular: 'La carta más codiciada del juego',
+    descripcion:
+      'Una sola ilustración por set, dibujada por Negi Haruba especialmente para el TCG. Va firmada de imprenta y numerada a mano del 000 al 099. Existen copias sin numerar, pero las numeradas son las que mueven el mercado.',
+    porCarton: 'Ninguna garantizada — inserción tipo "caja de la suerte"',
+    aparicion: 'Última carta del sobre, en cajas selladas especiales',
+    numeracion: '000 / 099',
+    caracteristicas: [
+      'Ilustración exclusiva del autor para el juego',
+      'Firma de Negi Haruba impresa',
+      'Texturizado y foil especiales',
+      'Numeración serigrafiada a mano',
+    ],
+    // Precio de referencia del mercado secundario japonés (revisar y actualizar).
+    valor: '¥150.000 – ¥400.000',
+    valorNota: 'Copias numeradas y firmadas, mercado JP. Valor de referencia — actualizar.',
+    img: `${IMG}/BP1/GYC-BP1-001P2_4c.png`,
+    alt: 'Carta secreta SSSP firmada y numerada',
+  },
 }
