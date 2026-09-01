@@ -1,0 +1,64 @@
+# Las Quintillizas — TCG (landing page)
+
+Landing page en **React + Vite + Tailwind CSS v4** sobre el juego de cartas de
+*Go-Toubun no Hanayome*.
+
+## Puesta en marcha
+
+```bash
+npm install
+npm run dev      # servidor de desarrollo -> http://localhost:5173
+npm run build    # genera /dist para producción
+npm run preview  # sirve /dist localmente
+```
+
+## Cómo editar el contenido
+
+**Todo el texto vive en `src/data/`.** Para cambiar la información NO hace falta
+tocar los componentes, solo estos archivos:
+
+| Archivo | Sección | Responsable |
+|---|---|---|
+| `src/data/nav.js` | Enlaces del navbar y título | — |
+| `src/data/hero.js` | Header (imagen de fondo, título, botón) | — |
+| `src/data/queEs.js` | Qué son Las Quintillizas (sinopsis, editorial, autor, éxito) | Gael |
+| `src/data/personajes.js` | Personajes | Issac |
+| `src/data/antecedentes.js` | Antecedentes (Weiss Schwarz) | Yo |
+| `src/data/juego.js` | El juego: descripción, arena, cómo se gana, tipos de carta | Junior |
+| `src/data/tutorial.js` | Tutorial: tipos de carta, reglas, cómo ganar | Yo (reglas) |
+| `src/data/expansiones.js` | Las expansiones que existen | — |
+| `src/data/rarezas.js` | Las rarezas que hay | — |
+
+Cada archivo tiene comentarios explicando la forma de los datos. Añadir un
+elemento a un array = aparece automáticamente una tarjeta nueva.
+
+## Estructura
+
+```
+src/
+  main.jsx            punto de entrada
+  App.jsx             orden de las secciones
+  index.css           tema de Tailwind (colores, tipografías, animaciones)
+  hooks/useReveal.js  IntersectionObserver para animar al hacer scroll
+  components/
+    Navbar.jsx        navbar sticky con menú móvil
+    Hero.jsx          header con imagen de fondo + overlay + blobs animados
+    Section.jsx       envoltorio estándar (id, título, intro, fondo alterno)
+    Reveal.jsx        aplica la animación de entrada a cualquier bloque
+    Card.jsx          tarjeta reutilizable con imágenes y efecto "shine"
+    InfoBlock.jsx     bloque de texto sin imagen
+    QueEs / Personajes / Antecedentes / JuegoCartas /
+    Tutorial / Expansiones / Rarezas / Footer
+  data/              <-- el contenido editable
+```
+
+## Notas de diseño
+
+- Se conservó **el cambio del header**: la imagen de las Nakano a pantalla
+  completa como fondo, con degradado vino oscuro encima (venía del trabajo en
+  curso de `main`).
+- El resto del estilo (paleta degradada, tipografías Poppins/Quicksand,
+  animaciones, botones con destello, revelado al hacer scroll) viene de la
+  rama `IA`, ahora reescrito con Tailwind.
+- `legacy/` guarda el HTML/CSS estático original como referencia.
+- Respeta `prefers-reduced-motion`.
