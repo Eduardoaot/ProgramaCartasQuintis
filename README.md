@@ -23,14 +23,24 @@ tocar los componentes, solo estos archivos:
 | `src/data/hero.js` | Header (imagen de fondo, título, botón) | — |
 | `src/data/queEs.js` | Qué son Las Quintillizas (sinopsis, editorial, autor, éxito) | Gael |
 | `src/data/personajes.js` | Personajes | Issac |
-| `src/data/antecedentes.js` | Antecedentes (Weiss Schwarz) | Yo |
+| `src/data/antecedentes.js` | Antecedentes: origen, expansiones con cartas firmadas, valor de coleccion | Yo |
 | `src/data/juego.js` | El juego: descripción, arena, cómo se gana, tipos de carta | Junior |
-| `src/data/tutorial.js` | Tutorial: tipos de carta, reglas, cómo ganar | Yo (reglas) |
-| `src/data/expansiones.js` | Las expansiones que existen | — |
+| `src/data/tutorial.js` | Tutorial: anatomía de una carta, tipos, turno, reglas, cómo ganar | Yo (reglas) |
+| `src/data/expansiones.js` | Las expansiones que existen (fotos de cartones) | — |
 | `src/data/rarezas.js` | Las rarezas que hay | — |
 
 Cada archivo tiene comentarios explicando la forma de los datos. Añadir un
 elemento a un array = aparece automáticamente una tarjeta nueva.
+
+### Placeholders pendientes de rellenar
+
+- **`expansiones.js` → `caja`** y **`antecedentes.js` → `firmadas.sets[].caja`**:
+  van en `null` y muestran un marcador `📦`. Pon la URL real de la foto del
+  cartón / caja.
+- **`antecedentes.js` → `valor.cartas[].valor`**: precios de referencia de
+  ejemplo; revisar y actualizar con datos reales del mercado.
+- **`tutorial.js` → `anatomia.partes[].x / .y`**: posición (%) de cada número
+  sobre la carta de ejemplo; ajústalos a la carta que uses.
 
 ## Estructura
 

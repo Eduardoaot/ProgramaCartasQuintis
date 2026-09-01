@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <header
       id="inicio"
-      className="relative isolate flex min-h-[88vh] flex-col items-center justify-center gap-6 overflow-hidden px-6 py-24 text-center text-white"
+      className="relative isolate flex min-h-[92vh] flex-col items-center justify-center gap-6 overflow-hidden px-6 pb-24 pt-36 text-center text-white sm:pt-40"
       style={{
         backgroundImage: `linear-gradient(rgba(45, 10, 30, 0.55), rgba(45, 10, 30, 0.85)), url("${hero.bgImage}")`,
         backgroundSize: 'cover',

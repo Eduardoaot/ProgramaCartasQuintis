@@ -13,11 +13,20 @@ export default function Navbar() {
 
     const onScroll = () => {
       const y = window.scrollY
-      setAtTop(y < 16)
+      const top = y < 24
+      setAtTop(top)
+
+      // Arriba del todo: la navbar SIEMPRE se ve.
+      if (top) {
+        clearTimeout(idleTimer.current)
+        setHidden(false)
+        lastY = y
+        return
+      }
 
       // Mientras se hace scroll (hacia arriba o hacia abajo) la navbar se
       // desvanece poco a poco; reaparece cuando el scroll se detiene.
-      if (y > 16 && Math.abs(y - lastY) > 3) {
+      if (Math.abs(y - lastY) > 3) {
         setHidden(true)
         clearTimeout(idleTimer.current)
         idleTimer.current = setTimeout(() => setHidden(false), 280)
@@ -25,6 +34,7 @@ export default function Navbar() {
       lastY = y
     }
 
+    onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => {
       window.removeEventListener('scroll', onScroll)
