@@ -5,14 +5,17 @@ import Tilt from './Tilt.jsx'
  *  - images: array de { src, alt }
  *  - tilt:  activa el efecto hover 3D (por defecto true). Ponlo en false para
  *           fotos que no deben "doblarse" (p. ej. cartones de expansiones).
- *  - cap:   ancho maximo de cada imagen cuando hay varias (para tarjetas anchas)
+ *
+ * Con varias imagenes se reparten en 2 columnas para que ocupen todo el ancho
+ * de la tarjeta (comparativa base / paralela).
  */
-export default function CardMedia({ images = [], tilt = true, cap }) {
+export default function CardMedia({ images = [], tilt = true }) {
   if (images.length === 0) return null
   const multi = images.length > 1
+  const wrapClass = 'rounded-lg bg-[var(--surface-sunken)] p-2'
 
   return (
-    <div className={`mt-auto flex gap-3 pt-2 ${multi ? 'flex-row flex-wrap justify-center' : ''}`}>
+    <div className={`mt-auto pt-2 ${multi ? 'grid grid-cols-2 gap-3' : ''}`}>
       {images.map((img, i) => {
         const inner = (
           <img
@@ -22,17 +25,12 @@ export default function CardMedia({ images = [], tilt = true, cap }) {
             className="block w-full rounded-md shadow-lg"
           />
         )
-        const wrapClass = 'rounded-lg bg-[var(--surface-sunken)] p-2'
-        const wrapStyle = multi
-          ? { flex: cap ? `0 1 ${cap}` : '1 1 0', maxWidth: cap || undefined }
-          : undefined
-
         return tilt ? (
-          <Tilt key={i} className={wrapClass} style={wrapStyle}>
+          <Tilt key={i} className={wrapClass}>
             {inner}
           </Tilt>
         ) : (
-          <div key={i} className={wrapClass} style={wrapStyle}>
+          <div key={i} className={wrapClass}>
             {inner}
           </div>
         )

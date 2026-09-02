@@ -45,7 +45,7 @@ function RarezaCard({ carta, delay, side }) {
         ))}
       </div>
 
-      <CardMedia images={carta.images} cap={carta.images.length > 1 ? '150px' : undefined} />
+      <CardMedia images={carta.images} />
       {carta.images.length > 1 && (
         <p className="text-center text-[10px] uppercase tracking-wider text-[var(--page-text)]/50">
           base · paralela
