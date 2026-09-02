@@ -40,20 +40,22 @@ export const tutorial = {
 
   anatomia: {
     titulo: 'Anatomía de una carta',
-    nota: 'Pasa el cursor por los números.',
+    nota: 'Ejemplo real: una carta de Personaje (Ichika Nakano). Pasa el cursor por los números.',
     img: `${IMG}/BP6/GYC-BP6-002P1_IMG.png`,
-    alt: 'Carta de personaje con sus partes señaladas',
+    alt: 'Carta de personaje de Ichika Nakano con sus partes señaladas',
     partes: [
-      { n: 1, x: 30, y: 8, label: 'Nombre de la carta', texto: 'En personajes y protagonista: nombre de persona (grande) + nombre auxiliar (pequeño).' },
-      { n: 2, x: 82, y: 20, label: 'Tipo de carta', texto: 'Protagonista, Personaje, Episodio o Evento (más el tipo especial Engage).' },
-      { n: 3, x: 16, y: 33, label: 'Poder de novia (花嫁力)', texto: 'Valor de la hermana al hacer la aproximación.' },
-      { n: 4, x: 84, y: 44, label: 'Corrección de poder (補正値)', texto: 'Cuánto suma un episodio al poder de la hermana a la que se une.' },
-      { n: 5, x: 15, y: 58, label: 'Poder requerido (必要花嫁力)', texto: 'En el protagonista: el mínimo que necesita una hermana para conquistarlo.' },
-      { n: 6, x: 50, y: 74, label: 'Texto de habilidad', texto: 'Habilidad de activación [coste], automática o permanente.' },
-      { n: 7, x: 78, y: 84, label: 'Frase / diálogo', texto: 'Texto ambiental, sin efecto en la partida.' },
-      { n: 8, x: 50, y: 40, label: 'Ilustración', texto: 'Anime, manga o arte original. Influye en la rareza.' },
-      { n: 9, x: 50, y: 95, label: 'Información incidental', texto: 'Número de coleccionista, ilustrador y copyright.' },
+      { n: 1, x: 16, y: 5, label: 'Tipo de carta', texto: 'Aquí pone "Character". También puede ser Hero (protagonista), Episode o Event.' },
+      { n: 2, x: 13, y: 14, label: 'Poder de novia (花嫁力)', texto: 'El número grande, con "花嫁力" debajo. Es el valor de la hermana al hacer la aproximación (aquí, 2).' },
+      { n: 3, x: 60, y: 11, label: 'Nombre de persona', texto: 'El nombre propio en grande ("一花" = Ichika). En las cartas de hermana y de Futaro.' },
+      { n: 4, x: 34, y: 90, label: 'Nombre auxiliar (補助名)', texto: 'El subtítulo de la carta ("桜とキラキラ制服"). Forma parte del nombre completo.' },
+      { n: 5, x: 74, y: 90, label: 'Apellido', texto: 'El apellido "中野" (Nakano) junto al icono de la hermana.' },
+      { n: 6, x: 50, y: 44, label: 'Ilustración', texto: 'El arte de la carta. Influye en la rareza; sin efecto en la partida.' },
+      { n: 7, x: 50, y: 72, label: 'Texto de habilidad', texto: 'Habilidades: permanente (永続), automática (自動) o de activación con [coste].' },
+      { n: 8, x: 10, y: 88, label: 'Rareza', texto: 'La marca de rareza (aquí "SP"). Indica cómo de difícil es de encontrar.' },
+      { n: 9, x: 52, y: 97, label: 'Información incidental', texto: 'Número de carta (GYC-BP6-002P1), ilustrador y copyright. Sin efecto en la partida.' },
     ],
+    variantes:
+      'En un Episodio, el número de arriba es la corrección de poder (補正値, p. ej. +3). En el Protagonista (Futaro), es el poder de novia requerido (必要花嫁力).',
   },
 
   tiposCarta: [
@@ -102,6 +104,8 @@ export const tutorial = {
   arena: {
     titulo: 'La mesa',
     nota: 'Las 5 lanes de protagonista se comparten en el centro; cada jugador tiene 5 lanes de personaje enfrente.',
+    playmat:
+      'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2024/09/24212135/playmat_.jpg',
     relacion:
       'Una hermana solo puede aproximarse al protagonista que tiene "de frente" (misma lane) o "en diagonal" (lane contigua).',
     zonas: [

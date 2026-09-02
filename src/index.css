@@ -184,28 +184,6 @@ img {
   transform: rotateY(180deg);
 }
 
-/* Trazo animado del diagrama de la mesa */
-@keyframes draw-stroke {
-  from { stroke-dashoffset: var(--dash, 240); }
-  to { stroke-dashoffset: 0; }
-}
-.draw-in {
-  stroke-dasharray: var(--dash, 240);
-  stroke-dashoffset: var(--dash, 240);
-}
-.draw-in.go {
-  animation: draw-stroke 0.9s ease forwards;
-}
-
-/* Latido de una casilla de la mesa */
-@keyframes cell-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(233, 84, 140, 0); }
-  50% { box-shadow: 0 0 0 5px rgba(233, 84, 140, 0.35); }
-}
-.cell-glow {
-  animation: cell-glow 2.2s ease-in-out infinite;
-}
-
 /* Corazon flotante del objetivo */
 @keyframes heart-pop {
   0% { opacity: 0; transform: scale(0.3) translateY(10px); }

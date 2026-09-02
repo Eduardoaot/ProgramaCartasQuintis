@@ -99,57 +99,75 @@ function Anatomia() {
       </Reveal>
       <div
         ref={ref}
-        className="mx-auto grid max-w-4xl items-center gap-8 md:grid-cols-[minmax(0,300px)_1fr]"
+        className="mx-auto grid max-w-4xl items-start gap-10 md:grid-cols-[minmax(0,340px)_1fr]"
       >
-        <figure className="relative mx-auto w-full max-w-[300px]">
+        <figure className="relative mx-auto w-full max-w-[340px]">
           <img
             src={anatomia.img}
             alt={anatomia.alt}
             loading="lazy"
-            className={`w-full rounded-xl shadow-2xl transition-all duration-700 ${
+            className={`w-full rounded-xl shadow-2xl ring-1 ring-black/10 transition-all duration-700 ${
               visible ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'
             }`}
           />
-          {anatomia.partes.map((p, i) => (
-            <span
-              key={p.n}
-              className="group absolute z-10 -translate-x-1/2 -translate-y-1/2"
-              style={{ left: `${p.x}%`, top: `${p.y}%` }}
-            >
+          {anatomia.partes.map((p, i) => {
+            const above = p.y > 68
+            return (
               <span
-                className={`flex h-6 w-6 cursor-help items-center justify-center rounded-full border-2 border-white bg-rosa text-xs font-bold text-white ${
-                  visible ? 'anatomy-pin' : 'opacity-0'
-                }`}
-                style={visible ? { animationDelay: `${i * 110}ms` } : undefined}
+                key={p.n}
+                className="group absolute z-10 -translate-x-1/2 -translate-y-1/2"
+                style={{ left: `${p.x}%`, top: `${p.y}%` }}
               >
-                {p.n}
+                <span
+                  className={`flex h-7 w-7 cursor-help items-center justify-center rounded-full border-2 border-white bg-rosa text-xs font-bold text-white shadow-[0_2px_8px_rgba(0,0,0,0.4)] ${
+                    visible ? 'anatomy-pin' : 'opacity-0'
+                  }`}
+                  style={visible ? { animationDelay: `${i * 110}ms` } : undefined}
+                >
+                  {p.n}
+                </span>
+                <span
+                  className={`pointer-events-none absolute left-1/2 z-20 w-48 -translate-x-1/2 rounded-lg bg-vino px-3 py-2 text-xs text-white opacity-0 shadow-xl transition-opacity duration-200 group-hover:opacity-100 dark:bg-rosa ${
+                    above ? 'bottom-9' : 'top-9'
+                  }`}
+                >
+                  <strong className="block">{p.label}</strong>
+                  {p.texto}
+                </span>
               </span>
-              <span className="pointer-events-none absolute left-1/2 top-8 z-20 w-44 -translate-x-1/2 rounded-lg bg-vino px-3 py-2 text-xs text-white opacity-0 shadow-xl transition-opacity duration-200 group-hover:opacity-100 dark:bg-rosa">
-                <strong className="block">{p.label}</strong>
-                {p.texto}
-              </span>
-            </span>
-          ))}
+            )
+          })}
         </figure>
 
-        <ol className="grid gap-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
-          {anatomia.partes.map((p, i) => (
+        <div>
+          <ol className="grid gap-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
+            {anatomia.partes.map((p, i) => (
+              <Reveal
+                key={p.n}
+                variant={i % 2 ? 'right' : 'left'}
+                delay={i * 40}
+                as="li"
+                className="flex gap-2 rounded-lg border border-[var(--hairline)] bg-[var(--surface)] p-2.5 text-left"
+              >
+                <span className="flex h-5 w-5 flex-none items-center justify-center rounded-full bg-vino text-[11px] font-bold text-white dark:bg-rosa">
+                  {p.n}
+                </span>
+                <span className="text-xs leading-snug text-[var(--page-text)]/90">
+                  <strong className="text-vino dark:text-rosa">{p.label}.</strong> {p.texto}
+                </span>
+              </Reveal>
+            ))}
+          </ol>
+          {anatomia.variantes && (
             <Reveal
-              key={p.n}
-              variant={i % 2 ? 'right' : 'left'}
-              delay={i * 45}
-              as="li"
-              className="flex gap-2 rounded-lg border border-[var(--hairline)] bg-[var(--surface)] p-2.5 text-left"
+              variant="up"
+              delay={120}
+              className="mt-4 rounded-xl bg-[var(--surface-alt)] p-3 text-left text-xs leading-snug text-[var(--page-text)]/85 ring-1 ring-[var(--hairline)]"
             >
-              <span className="flex h-5 w-5 flex-none items-center justify-center rounded-full bg-vino text-[11px] font-bold text-white dark:bg-rosa">
-                {p.n}
-              </span>
-              <span className="text-xs leading-snug text-[var(--page-text)]/90">
-                <strong className="text-vino dark:text-rosa">{p.label}.</strong> {p.texto}
-              </span>
+              <strong className="text-rosa">Ese número cambia según el tipo:</strong> {anatomia.variantes}
             </Reveal>
-          ))}
-        </ol>
+          )}
+        </div>
       </div>
     </div>
   )
@@ -192,87 +210,27 @@ function TiposCarta() {
   )
 }
 
-/* ---------- 5. La mesa (diagrama animado) ---------- */
+/* ---------- 5. La mesa (tapete oficial) ---------- */
 function Mesa() {
-  const [ref, visible] = useReveal({ threshold: 0.3 })
-  const cols = [78, 170, 262, 354, 446]
-  const Row = ({ y, label, glowMid }) => (
-    <>
-      <text x="8" y={y + 34} className="fill-current text-[11px] font-bold" style={{ opacity: 0.6 }}>
-        {label}
-      </text>
-      {cols.map((cx, i) => (
-        <rect
-          key={i}
-          x={cx - 34}
-          y={y}
-          width="68"
-          height="56"
-          rx="8"
-          className={glowMid && i === 2 ? 'cell-glow' : ''}
-          fill={glowMid && i === 2 ? 'var(--color-rosa)' : 'var(--surface)'}
-          stroke="var(--color-rosa)"
-          strokeOpacity={glowMid && i === 2 ? 1 : 0.3}
-          strokeWidth="2"
-        />
-      ))}
-    </>
-  )
-
   return (
     <div className="mt-16">
-      <Reveal variant="up" className="mb-2 text-center">
+      <Reveal variant="up" className="mb-4 text-center">
         <h3 className="text-xl font-bold uppercase tracking-wider text-rosa">{arena.titulo}</h3>
         <p className="mx-auto mt-2 max-w-2xl text-sm text-vino/80 dark:text-rosa-claro/70">{arena.nota}</p>
       </Reveal>
 
-      <Reveal variant="scale" className="mx-auto max-w-2xl">
-        <div ref={ref} className="overflow-x-auto rounded-2xl border-2 border-[var(--hairline)] bg-[var(--surface-alt)] p-4">
-          <svg viewBox="0 0 500 330" className="mx-auto block w-full min-w-[420px] text-[var(--page-text)]">
-            <defs>
-              <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M0 0 L10 5 L0 10 z" fill="var(--color-dorado)" />
-              </marker>
-            </defs>
-            <Row y={16} label="Rival" />
-            <Row y={130} label="Héroes" glowMid />
-            <Row y={244} label="Tú" glowMid />
-
-            {/* frente */}
-            <path
-              d="M262 244 L262 192"
-              className={`draw-in ${visible ? 'go' : ''}`}
-              style={{ '--dash': 60, animationDelay: '.1s' }}
-              stroke="var(--color-dorado)"
-              strokeWidth="3"
-              fill="none"
-              markerEnd="url(#ah)"
-            />
-            {/* diagonales */}
-            <path
-              d="M248 246 L184 192"
-              className={`draw-in ${visible ? 'go' : ''}`}
-              style={{ '--dash': 120, animationDelay: '.35s' }}
-              stroke="var(--color-dorado)"
-              strokeWidth="3"
-              strokeDasharray="6 5"
-              fill="none"
-              markerEnd="url(#ah)"
-            />
-            <path
-              d="M276 246 L340 192"
-              className={`draw-in ${visible ? 'go' : ''}`}
-              style={{ '--dash': 120, animationDelay: '.5s' }}
-              stroke="var(--color-dorado)"
-              strokeWidth="3"
-              strokeDasharray="6 5"
-              fill="none"
-              markerEnd="url(#ah)"
-            />
-            <text x="292" y="228" className="fill-current text-[10px] font-semibold">de frente</text>
-            <text x="150" y="228" className="fill-current text-[10px] font-semibold">diagonal</text>
-          </svg>
-        </div>
+      <Reveal variant="scale" className="mx-auto max-w-3xl">
+        <figure className="overflow-hidden rounded-2xl border-2 border-[var(--hairline)] bg-[var(--surface-sunken)] p-2 shadow-[0_12px_34px_rgba(142,36,83,0.20)]">
+          <img
+            src={arena.playmat}
+            alt="Tapete oficial del juego con la distribución de las zonas"
+            loading="lazy"
+            className="block w-full rounded-xl transition duration-500 hover:scale-[1.02]"
+          />
+          <figcaption className="px-2 pb-1 pt-2 text-center text-xs text-[var(--page-text)]/60">
+            Tapete oficial: las 5 lanes de protagonista en el centro y 5 lanes de personaje por lado.
+          </figcaption>
+        </figure>
       </Reveal>
 
       <Reveal variant="up" className="mx-auto mt-4 max-w-2xl rounded-xl bg-[var(--surface)] p-4 text-center text-sm text-[var(--page-text)]/85 ring-1 ring-[var(--hairline)]">
