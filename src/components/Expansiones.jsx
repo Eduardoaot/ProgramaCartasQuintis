@@ -6,12 +6,12 @@ import { expansiones } from '../data/expansiones.js'
 function BoxPhoto({ set }) {
   if (set.caja) {
     return (
-      <div className="overflow-hidden rounded-xl ring-1 ring-[var(--hairline)]">
+      <div className="flex items-center justify-center overflow-hidden rounded-xl bg-[var(--surface-sunken)] p-3 ring-1 ring-[var(--hairline)]">
         <img
           src={set.caja}
           alt={`Cartón de ${set.titulo}`}
           loading="lazy"
-          className="block aspect-[4/3] w-full object-cover transition duration-500 hover:scale-[1.03]"
+          className="block h-44 w-auto max-w-full object-contain transition duration-500 hover:scale-105"
         />
       </div>
     )

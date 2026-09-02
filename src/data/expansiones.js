@@ -29,7 +29,7 @@ export const expansiones = {
           descripcion:
             'Set base de la primera temporada. Presenta a las cinco hermanas Nakano, las cartas de heroe de Futaro y el sistema de afinidades por color.',
           destacado: 'Primera SSSP secreta numerada del juego',
-          caja: null,
+          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2024/09/11160145/BP.png',
         },
         {
           codigo: 'BP2',
@@ -38,7 +38,7 @@ export const expansiones = {
           descripcion:
             'Segunda entrega de la T1. Amplia las lineas de cada hermana y suma nuevas cartas de episodio de la primera mitad de la historia.',
           destacado: 'Nuevas SSSP de las hermanas Nakano',
-          caja: null,
+          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2024/10/02154553/GYCwebSP2.png',
         },
         {
           codigo: 'BP3',
@@ -47,7 +47,7 @@ export const expansiones = {
           descripcion:
             'Profundiza en el pool de la temporada 1 con mas cartas R y RR y refuerza las combinaciones por afinidad.',
           destacado: 'Paralelas R+ mas accesibles',
-          caja: null,
+          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2024/12/30130916/vol.3.png',
         },
         {
           codigo: 'BP4',
@@ -56,7 +56,7 @@ export const expansiones = {
           descripcion:
             'Cierre de la primera temporada. Completa los arcos de la T1 con dos ilustraciones destacadas por hermana.',
           destacado: 'Dobles ilustraciones de cierre de arco',
-          caja: null,
+          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2025/04/18212429/vol.4PKG-1.png',
         },
       ],
     },
@@ -70,7 +70,7 @@ export const expansiones = {
           descripcion:
             'Arranque de la segunda temporada. Reinicia el pool con nuevas C, U y R y estrena los marcos de la T2.',
           destacado: 'Primeras ER "Echara" del bloque T2',
-          caja: null,
+          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2025/10/15114429/z.png',
         },
         {
           codigo: 'BP6',
@@ -79,7 +79,7 @@ export const expansiones = {
           descripcion:
             'Punto medio de la T2. Introduce las GSP "Go-toubun Special" y amplia las paralelas de gama alta (HSP / ISP).',
           destacado: 'Debut de las cartas GSP',
-          caja: null,
+          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2026/02/27105856/a.png',
         },
         {
           codigo: 'BP7',
@@ -88,7 +88,7 @@ export const expansiones = {
           descripcion:
             'Entrega mas reciente. Consolida todas las rarezas paralelas (SP, SSP, HSP/ISP) y anade las cartas "+" de la segunda temporada.',
           destacado: 'Set con la lista de rarezas mas completa',
-          caja: null,
+          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2026/06/06110909/a.png',
         },
       ],
     },

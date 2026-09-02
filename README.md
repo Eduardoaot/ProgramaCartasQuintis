@@ -32,15 +32,20 @@ tocar los componentes, solo estos archivos:
 Cada archivo tiene comentarios explicando la forma de los datos. Añadir un
 elemento a un array = aparece automáticamente una tarjeta nueva.
 
-### Placeholders pendientes de rellenar
+### Datos a revisar
 
-- **`expansiones.js` → `caja`** y **`antecedentes.js` → `firmadas.sets[].caja`**:
-  van en `null` y muestran un marcador `📦`. Pon la URL real de la foto del
-  cartón / caja.
-- **`antecedentes.js` → `valor.cartas[].valor`**: precios de referencia de
-  ejemplo; revisar y actualizar con datos reales del mercado.
+- **`antecedentes.js` → `valor.cartas[].valor`**: precios de mercado tomados de
+  TCGplayer al montar la página; conviene actualizarlos cada cierto tiempo.
+- **`expansiones.js` → `totalCartas`**: tamaño aproximado de cada set, ajustar.
 - **`tutorial.js` → `anatomia.partes[].x / .y`**: posición (%) de cada número
   sobre la carta de ejemplo; ajústalos a la carta que uses.
+- Si algún set nuevo saca cartón, añade su `caja` (URL de la foto) en
+  `expansiones.js`.
+
+### `npm run dev`
+
+Abre el navegador automáticamente (`server.open` en `vite.config.js`). Para
+evitarlo: `npm run dev -- --open false`.
 
 ## Estructura
 

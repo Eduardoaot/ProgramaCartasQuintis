@@ -1,4 +1,5 @@
 // Seccion "El juego de cartas: descripción" — responsable: Junior
+// Fuente: https://5hanayome-cardgame.com/for_beginner/
 // Cuándo nació, en qué consiste, partes de la arena, cómo se gana y tipos de carta.
 export const juego = {
   intro:
@@ -12,26 +13,28 @@ export const juego = {
     {
       titulo: 'En qué consiste',
       texto:
-        'Dos jugadores se enfrentan con un mazo temático de las hermanas Nakano. Por turnos juegas cartas de personaje y de episodio para avanzar tu relación con las quintillizas. Gana quien consigue tres novias antes que el rival.',
+        'Duelo 1 contra 1. Cada jugador usa un mazo principal de 50 cartas más un mazo de protagonista de 10 cartas de Futaro (una de cada tipo), 60 en total para torneo. Por turnos juegas personajes y episodios para acercarte a las hermanas Nakano; gana quien consigue tres novias antes que el rival.',
     },
   ],
   arena: {
     titulo: 'Partes de la arena',
     partes: [
-      { nombre: 'Mazo', texto: 'De donde robas cartas al inicio de cada turno.' },
+      { nombre: 'Mazo principal', texto: '50 cartas. De aquí robas al inicio de cada turno.' },
+      { nombre: 'Mazo de protagonista', texto: '10 cartas de Futaro, una de cada tipo.' },
+      { nombre: 'Mazo E', texto: 'Cartas E con funda distinta, se maneja aparte.' },
       { nombre: 'Mano', texto: 'Las cartas que puedes jugar en tu turno.' },
       { nombre: 'Zona de personajes', texto: 'Donde colocas a las hermanas en juego.' },
-      { nombre: 'Zona de episodios', texto: 'Cartas de situación que apoyan tu jugada.' },
-      { nombre: 'Zona de novias', texto: 'Donde se acumulan las hermanas conquistadas: llegar a 3 gana.' },
+      { nombre: 'Zona de novias', texto: 'Hermanas conquistadas: llegar a 3 gana la partida.' },
       { nombre: 'Descarte', texto: 'Cartas usadas o retiradas del juego.' },
     ],
   },
   comoSeGana:
-    'Consigue que tres de las cinco hermanas lleguen a tu zona de novias. También puedes ganar si tu rival se queda sin cartas en el mazo (según la variante de reglas que se acuerde).',
+    'Consigue que tres de las cinco hermanas lleguen a tu zona de novias antes que el rival. También pierdes si te quedas sin cartas en el mazo principal.',
   tiposCarta: [
-    { nombre: 'Personaje', texto: 'Una de las hermanas Nakano. Tiene coste, nivel y afinidad.' },
-    { nombre: 'Episodio', texto: 'Recrea un momento de la historia y da un efecto puntual.' },
-    { nombre: 'Héroe', texto: 'Futaro. No compite por ser novia: habilita y potencia tus jugadas.' },
-    { nombre: 'Evento / Itsutsugo', texto: 'Cartas especiales que cambian las reglas del turno.' },
+    { nombre: 'Personaje', texto: 'Una de las hermanas Nakano. Tiene coste, nivel y color.' },
+    { nombre: 'Episodio', texto: 'Recrea un momento de la historia y acompaña a una hermana.' },
+    { nombre: 'Evento', texto: 'Efecto puntual que altera el turno; luego va al descarte.' },
+    { nombre: 'Héroe', texto: 'Futaro, desde el mazo de protagonista. Habilita y potencia tus jugadas.' },
+    { nombre: 'Carta E (Echara)', texto: 'Del mazo E; aporta efectos especiales fuera del mazo principal.' },
   ],
 }

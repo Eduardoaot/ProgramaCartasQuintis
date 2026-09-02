@@ -49,7 +49,7 @@ export default function JuegoCartas() {
         <h3 className="mb-5 text-center text-xl font-bold uppercase tracking-wider text-rosa">
           Tipos de carta
         </h3>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {juego.tiposCarta.map((t) => (
             <div
               key={t.nombre}

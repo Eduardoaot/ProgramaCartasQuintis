@@ -1,87 +1,81 @@
 // Seccion "Antecedentes" — responsable: YO
 //
-// De donde viene la mecanica + que expansiones traian cartas firmadas
-// (con foto de la CAJA / carton) + lo popular que se volvio, con el valor
-// de referencia de algunas cartas.
+//  - origen   -> "Primer contacto": la serie en Weiss Schwarz
+//  - firmadas -> las 3 expansiones de Weiss Schwarz (japones + ingles)
+//  - valor    -> cartas SP firmadas y su precio de mercado (TCGplayer)
 //
-// PENDIENTE de tu equipo:
-//  - `caja`: URL real de la foto del carton/caja de cada set (ahora null -> se
-//     muestra un marcador).
-//  - `valor`: precios de referencia del mercado secundario; revisar y actualizar.
-const IMG = 'https://5hanayome-cardgame.com/wordpress/wp-content/images/cardlist'
+// PENDIENTE: revisar/actualizar los precios de `valor.cartas[].valor`.
 
 export const antecedentes = {
   intro:
-    'El TCG de Las Quintillizas no salio de la nada: hereda mecanicas de otros juegos de cartas de anime y, gracias a sus cartas firmadas, se volvio un objeto de coleccion muy buscado.',
+    'El TCG de Las Quintillizas no salio de la nada: la serie ya habia estado en un juego de cartas antes, y sus cartas firmadas la convirtieron en objeto de coleccion.',
 
   origen: {
-    titulo: 'De donde viene la mecanica',
+    titulo: 'Primer contacto',
     texto:
-      'La base conceptual viene de Weiss Schwarz (Bushiroad, 2008): mazos tematicos por serie, cartas de personaje con coste y nivel, cartas de evento que alteran el turno y una condicion de victoria por acumulacion. Sobre eso, Quintillizas reescribe el objetivo con el tono de la obra: conseguir tres novias antes que el rival.',
+      'La primera vez en la que se tuvo esta serie en un juego de cartas fue en Weiss Schwarz (Bushiroad, 2008): un juego de cartas global que trata de varios animes, con mazos tematicos por serie, cartas de personaje con coste y nivel, cartas de evento que alteran el turno y una condicion de victoria por acumulacion.',
   },
 
   firmadas: {
     titulo: 'Expansiones con cartas firmadas',
     texto:
-      'Varias cajas incluyeron cartas con firma real impresa: las SSSP secretas llevan la firma del autor Negi Haruba (y van numeradas 000/099) y las SSP la firma de las actrices de voz. Estas son las expansiones que las repartieron:',
+      'En Weiss Schwarz, Las Quintillizas tuvieron tres expansiones. Todas se publicaron tanto en japones como en ingles e incluyeron cartas SP con la firma impresa de las actrices de voz.',
     sets: [
       {
-        codigo: 'BP1',
-        nombre: 'Volumen 1',
-        firmaEn: 'SSSP — firma de Negi Haruba, numeradas 000/099',
-        caja: null,
+        nombre: 'The Quintessential Quintuplets',
+        idiomas: 'Japonés · Inglés',
+        enlace:
+          'https://www.amazon.com.mx/Weiss-Schwarz-Quintessential-Quintuplets-Booster/dp/B09CV7FWHJ',
+        caja: 'https://m.media-amazon.com/images/I/712UwQz8JZL._AC_SY741_.jpg',
       },
       {
-        codigo: 'BP2',
-        nombre: 'Volumen 2',
-        firmaEn: 'SSSP — nuevas ilustraciones firmadas del autor',
-        caja: null,
+        nombre: 'The Quintessential Quintuplets 2',
+        idiomas: 'Japonés · Inglés',
+        enlace: 'https://www.amazon.com.mx/Weiss-Schwarz-Quintessential-Quintuplets-2/dp/B09YN25GNY',
+        caja: 'https://m.media-amazon.com/images/I/614xGJ8J98L._AC_SL1001_.jpg',
       },
       {
-        codigo: 'BP4',
-        nombre: 'Volumen 4',
-        firmaEn: 'SSP — firma de las seiyu del reparto',
-        caja: null,
-      },
-      {
-        codigo: 'BP6',
-        nombre: 'Volumen 6',
-        firmaEn: 'SSP y GSP — firma de seiyu sobre arte especial',
-        caja: null,
-      },
-      {
-        codigo: 'BP7',
-        nombre: 'Volumen 7',
-        firmaEn: 'SSSP + SSP — el set con mas cartas firmadas',
-        caja: null,
+        nombre: 'The Quintessential Quintuplets Movie',
+        idiomas: 'Japonés · Inglés',
+        enlace:
+          'https://www.amazon.com.mx/Weiss-Schwarz-Quintessential-Quintuplets-visualizaci%C3%B3n/dp/B0C7JYZ55H',
+        caja: 'https://m.media-amazon.com/images/I/811SqGZgxrL._AC_SX522_.jpg',
       },
     ],
   },
 
   valor: {
-    titulo: 'Lo popular que se volvio',
+    titulo: 'Lo popular que se volvió',
     texto:
-      'La demanda de coleccionistas disparo el precio de las cartas firmadas y numeradas en el mercado secundario. Valores de referencia (mercado japones; revisar y actualizar):',
+      'En estas expansiones se implementaron cartas SP con la firma impresa de las seiyu. La demanda de coleccionistas disparo su precio en el mercado secundario. Precios de mercado de TCGplayer (referencia; revisar y actualizar):',
     cartas: [
       {
-        nombre: 'SSSP Ichika — BP1, firmada y numerada',
-        valor: '¥80.000 – ¥130.000',
-        img: `${IMG}/BP1/GYC-BP1-001P2_4c.png`,
+        nombre: 'Tsundere, Nino Nakano — SP firmada',
+        valor: 'US$ 199.99',
+        img: 'https://tcgplayer-cdn.tcgplayer.com/product/253951_in_1000x1000.jpg',
+        enlace:
+          'https://www.tcgplayer.com/product/253951/weiss-schwarz-the-quintessential-quintuplets-tsundere,-nino-nakano-sp?Language=English',
       },
       {
-        nombre: 'SSSP — BP2, firmada',
-        valor: '¥45.000 – ¥90.000',
-        img: `${IMG}/BP2/GYC-BP02_008SSSP.png`,
+        nombre: 'Headphone Girl, Miku Nakano — SP firmada',
+        valor: 'US$ 149.72',
+        img: 'https://tcgplayer-cdn.tcgplayer.com/product/254011_in_1000x1000.jpg',
+        enlace:
+          'https://www.tcgplayer.com/product/254011/weiss-schwarz-the-quintessential-quintuplets-headphone-girl,-miku-nakano-sp?Language=English',
       },
       {
-        nombre: 'GSP secreta — BP6',
-        valor: '¥30.000 – ¥60.000',
-        img: `${IMG}/BP6/GYC-BP6-065P2_4C.png`,
+        nombre: 'Ribbon Girl, Yotsuba Nakano — SP firmada',
+        valor: 'US$ 127.50',
+        img: 'https://tcgplayer-cdn.tcgplayer.com/product/254042_in_1000x1000.jpg',
+        enlace:
+          'https://www.tcgplayer.com/product/254042/weiss-schwarz-the-quintessential-quintuplets-ribbon-girl,-yotsuba-nakano-sp?Language=English',
       },
       {
-        nombre: 'SSP con firma de seiyu — BP7',
-        valor: '¥12.000 – ¥25.000',
-        img: `${IMG}/BP7/GYC-BP7-024P1_img.png`,
+        nombre: 'Earnest Girl, Itsuki Nakano — SP firmada',
+        valor: 'US$ 125.00',
+        img: 'https://tcgplayer-cdn.tcgplayer.com/product/254104_in_1000x1000.jpg',
+        enlace:
+          'https://www.tcgplayer.com/product/254104/weiss-schwarz-the-quintessential-quintuplets-earnest-girl,-itsuki-nakano-sp?Language=English',
       },
     ],
   },
