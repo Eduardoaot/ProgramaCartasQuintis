@@ -12,7 +12,7 @@ import Tilt from './Tilt.jsx'
 export default function CardMedia({ images = [], tilt = true }) {
   if (images.length === 0) return null
   const multi = images.length > 1
-  const wrapClass = 'rounded-lg bg-[var(--surface-sunken)] p-2'
+  const wrapClass = 'rounded-lg bg-(--surface-sunken) p-2'
 
   return (
     <div className={`mt-auto pt-2 ${multi ? 'grid grid-cols-2 gap-3' : ''}`}>

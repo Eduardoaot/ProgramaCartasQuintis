@@ -6,8 +6,9 @@ import { juego } from '../data/juego.js'
 const bordePorTipo = {
   Personaje: 'border-rosa',
   Episodio: 'border-verde',
-  Héroe: 'border-dorado',
-  'Evento / Itsutsugo': 'border-azul',
+  Evento: 'border-azul',
+  Protagonista: 'border-dorado',
+  'Carta E': 'border-vino',
 }
 
 export default function JuegoCartas() {
@@ -62,7 +63,7 @@ export default function JuegoCartas() {
       </Reveal>
 
       {/* Cómo se gana */}
-      <Reveal className="mx-auto mt-12 max-w-3xl rounded-2xl bg-gradient-to-br from-vino to-rosa p-8 text-center text-white shadow-xl">
+      <Reveal className="mx-auto mt-12 max-w-3xl rounded-2xl bg-linear-to-br from-vino to-rosa p-8 text-center text-white shadow-xl">
         <h3 className="mb-2 text-xl font-bold">Cómo se gana</h3>
         <p className="text-white/95">{juego.comoSeGana}</p>
       </Reveal>
@@ -72,7 +73,7 @@ export default function JuegoCartas() {
         <h3 className="mb-5 text-center text-2xl font-bold uppercase tracking-wider text-rosa sm:text-2xl">
           Tipos de carta
         </h3>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {juego.tiposCarta.map((t, i) => {
             const posicion = i === 0 ? 'left' : i === juego.tiposCarta.length - 1 ? 'right' : 'center'
 

@@ -2,9 +2,9 @@ import { navLinks } from '../data/nav.js'
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-vino to-rosa px-6 py-12 text-center text-white">
+    <footer className="bg-linear-to-br from-vino to-rosa px-6 py-12 text-center text-white">
       <div className="mx-auto max-w-6xl">
-        <p className="bg-gradient-to-r from-white to-dorado bg-clip-text text-xl font-bold tracking-wide text-transparent">
+        <p className="bg-linear-to-r from-white to-dorado bg-clip-text text-xl font-bold tracking-wide text-transparent">
           五等分の花嫁 TCG
         </p>
 

@@ -59,7 +59,7 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 text-white">
         <a
           href="#inicio"
-          className="bg-gradient-to-r from-white to-dorado bg-clip-text text-lg font-bold tracking-wide text-transparent"
+          className="bg-linear-to-r from-white to-dorado bg-clip-text text-lg font-bold tracking-wide text-transparent"
         >
           {SITE_TITLE}
         </a>

@@ -11,7 +11,7 @@ export default function Section({ id, eyebrow, title, intro, alt = false, childr
       style={style}
       {...props}
       className={`scroll-mt-20 px-6 py-20 sm:py-24 ${
-        alt ? 'bg-[var(--surface-alt)]' : 'bg-[var(--page-bg)]'
+        alt ? 'bg-(--surface-alt)' : 'bg-(--page-bg)'
       } ${className}`}
     >
       <div className="mx-auto max-w-6xl">
@@ -23,7 +23,7 @@ export default function Section({ id, eyebrow, title, intro, alt = false, childr
           )}
           <h2 className="relative inline-block pb-3 text-3xl font-extrabold text-vino sm:text-4xl dark:text-rosa">
             {title}
-            <span className="absolute bottom-0 left-1/2 h-1 w-16 -translate-x-1/2 rounded bg-gradient-to-r from-rosa to-dorado" />
+            <span className="absolute bottom-0 left-1/2 h-1 w-16 -translate-x-1/2 rounded bg-linear-to-r from-rosa to-dorado" />
           </h2>
           {intro && (
             <p className="mx-auto mt-5 max-w-2xl text-base text-vino/80 dark:text-rosa-claro/70">

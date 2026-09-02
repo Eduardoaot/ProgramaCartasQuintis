@@ -46,7 +46,7 @@ export default function Tilt({ max = 16, glare = true, className = '', style, ch
         ref={innerRef}
         onPointerMove={handleMove}
         onPointerLeave={handleLeave}
-        className="relative h-full [transform-style:preserve-3d] will-change-transform"
+        className="relative h-full transform-3d will-change-transform"
       >
         {children}
         {glare && (

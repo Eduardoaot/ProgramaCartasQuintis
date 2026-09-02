@@ -17,7 +17,7 @@ export default function SSSPShowcase() {
       {/* Halo de luz */}
       <div
         aria-hidden="true"
-        className={`pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl transition-opacity duration-1000 ${
+        className={`pointer-events-none absolute left-1/2 top-1/2 h-140 w-140 -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl transition-opacity duration-1000 ${
           visible ? 'opacity-100' : 'opacity-0'
         }`}
         style={{
@@ -54,7 +54,7 @@ export default function SSSPShowcase() {
               {visible && (
                 <span
                   aria-hidden="true"
-                  className="sssp-sweep pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-white/60 to-transparent"
+                  className="sssp-sweep pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-linear-to-r from-transparent via-white/60 to-transparent"
                 />
               )}
             </div>
@@ -68,7 +68,7 @@ export default function SSSPShowcase() {
           }`}
           style={{ transitionDelay: visible ? '200ms' : '0ms' }}
         >
-          <span className="inline-block rounded-lg bg-gradient-to-br from-dorado to-rosa px-3 py-1 text-sm font-extrabold tracking-[0.3em] text-vino">
+          <span className="inline-block rounded-lg bg-linear-to-br from-dorado to-rosa px-3 py-1 text-sm font-extrabold tracking-[0.3em] text-vino">
             {s.codigo}
           </span>
           <h3 className="mt-4 text-3xl font-extrabold sm:text-4xl">{s.nombre}</h3>

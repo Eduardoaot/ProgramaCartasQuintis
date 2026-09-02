@@ -44,7 +44,7 @@ export default function Hero() {
       >
         <span
           aria-hidden="true"
-          className="absolute top-0 left-[-150%] h-full w-3/5 -skew-x-12 bg-gradient-to-r from-transparent via-white/50 to-transparent group-hover:animate-shine"
+          className="absolute top-0 left-[-150%] h-full w-3/5 -skew-x-12 bg-linear-to-r from-transparent via-white/50 to-transparent group-hover:animate-shine"
         />
         {hero.cta.label}
         <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
