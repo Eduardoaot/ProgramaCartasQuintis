@@ -1,40 +1,38 @@
-// Seccion "El juego de cartas: descripción" — responsable: Junior
-// Fuente: https://5hanayome-cardgame.com/for_beginner/
+// Sección "El juego de cartas: descripción" — responsable: Junior
 // Cuándo nació, en qué consiste, partes de la arena, cómo se gana y tipos de carta.
 export const juego = {
+  bgImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzIXzFt9UZoOcH58YCbN5BYwV3zFu0yoJFC_E6DByKmI_p4ym1q5ve8ocH&s=10',
   intro:
     'Una vista general del TCG: cuándo salió, de qué va una partida, cómo está dividida la mesa y qué cartas vas a manejar.',
   bloques: [
     {
       titulo: 'Cuándo nació',
       texto:
-        'El juego de cartas se lanzó en Japón junto al set BP1, coincidiendo con la popularidad del anime. Desde entonces se han publicado sets numerados (BP1–BP7) repartidos en dos temporadas.',
+        'Nacido el 18 de octubre de 2024 gracias a Bushiroad, este juego de cartas coleccionables dio vida a una nueva experiencia interactiva basada totalmente en el popular anime de las quintillizas.',
     },
     {
       titulo: 'En qué consiste',
       texto:
-        'Duelo 1 contra 1. Cada jugador usa un mazo principal de 50 cartas más un mazo de protagonista de 10 cartas de Futaro (una de cada tipo), 60 en total para torneo. Por turnos juegas personajes y episodios para acercarte a las hermanas Nakano; gana quien consigue tres novias antes que el rival.',
+        'Este TCG permite construir mazos temáticos enfocados en tu quintilliza favorita, combinando cartas de personajes y eventos del anime para competir por puntos de afecto en batallas estratégicas entre dos jugadores.',
     },
   ],
   arena: {
     titulo: 'Partes de la arena',
     partes: [
-      { nombre: 'Mazo principal', texto: '50 cartas. De aquí robas al inicio de cada turno.' },
-      { nombre: 'Mazo de protagonista', texto: '10 cartas de Futaro, una de cada tipo.' },
-      { nombre: 'Mazo E', texto: 'Cartas E con funda distinta, se maneja aparte.' },
-      { nombre: 'Mano', texto: 'Las cartas que puedes jugar en tu turno.' },
-      { nombre: 'Zona de personajes', texto: 'Donde colocas a las hermanas en juego.' },
-      { nombre: 'Zona de novias', texto: 'Hermanas conquistadas: llegar a 3 gana la partida.' },
-      { nombre: 'Descarte', texto: 'Cartas usadas o retiradas del juego.' },
+      { nombre: 'Mazo', texto: 'Zona donde se coloca tu mazo principal. De aquí robas cartas al inicio de cada turno.' },
+      { nombre: 'Mano', texto: 'Cartas que tienes disponibles y listas para jugar durante tu turno.' },
+      { nombre: 'Zona de personajes', texto: 'Espacio central donde despliegas a las hermanas Nakano para la batalla.' },
+      { nombre: 'Zona de episodios', texto: 'Área destinada a las cartas de situación que apoyan tu estrategia.' },
+      { nombre: 'Zona de novias', texto: 'Lugar donde acumulas a las hermanas conquistadas. ¡Consigue 3 para ganar!' },
+      { nombre: 'Descarte', texto: 'Zona donde van las cartas utilizadas, consumidas o retiradas del juego.' },
     ],
   },
   comoSeGana:
-    'Consigue que tres de las cinco hermanas lleguen a tu zona de novias antes que el rival. También pierdes si te quedas sin cartas en el mazo principal.',
+    'Consigue que tres de las cinco hermanas lleguen a tu zona de novias. También puedes ganar si tu rival se queda sin cartas en el mazo (según la variante de reglas que se acuerde).',
   tiposCarta: [
-    { nombre: 'Personaje', texto: 'Una de las hermanas Nakano. Tiene coste, nivel y color.' },
-    { nombre: 'Episodio', texto: 'Recrea un momento de la historia y acompaña a una hermana.' },
-    { nombre: 'Evento', texto: 'Efecto puntual que altera el turno; luego va al descarte.' },
-    { nombre: 'Héroe', texto: 'Futaro, desde el mazo de protagonista. Habilita y potencia tus jugadas.' },
-    { nombre: 'Carta E (Echara)', texto: 'Del mazo E; aporta efectos especiales fuera del mazo principal.' },
+    { nombre: 'Personaje', texto: 'Representan a las hermanas Nakano. Cuentan con coste, nivel y afinidad para liderar tu estrategia en el tablero.' },
+    { nombre: 'Episodio', texto: 'Recrean momentos icónicos de la historia y otorgan efectos puntuales para potenciar tu jugada.' },
+    { nombre: 'Héroe', texto: 'Futaro Uesugi. No compite por ser novia, pero apoya, habilita y potencia las habilidades de tus cartas.' },
+    { nombre: 'Evento / Itsutsugo', texto: 'Cartas de acción especial capaces de cambiar las reglas del turno o alterar el ritmo de la partida.' },
   ],
 }
