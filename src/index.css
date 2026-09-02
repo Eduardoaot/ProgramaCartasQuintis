@@ -155,3 +155,63 @@ img {
 .sssp-sweep {
   animation: sssp-sweep 1.8s ease 0.5s both;
 }
+
+/* Tarjetas de palabra clave que giran al pasar el cursor */
+.flip {
+  perspective: 1000px;
+}
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
+}
+.flip:hover .flip-inner,
+.flip:focus-within .flip-inner {
+  transform: rotateY(180deg);
+}
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+/* Trazo animado del diagrama de la mesa */
+@keyframes draw-stroke {
+  from { stroke-dashoffset: var(--dash, 240); }
+  to { stroke-dashoffset: 0; }
+}
+.draw-in {
+  stroke-dasharray: var(--dash, 240);
+  stroke-dashoffset: var(--dash, 240);
+}
+.draw-in.go {
+  animation: draw-stroke 0.9s ease forwards;
+}
+
+/* Latido de una casilla de la mesa */
+@keyframes cell-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(233, 84, 140, 0); }
+  50% { box-shadow: 0 0 0 5px rgba(233, 84, 140, 0.35); }
+}
+.cell-glow {
+  animation: cell-glow 2.2s ease-in-out infinite;
+}
+
+/* Corazon flotante del objetivo */
+@keyframes heart-pop {
+  0% { opacity: 0; transform: scale(0.3) translateY(10px); }
+  60% { transform: scale(1.15) translateY(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.heart-pop {
+  animation: heart-pop 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}

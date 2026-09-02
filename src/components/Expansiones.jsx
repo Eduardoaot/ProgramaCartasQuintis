@@ -36,11 +36,16 @@ function SetCard({ set, delay, side }) {
     >
       <BoxPhoto set={set} />
 
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
         <span className="inline-flex items-center justify-center rounded-lg bg-gradient-to-br from-vino to-rosa px-2.5 py-1 text-sm font-extrabold text-white">
           {set.codigo}
         </span>
         <h4 className="text-lg font-bold text-vino dark:text-rosa">{set.titulo}</h4>
+        {set.lanzamiento && (
+          <span className="rounded-full bg-[var(--surface-alt)] px-2.5 py-0.5 text-xs font-semibold text-[var(--page-text)]/70 ring-1 ring-[var(--hairline)]">
+            {set.lanzamiento}
+          </span>
+        )}
       </div>
 
       <p className="text-sm leading-relaxed text-[var(--page-text)]/90">{set.descripcion}</p>

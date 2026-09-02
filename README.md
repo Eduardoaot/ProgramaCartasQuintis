@@ -25,8 +25,8 @@ tocar los componentes, solo estos archivos:
 | `src/data/personajes.js` | Personajes | Issac |
 | `src/data/antecedentes.js` | Antecedentes: origen, expansiones con cartas firmadas, valor de coleccion | Yo |
 | `src/data/juego.js` | El juego: descripción, arena, cómo se gana, tipos de carta | Junior |
-| `src/data/tutorial.js` | Tutorial: anatomía de una carta, tipos, turno, reglas, cómo ganar | Yo (reglas) |
-| `src/data/expansiones.js` | Las expansiones que existen (fotos de cartones) | — |
+| `src/data/tutorial.js` | Tutorial: objetivo, mazos, anatomía, tipos, mesa, turno, aproximación, cómo ganar, palabras clave (adaptado del reglamento oficial ver. 1.09) | Yo (reglas) |
+| `src/data/expansiones.js` | Las expansiones (BP1–BP7) con datos oficiales y fotos de cartones | — |
 | `src/data/rarezas.js` | Las rarezas que hay | — |
 
 Cada archivo tiene comentarios explicando la forma de los datos. Añadir un
@@ -36,11 +36,12 @@ elemento a un array = aparece automáticamente una tarjeta nueva.
 
 - **`antecedentes.js` → `valor.cartas[].valor`**: precios de mercado tomados de
   TCGplayer al montar la página; conviene actualizarlos cada cierto tiempo.
-- **`expansiones.js` → `totalCartas`**: tamaño aproximado de cada set, ajustar.
 - **`tutorial.js` → `anatomia.partes[].x / .y`**: posición (%) de cada número
   sobre la carta de ejemplo; ajústalos a la carta que uses.
-- Si algún set nuevo saca cartón, añade su `caja` (URL de la foto) en
-  `expansiones.js`.
+- **`tutorial.js` → `aproximacion.formula`**: son valores de ejemplo para la
+  animación (poder de novia + episodios ≥ poder requerido).
+- Los datos de `expansiones.js` (nombres, fechas, tirada, rarezas) salen de
+  las fichas oficiales `5hanayome-cardgame.com/products/bpN`.
 
 ### `npm run dev`
 

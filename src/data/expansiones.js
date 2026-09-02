@@ -1,22 +1,14 @@
 // Seccion "Las expansiones que existen" (antes "Sets disponibles").
 //
+// Datos oficiales de https://5hanayome-cardgame.com/products/bpN
 // Se muestran las fotos de los CARTONES / cajas, no de las cartas.
-// `caja` = URL de la foto del carton. Mientras sea null se dibuja un marcador
-// con el codigo del set: sustituir por la foto real.
-//
-// Info normalizada por set:
-//   codigo      -> identificador del set (BP1 ... BP7)
-//   titulo      -> nombre comercial del volumen
-//   totalCartas -> tamaño aproximado del set (revisar/ajustar)
-//   descripcion -> que aporta el set
-//   destacado   -> carta o rareza estrella del set
 
 export const expansiones = {
   intro:
-    'Los sets se numeran como BP1 a BP7 y se reparten en dos temporadas. Cada carton trae varios sobres y cada sobre entrega 5 cartas por orden de rareza.',
+    'La linea "Booster Pack" (vol.1 a vol.7) es el nucleo del juego. Cada sobre trae 5 cartas por 440 yenes y cada carton trae 12 sobres por 5.280 yenes, mas un sobre PR de regalo con ilustraciones del manga.',
   fichaComun: {
-    sobresPorCaja: '16 sobres por cartón',
-    cartasPorSobre: '5 cartas por sobre',
+    sobresPorCaja: '12 sobres por cartón (¥5.280)',
+    cartasPorSobre: '5 cartas por sobre (¥440)',
   },
   temporadas: [
     {
@@ -24,38 +16,42 @@ export const expansiones = {
       sets: [
         {
           codigo: 'BP1',
-          titulo: 'Volumen 1',
-          totalCartas: '~80 cartas (ajustar)',
+          titulo: 'Booster Pack vol.1',
+          lanzamiento: '18 oct 2024',
+          totalCartas: '168 tipos (81 normales + 87 paralelas)',
           descripcion:
-            'Set base de la primera temporada. Presenta a las cinco hermanas Nakano, las cartas de heroe de Futaro y el sistema de afinidades por color.',
-          destacado: 'Primera SSSP secreta numerada del juego',
+            'Set base del juego. Rarezas GR·RR·R·U·C mas las paralelas, y estrena la SSSP y las SP con la firma de las cinco actrices de voz. Cada cartón incluye un sobre PR con arte del manga.',
+          destacado: 'Primera SSSP: ilustración firmada de Negi Haruba, numerada 001-099',
           caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2024/09/11160145/BP.png',
         },
         {
           codigo: 'BP2',
-          titulo: 'Volumen 2',
-          totalCartas: '~80 cartas (ajustar)',
+          titulo: 'Booster Pack vol.2 — «Una existencia irreemplazable»',
+          lanzamiento: '24 ene 2025',
+          totalCartas: '167 tipos (81 normales + 86 paralelas)',
           descripcion:
-            'Segunda entrega de la T1. Amplia las lineas de cada hermana y suma nuevas cartas de episodio de la primera mitad de la historia.',
-          destacado: 'Nuevas SSSP de las hermanas Nakano',
+            'Amplia el juego con las primeras cartas SP paralelas y las series C+/U+/R+/RR+. El tema gira en torno al vinculo irreemplazable entre las cinco hermanas.',
+          destacado: 'SSSP firmada y numerada + cartas con autógrafo de las seiyū',
           caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2024/10/02154553/GYCwebSP2.png',
         },
         {
           codigo: 'BP3',
-          titulo: 'Volumen 3',
-          totalCartas: '~80 cartas (ajustar)',
+          titulo: 'Booster Pack vol.3 — «Siempre, en cualquier lugar»',
+          lanzamiento: '18 abr 2025',
+          totalCartas: '168 tipos (81 normales + 87 paralelas)',
           descripcion:
-            'Profundiza en el pool de la temporada 1 con mas cartas R y RR y refuerza las combinaciones por afinidad.',
-          destacado: 'Paralelas R+ mas accesibles',
+            'Profundiza en las ilustraciones originales del manga y reparte una SSSP protagonizada por Miku Nakano.',
+          destacado: 'SSSP de Miku Nakano, firmada y numerada 001-099',
           caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2024/12/30130916/vol.3.png',
         },
         {
           codigo: 'BP4',
-          titulo: 'Volumen 4',
-          totalCartas: '~80 cartas (ajustar)',
+          titulo: 'Booster Pack vol.4 — «Unas vacaciones de verano sin casualidades»',
+          lanzamiento: '31 jul 2025',
+          totalCartas: '169 tipos (81 normales + 88 paralelas)',
           descripcion:
-            'Cierre de la primera temporada. Completa los arcos de la T1 con dos ilustraciones destacadas por hermana.',
-          destacado: 'Dobles ilustraciones de cierre de arco',
+            'Cierre del primer bloque. Sube a 2 las SSSP del set, cada una con ilustración a mano de Negi Haruba y numeración única.',
+          destacado: 'Dos SSSP distintas con firma serigrafiada',
           caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2025/04/18212429/vol.4PKG-1.png',
         },
       ],
@@ -65,29 +61,32 @@ export const expansiones = {
       sets: [
         {
           codigo: 'BP5',
-          titulo: 'Volumen 5',
-          totalCartas: '~80 cartas (ajustar)',
+          titulo: 'Booster Pack vol.5 — «Un día a día que sigue avanzando»',
+          lanzamiento: '16 ene 2026',
+          totalCartas: '180 tipos (81 normales + 99 paralelas)',
           descripcion:
-            'Arranque de la segunda temporada. Reinicia el pool con nuevas C, U y R y estrena los marcos de la T2.',
-          destacado: 'Primeras ER "Echara" del bloque T2',
+            'Arranque de la segunda tanda. Estrena la rareza GSP ("Go-toubun Special") con arte original de personajes y amplia mucho las SP y SP paralelas.',
+          destacado: 'Debut de la rareza GSP',
           caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2025/10/15114429/z.png',
         },
         {
           codigo: 'BP6',
-          titulo: 'Volumen 6',
-          totalCartas: '~80 cartas (ajustar)',
+          titulo: 'Booster Pack vol.6 — «El día a día vuelto una fiesta»',
+          lanzamiento: '30 abr 2026',
+          totalCartas: '180 tipos (81 normales + 99 paralelas)',
           descripcion:
-            'Punto medio de la T2. Introduce las GSP "Go-toubun Special" y amplia las paralelas de gama alta (HSP / ISP).',
-          destacado: 'Debut de las cartas GSP',
+            'Introduce las Cartas E (mazo E / engage): 10 personajes E y 5 protagonistas E que se juegan desde un mazo aparte. Añade las rarezas ER, HSP y HR, y garantiza 2 cartas "hit" por cartón.',
+          destacado: 'Estreno de las Cartas E y de las rarezas ER / HSP / HR',
           caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2026/02/27105856/a.png',
         },
         {
           codigo: 'BP7',
-          titulo: 'Volumen 7',
-          totalCartas: '~80 cartas (ajustar)',
+          titulo: 'Booster Pack vol.7 — «"Ternura" al máximo, ¡Chomolungma!»',
+          lanzamiento: '31 jul 2026',
+          totalCartas: '180 tipos (81 normales + 99 paralelas)',
           descripcion:
-            'Entrega mas reciente. Consolida todas las rarezas paralelas (SP, SSP, HSP/ISP) y anade las cartas "+" de la segunda temporada.',
-          destacado: 'Set con la lista de rarezas mas completa',
+            'Entrega más reciente. Estrena la rareza ISP ("Itsutsugo Special"), que sustituye a las HSP, con ilustraciones originales del autor. Las primeras ediciones incluyen un mini-shikishi de una serie de 10.',
+          destacado: 'Nueva rareza ISP + mini-shikishi en primeras ediciones',
           caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2026/06/06110909/a.png',
         },
       ],
