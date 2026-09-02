@@ -1,5 +1,6 @@
 // Seccion "Qué son Las Quintillizas" — responsable: Gael
-// Contenido preliminar: reemplazar los textos por la version final.
+import autorImg from '../assets/autor.png'
+
 export const queEs = {
   intro:
     'Go-Toubun no Hanayome (5-toubun no Hanayome / «Las Quintillizas») es la obra en la que se basa este juego de cartas. Aquí un resumen rápido antes de entrar al TCG.',
@@ -9,7 +10,8 @@ export const queEs = {
   autor: {
     nombre: 'Negi Haruba',
     descripcion: 'Mangaka japonés, creador de Las Quintillizas. Publicado por Kodansha en Weekly Shōnen Magazine.',
-    imagen: 'https://drive.google.com/file/d/18hnzk1AmNyQPUM-d-rpBLKs3dLqxw01U/view?usp=drivesdk',
+    imagen: autorImg,
+    informacion:'Nacimiento: 27 de julio de 1991 (edad 35 años), Japón',
   },
   exito: 'Más de 20 millones de copias, premio Kodansha Manga Awards 2019, 2 temporadas de anime, película y videojuegos.',
   bloques: [
