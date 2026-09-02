@@ -85,9 +85,19 @@ export const expansiones = {
           lanzamiento: '31 jul 2026',
           totalCartas: '180 tipos (81 normales + 99 paralelas)',
           descripcion:
-            'Entrega más reciente. Estrena la rareza ISP ("Itsutsugo Special"), que sustituye a las HSP, con ilustraciones originales del autor. Las primeras ediciones incluyen un mini-shikishi de una serie de 10.',
+            'Estrena la rareza ISP ("Itsutsugo Special"), que sustituye a las HSP, con ilustraciones originales del autor. Las primeras ediciones incluyen un mini-shikishi de una serie de 10.',
           destacado: 'Nueva rareza ISP + mini-shikishi en primeras ediciones',
           caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2026/06/06110909/a.png',
+        },
+        {
+          codigo: 'BP8',
+          titulo: 'Booster Pack vol.8 — «¡El amor y la juventud en su punto álgido!»',
+          lanzamiento: '30 oct 2026',
+          totalCartas: '180 tipos (81 normales + 99 paralelas)',
+          descripcion:
+            'Entrega más reciente. Mismo reparto de rarezas (ER, GR, RR, R, U, C y sus paralelas hasta SSSP) con ilustraciones originales del manga a color y arte del anime, más un mini-shikishi por cartón de una serie de 10.',
+          destacado: 'SSSP firmada y numerada 001-099 + firmas de las seiyū',
+          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2026/07/29194203/a-1.png',
         },
       ],
     },
