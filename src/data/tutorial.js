@@ -1,7 +1,7 @@
 // Seccion "Tutorial: cómo jugar" — responsable: YO (reglas)
 // Tipos de carta en detalle + reglas generales + cómo ganar.
 export const tutorial = {
-  bgImage: 'https://www.themoviedb.org/t/p/original/zkUDCjRf7FANWVe36WCSyRTe40m.jpg',
+  
   intro:
     'Guía paso a paso para tu primera partida: qué hace cada tipo de carta, el flujo del turno y la condición de victoria',
   tiposCarta: [

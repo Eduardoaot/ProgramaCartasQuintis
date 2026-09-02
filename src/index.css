@@ -7,6 +7,8 @@
   --color-rosa: #e9548c;
   --color-rosa-claro: #fff5fa;
   --color-dorado: #f3b94f;
+  --color-verde: #4da878;
+  --color-azul: #4d8dcc;
   --color-tinta: #2b1622;
 
   --font-display: "Poppins", "Gill Sans", "Trebuchet MS", sans-serif;
@@ -87,6 +89,17 @@ img {
   transform: translateY(0);
 }
 
+.arena-card {
+  --arena-offset: 0px;
+  transform: translateX(var(--arena-offset)) translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.arena-card--left { --arena-offset: -70px; }
+.arena-card--right { --arena-offset: 70px; }
+.arena-card.is-visible {
+  transform: translateX(0) translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
@@ -95,4 +108,5 @@ img {
     scroll-behavior: auto !important;
   }
   .reveal { opacity: 1; transform: none; }
+  .arena-card { transform: none; }
 }
