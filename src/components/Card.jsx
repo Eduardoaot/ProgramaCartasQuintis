@@ -13,12 +13,14 @@ export default function Card({
   wide = false,
   horizontal = false,
   id,
+  cardRef,
   delay = 0,
   children,
 }) {
   return (
     <Reveal
       id={id}
+      ref={cardRef}
       delay={delay}
       className={`group relative flex flex-col gap-2 overflow-hidden rounded-2xl border-2 border-rosa/25 bg-white p-6 shadow-[0_6px_16px_rgba(142,36,83,0.08)] transition duration-300 hover:-translate-y-2 hover:border-rosa hover:shadow-[0_20px_35px_rgba(142,36,83,0.25)] ${
         horizontal ? 'sm:flex-row sm:items-center sm:gap-8' : ''

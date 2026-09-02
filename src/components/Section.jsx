@@ -4,10 +4,11 @@ import Reveal from './Reveal.jsx'
  * Contenedor estandar de seccion: id para el ancla del navbar, titulo con
  * subrayado degradado, intro opcional y fondo alterno (alt).
  */
-export default function Section({ id, eyebrow, title, intro, alt = false, children }) {
+export default function Section({ id, eyebrow, title, intro, alt = false, style, children }) {
   return (
     <section
       id={id}
+      style={style}
       className={`scroll-mt-20 px-4 py-20 sm:px-6 sm:py-24 ${alt ? 'bg-rosa-claro' : 'bg-white'}`}
     >
       <div className="mx-auto max-w-6xl">
