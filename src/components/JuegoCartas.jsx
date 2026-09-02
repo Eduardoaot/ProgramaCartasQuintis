@@ -10,6 +10,7 @@ export default function JuegoCartas() {
       eyebrow="El TCG"
       title="El juego de cartas"
       intro={juego.intro}
+      bgImage={juego.bgImage}
       alt
     >
       <div className="grid gap-6 md:grid-cols-2">
@@ -22,7 +23,7 @@ export default function JuegoCartas() {
 
       {/* Partes de la arena */}
       <Reveal className="mt-12">
-        <h3 className="mb-5 text-center text-xl font-bold uppercase tracking-wider text-rosa">
+        <h3 className="mb-5 text-center text-x1 font-bold uppercase tracking-wider text-rosa">
           {juego.arena.titulo}
         </h3>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

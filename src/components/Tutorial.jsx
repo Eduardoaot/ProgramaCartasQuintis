@@ -9,6 +9,7 @@ export default function Tutorial() {
       eyebrow="Aprende a jugar"
       title="Tutorial: cómo jugarlo"
       intro={tutorial.intro}
+      bgImage={tutorial.bgImage}
     >
       {/* Tipos de carta */}
       <div className="grid gap-6 md:grid-cols-2">

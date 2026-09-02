@@ -1,6 +1,7 @@
 // Seccion "El juego de cartas: descripción" — responsable: Junior
 // Cuándo nació, en qué consiste, partes de la arena, cómo se gana y tipos de carta.
 export const juego = {
+  bgImage: 'https://e0.pxfuel.com/wallpapers/878/366/desktop-wallpaper-las-quintillizas-anime.jpg',
   intro:
     'Una vista general del TCG: cuándo salió, de qué va una partida, cómo está dividida la mesa y qué cartas vas a manejar.',
   bloques: [
