@@ -8,7 +8,7 @@ export default function Section({ id, eyebrow, title, intro, alt = false, childr
   return (
     <section
       id={id}
-      className={`scroll-mt-20 px-6 py-20 sm:py-24 ${alt ? 'bg-rosa-claro' : 'bg-white'}`}
+      className={`scroll-mt-20 px-4 py-20 sm:px-6 sm:py-24 ${alt ? 'bg-rosa-claro' : 'bg-white'}`}
     >
       <div className="mx-auto max-w-6xl">
         <Reveal className="text-center">
