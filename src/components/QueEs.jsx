@@ -78,7 +78,7 @@ export default function QueEs() {
             h-[2px]
             w-10
             rounded-full
-            bg-gradient-to-r from-rosa to-dorado
+            bg-linear-to-r from-rosa to-dorado
             transition-all
             duration-500
             group-hover:w-16
@@ -105,7 +105,7 @@ export default function QueEs() {
             {queEs.tituloReconocimientos}
           </p>
 
-          <span className="h-1 w-12 rounded-full bg-gradient-to-r from-rosa to-dorado" />
+          <span className="h-1 w-12 rounded-full bg-linear-to-r from-rosa to-dorado" />
 
         </div>
 
@@ -206,7 +206,7 @@ export default function QueEs() {
         className="
           absolute
           inset-0
-          bg-gradient-to-t
+          bg-linear-to-t
           from-vino/90
           via-vino/25
           to-transparent

@@ -3,14 +3,26 @@ import Reveal from './Reveal.jsx'
 /**
  * Contenedor estandar de seccion: id para el ancla del navbar, titulo con
  * subrayado degradado, intro opcional y fondo alterno (alt).
+ * Acepta className / style / props extra para que una seccion pueda poner su
+ * propio fondo o redefinir tokens de color (lo usan JuegoCartas y Personajes).
  */
-export default function Section({ id, eyebrow, title, intro, alt = false, children, className = '', style, ...props }) {
+export default function Section({
+  id,
+  eyebrow,
+  title,
+  intro,
+  alt = false,
+  children,
+  className = '',
+  style,
+  ...props
+}) {
   return (
     <section
       id={id}
       style={style}
       {...props}
-      className={`scroll-mt-20 px-6 py-20 sm:py-24 ${
+      className={`scroll-mt-20 px-4 py-20 sm:px-6 sm:py-24 ${
         alt ? 'bg-(--surface-alt)' : 'bg-(--page-bg)'
       } ${className}`}
     >
