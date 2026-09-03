@@ -4,11 +4,13 @@ import autorImg from '../assets/autor.png'
 export const queEs = {
   intro:
     'La obra que inspira este juego de cartas: cinco hermanas, un tutor y una historia inolvidable.',
+  pestana: 'La historia',
     tituloSinopsis: 'Sinopsis',
   sinopsis:
     'Futaro Uesugi, un estudiante brillante pero pobre, es contratado como tutor privado de las cinco hermanas Nakano: Ichika, Nino, Miku, Yotsuba e Itsuki. Ninguna quiere estudiar y todas reprueban. Lo que empieza como un empleo se convierte en la historia de cómo una de ellas terminará casándose con él.',
   fechaCreacion: '2017 - 2020',
   autor: {
+    profesion: 'Mangaka',
     nombre: 'Negi Haruba',
     descripcion: 'Mangaka japonés, creador de Las Quintillizas. Publicado por Kodansha en Weekly Shōnen Magazine.',
     imagen: autorImg,
