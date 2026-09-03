@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Section from './Section.jsx'
-import Card from './Card.jsx'
+import Reveal from './Reveal.jsx'
+import Tilt from './Tilt.jsx'
 import { personajes } from '../data/personajes.js'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -9,56 +10,137 @@ import { Pagination, Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
-/**
- * Cada hermana tiene su video para el carrusel y una imagen de fondo con su
- * color caracteristico. Futaro no tiene fondo propio: se queda el de la seccion.
- */
-const personajesMeta = {
-  'ichika-nakano': { nombre: 'Ichika Nakano', video: '/videos/ichika.mp4', fondo: '/videos/amarillo.jpg' },
-  'nino-nakano': { nombre: 'Nino Nakano', video: '/videos/nino.mp4', fondo: '/videos/rosa.jpg' },
-  'miku-nakano': { nombre: 'Miku Nakano', video: '/videos/miku.mp4', fondo: '/videos/azul.jpg' },
-  'yotsuba-nakano': { nombre: 'Yotsuba Nakano', video: '/videos/yotsuba.mp4', fondo: '/videos/verde.jpg' },
-  'itsuki-nakano': { nombre: 'Itsuki Nakano', video: '/videos/itsuki.mp4', fondo: '/videos/rojo.jpg' },
-  'futaro-uesugi': { nombre: 'Futaro Uesugi', video: null, fondo: null },
+/** Video del carrusel e imagen de fondo con el color de cada hermana. */
+const fondos = {
+  'ichika-nakano': { video: '/videos/ichika.mp4', fondo: '/videos/amarillo.jpg' },
+  'nino-nakano': { video: '/videos/nino.mp4', fondo: '/videos/rosa.jpg' },
+  'miku-nakano': { video: '/videos/miku.mp4', fondo: '/videos/azul.jpg' },
+  'yotsuba-nakano': { video: '/videos/yotsuba.mp4', fondo: '/videos/verde.jpg' },
+  'itsuki-nakano': { video: '/videos/itsuki.mp4', fondo: '/videos/rojo.jpg' },
 }
 
-const ordenCarrusel = [
-  'ichika-nakano',
-  'nino-nakano',
-  'miku-nakano',
-  'yotsuba-nakano',
-  'itsuki-nakano',
-]
-
-const idDe = (nombre) => nombre.toLowerCase().replaceAll(' ', '-')
+const ordenCarrusel = Object.keys(fondos)
+const porId = Object.fromEntries(personajes.fichas.map((f) => [f.id, f]))
 
 /**
- * Capa de fondo: apila todas las imagenes y hace crossfade a la del personaje
- * activo. `fija` activa el efecto parallax mientras se baja por las fichas.
+ * Capa de fondo: apila las cinco imagenes y hace crossfade a la del personaje
+ * activo. `fija` deja la imagen anclada al viewport (parallax al bajar).
  */
-function FondoPersonaje({ activo, fija = false, velo = 'bg-(--page-bg)/78 dark:bg-(--page-bg)/82' }) {
+function FondoPersonaje({ activo, fija = false, velo }) {
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]">
-      {Object.entries(personajesMeta).map(([id, meta]) =>
-        meta.fondo ? (
-          <div
-            key={id}
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-out ${
-              fija ? 'sm:bg-fixed' : ''
-            }`}
-            style={{ backgroundImage: `url('${meta.fondo}')`, opacity: activo === id ? 1 : 0 }}
-          />
-        ) : null,
-      )}
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]"
+    >
+      {ordenCarrusel.map((id) => (
+        <div
+          key={id}
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-out ${
+            fija ? 'sm:bg-fixed' : ''
+          }`}
+          style={{ backgroundImage: `url('${fondos[id].fondo}')`, opacity: activo === id ? 1 : 0 }}
+        />
+      ))}
       <div className={`absolute inset-0 ${velo}`} />
     </div>
   )
 }
 
+/** Ficha de un personaje: retrato, identidad, datos del wiki y descripcion. */
+function FichaPersonaje({ ficha, indice, fichaRef }) {
+  return (
+    <Reveal
+      id={ficha.id}
+      ref={fichaRef}
+      variant={indice % 2 === 0 ? 'left' : 'right'}
+      className="group scroll-mt-24 overflow-hidden rounded-3xl border border-(--hairline) bg-(--surface)/88 shadow-[0_10px_35px_rgba(0,0,0,0.18)] backdrop-blur-md transition duration-300 hover:-translate-y-1"
+    >
+      {/* franja con el color del personaje */}
+      <div className="h-1.5 w-full" style={{ backgroundColor: ficha.colorHex }} />
+
+      <div className="grid gap-6 p-6 sm:grid-cols-[minmax(0,190px)_1fr] sm:gap-8 sm:p-7">
+        {/* Retrato + su carta del TCG */}
+        <div className="mx-auto w-full max-w-[190px]">
+          <div
+            className="overflow-hidden rounded-2xl ring-2"
+            style={{ backgroundColor: `${ficha.colorHex}22`, '--tw-ring-color': ficha.colorHex }}
+          >
+            <img
+              src={ficha.retrato}
+              alt={ficha.nombre}
+              loading="lazy"
+              className="block h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+            />
+          </div>
+          <Tilt className="mt-3 rounded-xl bg-(--surface-sunken) p-2">
+            <img
+              src={ficha.carta}
+              alt={`Carta de ${ficha.nombre}`}
+              loading="lazy"
+              className="block w-full rounded-lg shadow-md"
+            />
+          </Tilt>
+          <p className="mt-1 text-center text-[10px] uppercase tracking-wider text-(--page-text)/50">
+            Su carta en el TCG
+          </p>
+        </div>
+
+        {/* Identidad, datos y descripcion */}
+        <div className="min-w-0 text-left">
+          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <h3 className="text-2xl font-extrabold text-vino dark:text-white">{ficha.nombre}</h3>
+            <span className="text-lg font-bold text-(--page-text)/55">{ficha.japones}</span>
+          </div>
+
+          <div className="mt-2 flex flex-wrap items-center gap-2">
+            <span
+              className="rounded-full px-3 py-1 text-xs font-bold text-white"
+              style={{ backgroundColor: ficha.colorHex }}
+            >
+              {ficha.orden} · {ficha.color}
+            </span>
+            <span className="rounded-full bg-(--surface-alt) px-3 py-1 text-xs font-semibold text-(--page-text)/70 ring-1 ring-(--hairline)">
+              {ficha.romaji}
+            </span>
+            {ficha.alias && (
+              <span className="rounded-full bg-(--surface-alt) px-3 py-1 text-xs text-(--page-text)/70 ring-1 ring-(--hairline)">
+                «{ficha.alias}»
+              </span>
+            )}
+          </div>
+
+          <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-3">
+            {ficha.datos.map(([etiqueta, valor]) => (
+              <div key={etiqueta}>
+                <dt className="text-[10px] font-bold uppercase tracking-wider text-(--page-text)/45">
+                  {etiqueta}
+                </dt>
+                <dd className="text-sm font-semibold text-(--page-text)/90">{valor}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="mt-5 space-y-3 text-sm leading-relaxed text-(--page-text)/85">
+            <p>{ficha.personalidad}</p>
+            <p>
+              <strong style={{ color: ficha.colorHex }}>Su pasión: </strong>
+              {ficha.pasion}
+            </p>
+            <p>
+              <strong style={{ color: ficha.colorHex }}>Rasgo distintivo: </strong>
+              {ficha.rasgo}
+            </p>
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  )
+}
+
 export default function Personajes() {
-  // Personaje del slide visible en el carrusel (parte de arriba)
+  // Hermana del slide visible en el carrusel (arriba)
   const [personajeCarrusel, setPersonajeCarrusel] = useState(ordenCarrusel[0])
-  // Personaje de la ficha visible al hacer scroll (parte de abajo)
+  // Hermana de la ficha visible al hacer scroll -> fondo de TODA la seccion
   const [personajeFicha, setPersonajeFicha] = useState(ordenCarrusel[0])
   const fichasRef = useRef([])
 
@@ -69,9 +151,9 @@ export default function Personajes() {
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
 
-        if (visible?.target.id) setPersonajeFicha(visible.target.id)
+        if (visible?.target.id && fondos[visible.target.id]) setPersonajeFicha(visible.target.id)
       },
-      { threshold: [0.35, 0.55], rootMargin: '-10% 0px -30% 0px' },
+      { threshold: [0.3, 0.6], rootMargin: '-10% 0px -25% 0px' },
     )
 
     fichasRef.current.forEach((ficha) => ficha && observer.observe(ficha))
@@ -79,10 +161,23 @@ export default function Personajes() {
   }, [])
 
   return (
-    <Section id="personajes" eyebrow="Quiénes son" title="Personajes" intro={personajes.intro} alt>
-      {/* Carrusel: el fondo cambia con la hermana del slide actual */}
+    <Section
+      id="personajes"
+      eyebrow="Quiénes son"
+      title="Personajes"
+      intro={personajes.intro}
+      alt
+      backdrop={
+        <FondoPersonaje
+          activo={personajeFicha}
+          fija
+          velo="bg-(--page-bg)/72 backdrop-blur-[2px] dark:bg-(--page-bg)/78"
+        />
+      }
+    >
+      {/* Carrusel: su fondo cambia con la hermana del slide actual */}
       <div className="relative mb-12 overflow-hidden rounded-3xl ring-1 ring-(--hairline)">
-        <FondoPersonaje activo={personajeCarrusel} velo="bg-(--page-bg)/55 dark:bg-black/55" />
+        <FondoPersonaje activo={personajeCarrusel} velo="bg-black/45" />
 
         <div className="relative z-10 p-4 sm:p-6">
           <Swiper
@@ -103,11 +198,11 @@ export default function Personajes() {
               <SwiperSlide key={id}>
                 <a
                   href={`#${id}`}
-                  aria-label={`Ver ficha de ${personajesMeta[id].nombre}`}
+                  aria-label={`Ver ficha de ${porId[id].nombre}`}
                   className="block rounded-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-rosa/40"
                 >
                   <video
-                    src={personajesMeta[id].video}
+                    src={fondos[id].video}
                     autoPlay
                     loop
                     muted
@@ -122,41 +217,27 @@ export default function Personajes() {
             ))}
           </Swiper>
 
-          <p className="relative z-10 text-center text-sm font-bold uppercase tracking-[0.25em] text-vino dark:text-white">
-            {personajesMeta[personajeCarrusel].nombre}
+          <p
+            className="text-center text-sm font-extrabold uppercase tracking-[0.3em] text-white"
+            style={{ textShadow: '0 2px 10px rgba(0,0,0,0.6)' }}
+          >
+            {porId[personajeCarrusel].nombre}
           </p>
         </div>
       </div>
 
-      {/* Fichas: el fondo cambia a la imagen de la hermana que estas leyendo */}
-      <div className="relative -mx-4 overflow-hidden rounded-3xl px-4 py-8 sm:-mx-6 sm:px-6">
-        <FondoPersonaje activo={personajeFicha} fija />
-
-        <div className="relative z-10 flex w-full flex-col gap-8">
-          {personajes.fichas.map((f, i) => (
-            <Card
-              key={f.nombre}
-              id={idDe(f.nombre)}
-              cardRef={(ficha) => {
-                fichasRef.current[i] = ficha
-              }}
-              title={f.nombre}
-              subtitle={f.rol}
-              horizontal
-              bgClass="bg-(--surface)/85 backdrop-blur-md"
-              delay={i * 70}
-              images={f.img ? [{ src: f.img, alt: f.nombre }] : []}
-            >
-              <div className="space-y-3 text-left text-sm">
-                {(Array.isArray(f.descripcion) ? f.descripcion : [f.descripcion]).map((punto, idx) => (
-                  <p key={idx} className="leading-relaxed">
-                    {punto}
-                  </p>
-                ))}
-              </div>
-            </Card>
-          ))}
-        </div>
+      {/* Fichas */}
+      <div className="flex w-full flex-col gap-8">
+        {personajes.fichas.map((ficha, i) => (
+          <FichaPersonaje
+            key={ficha.id}
+            ficha={ficha}
+            indice={i}
+            fichaRef={(el) => {
+              fichasRef.current[i] = el
+            }}
+          />
+        ))}
       </div>
     </Section>
   )

@@ -15,6 +15,7 @@ export default function Section({
   children,
   className = '',
   style,
+  backdrop,
   ...props
 }) {
   return (
@@ -22,11 +23,12 @@ export default function Section({
       id={id}
       style={style}
       {...props}
-      className={`scroll-mt-20 px-4 py-20 sm:px-6 sm:py-24 ${
+      className={`relative scroll-mt-20 px-4 py-20 sm:px-6 sm:py-24 ${
         alt ? 'bg-(--surface-alt)' : 'bg-(--page-bg)'
       } ${className}`}
     >
-      <div className="mx-auto max-w-6xl">
+      {backdrop}
+      <div className="relative z-10 mx-auto max-w-6xl">
         <Reveal className="text-center">
           {eyebrow && (
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-rosa">
