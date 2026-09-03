@@ -4,6 +4,7 @@ import autorImg from '../assets/autor.png'
 export const queEs = {
   intro:
     'La obra que inspira este juego de cartas: cinco hermanas, un tutor y una historia inolvidable.',
+    tituloSinopsis: 'Sinopsis',
   sinopsis:
     'Futaro Uesugi, un estudiante brillante pero pobre, es contratado como tutor privado de las cinco hermanas Nakano: Ichika, Nino, Miku, Yotsuba e Itsuki. Ninguna quiere estudiar y todas reprueban. Lo que empieza como un empleo se convierte en la historia de cómo una de ellas terminará casándose con él.',
   fechaCreacion: '2017 - 2020',
@@ -13,12 +14,15 @@ export const queEs = {
     imagen: autorImg,
     informacion:'Nacimiento: 27 de julio de 1991 (edad 35 años), Japón',
   },
+  tituloReconocimientos: 'Reconocimientos',
   reconocimientos: [
     { valor: '+20 M', etiqueta: 'copias en circulación' },
     { valor: '2019', etiqueta: 'Premio Kodansha Manga' },
     { valor: '¥2.24 B', etiqueta: 'taquilla' },
     { valor: '1.7 M', etiqueta: 'espectadores' },
   ],
+  tituloFiguras: 'Figuras destacadas',
+  complemento: 'El elenco detrás del fenómeno',
   figuras: [
     {
       nombre: 'Miku Itō',
@@ -51,6 +55,7 @@ export const queEs = {
       texto: 'Conductor clave de programas y eventos oficiales.',
     },
   ],
+  tituloContexto: 'Contexto',
   bloques: [
     {
       titulo: 'Manga y Anime',
