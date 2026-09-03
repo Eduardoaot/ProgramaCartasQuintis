@@ -55,14 +55,23 @@ function FichaPersonaje({ ficha, indice, fichaRef }) {
       <div className="grid gap-6 p-6 sm:grid-cols-[minmax(0,200px)_1fr] sm:gap-8 sm:p-7">
         {/* Retrato */}
         <div
-          className="mx-auto w-full max-w-50 overflow-hidden rounded-2xl ring-2"
+          className="relative mx-auto flex h-72 w-full max-w-50 items-center justify-center overflow-hidden rounded-2xl ring-2"
           style={{ backgroundColor: `${ficha.colorHex}22`, '--tw-ring-color': ficha.colorHex }}
         >
+          {/* Si la imagen falla, queda visible el nombre detras */}
+          <span className="absolute px-3 text-center text-sm font-bold text-(--page-text)/60">
+            {ficha.nombre}
+          </span>
           <img
             src={ficha.retrato}
             alt={ficha.nombre}
-            loading="lazy"
-            className="block h-72 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+            width="358"
+            height="556"
+            decoding="async"
+            onError={(event) => {
+              event.currentTarget.style.visibility = 'hidden'
+            }}
+            className="relative block h-72 w-full object-cover object-top transition duration-500 group-hover:scale-105"
           />
         </div>
 
@@ -127,10 +136,25 @@ export default function Personajes() {
   const [carruselALaVista, setCarruselALaVista] = useState(true)
 
   const carruselRef = useRef(null)
+  const videosRef = useRef({})
   const fichasRef = useRef([])
 
   // Un unico fondo para toda la seccion
   const personajeActivo = carruselALaVista ? personajeCarrusel : personajeFicha
+
+  // Solo suena/corre el video de la hermana visible: cinco a la vez saturaban
+  // el navegador y hacian que algunas imagenes ni se descargaran.
+  useEffect(() => {
+    Object.entries(videosRef.current).forEach(([id, el]) => {
+      if (!el) return
+      if (id === personajeCarrusel) {
+        el.preload = 'auto'
+        el.play().catch(() => {})
+      } else {
+        el.pause()
+      }
+    })
+  }, [personajeCarrusel])
 
   useEffect(() => {
     const observadorFichas = new IntersectionObserver(
@@ -190,12 +214,14 @@ export default function Personajes() {
                 className="block rounded-2xl focus:outline-none focus-visible:ring-4 focus-visible:ring-rosa/40"
               >
                 <video
+                  ref={(el) => {
+                    videosRef.current[id] = el
+                  }}
                   src={fondos[id].video}
-                  autoPlay
                   loop
                   muted
                   playsInline
-                  preload="metadata"
+                  preload="none"
                   draggable={false}
                   onDragStart={(event) => event.preventDefault()}
                   className="h-104 w-full cursor-pointer rounded-2xl object-cover shadow-2xl"
@@ -205,7 +231,7 @@ export default function Personajes() {
           ))}
         </Swiper>
 
-        <div className="text-center">
+        <div className="mt-4 text-center">
           <span
             className="inline-block rounded-full px-5 py-1.5 text-sm font-extrabold uppercase tracking-[0.25em] text-white transition-colors duration-700"
             style={{ backgroundColor: porId[personajeCarrusel].colorHex }}
