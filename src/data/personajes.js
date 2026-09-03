@@ -1,10 +1,9 @@
 // Seccion "Personajes" — responsable: Issac
 // Datos verificados en https://go-toubun-no-hanayome.fandom.com/es
-// Retratos: imagenes del infobox del wiki (escaladas a 400 px).
-const WIKI = 'https://static.wikia.nocookie.net/go-toubun-no-hanayome/images'
-const retrato = (ruta, cb) =>
-  `${WIKI}/${ruta}/revision/latest/scale-to-width-down/400?cb=${cb}&path-prefix=es`
-const CARTA = 'https://5hanayome-cardgame.com/wordpress/wp-content/images/cardlist'
+// Retratos: PNG locales en public/videos/. Futaro todavia usa el del wiki;
+// para tenerlo local basta con dejar public/videos/FutaroUesugi.png y poner
+// su campo retrato a '/videos/FutaroUesugi.png'.
+const RETRATOS = '/videos'
 
 export const personajes = {
   intro:
@@ -19,8 +18,7 @@ export const personajes = {
       color: 'Naranja',
       colorHex: '#e2b93b',
       alias: 'Mii-chan',
-      retrato: retrato('3/31/Ichika_Nakano_Anime_II.png', '20220525171351'),
-      carta: `${CARTA}/BP7/GYC-BP7-031P_img.png`,
+      retrato: `${RETRATOS}/IchikaNakano.png`,
       datos: [
         ['Cumpleaños', '5 de mayo'],
         ['Edad', '17 → 18 años'],
@@ -44,8 +42,7 @@ export const personajes = {
       color: 'Morado',
       colorHex: '#9564c7',
       alias: null,
-      retrato: retrato('0/05/Nino_Nakano_Anime_II_Actual.png', '20220525171918'),
-      carta: `${CARTA}/BP7/GYC-BP7-058P1_img.png`,
+      retrato: `${RETRATOS}/NinoNakano.png`,
       datos: [
         ['Cumpleaños', '5 de mayo'],
         ['Edad', '17 → 18 años'],
@@ -69,8 +66,7 @@ export const personajes = {
       color: 'Azul',
       colorHex: '#4c91d1',
       alias: null,
-      retrato: retrato('6/6e/Miku_Nakano_Anime_II.png', '20220525171645'),
-      carta: `${CARTA}/BP6/GYC-BP6-080P1_IMG.png`,
+      retrato: `${RETRATOS}/MikuNakano.png`,
       datos: [
         ['Cumpleaños', '5 de mayo'],
         ['Edad', '17 → 18 años'],
@@ -94,8 +90,7 @@ export const personajes = {
       color: 'Verde',
       colorHex: '#55a96a',
       alias: 'La Novia · La chica de la fotografía',
-      retrato: retrato('4/4e/Yotsuba_Nakano_Anime_II.png', '20220524141442'),
-      carta: `${CARTA}/BP7/GYC-BP7-012P1_IMG.png`,
+      retrato: `${RETRATOS}/YotsubaNakano.png`,
       datos: [
         ['Cumpleaños', '5 de mayo'],
         ['Edad', '17 → 18 años'],
@@ -119,8 +114,7 @@ export const personajes = {
       color: 'Rojo',
       colorHex: '#d94f68',
       alias: 'May',
-      retrato: retrato('f/f5/Itsuki_Nakano_Anime_II.png', '20220524141355'),
-      carta: `${CARTA}/BP7/GYC-BP7-024P1_img.png`,
+      retrato: `${RETRATOS}/ItsukiNakano.png`,
       datos: [
         ['Cumpleaños', '6 de mayo'],
         ['Edad', '17 → 18 años'],
@@ -144,8 +138,8 @@ export const personajes = {
       color: 'Gris',
       colorHex: '#6d7788',
       alias: 'Kintarou',
-      retrato: retrato('5/56/Fuutarou_Uesugi_Anime_II.png', '20220524140824'),
-      carta: `${CARTA}/BP7/GYC-BP7-008P_IMG.png`,
+      retrato:
+        'https://static.wikia.nocookie.net/go-toubun-no-hanayome/images/5/56/Fuutarou_Uesugi_Anime_II.png/revision/latest/scale-to-width-down/400?cb=20220524140824&path-prefix=es',
       datos: [
         ['Cumpleaños', '15 de abril'],
         ['Edad', '17 → 18 años'],

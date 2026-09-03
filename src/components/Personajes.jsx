@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import Section from './Section.jsx'
 import Reveal from './Reveal.jsx'
-import Tilt from './Tilt.jsx'
 import { personajes } from '../data/personajes.js'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -23,25 +22,20 @@ const ordenCarrusel = Object.keys(fondos)
 const porId = Object.fromEntries(personajes.fichas.map((f) => [f.id, f]))
 
 /**
- * Capa de fondo: apila las cinco imagenes y hace crossfade a la del personaje
- * activo. `fija` deja la imagen anclada al viewport (parallax al bajar).
+ * Fondo de toda la seccion: apila las cinco imagenes y hace crossfade a la del
+ * personaje activo, ya venga del carrusel o de la ficha que estas leyendo.
  */
-function FondoPersonaje({ activo, fija = false, velo }) {
+function FondoSeccion({ activo }) {
   return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]"
-    >
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
       {ordenCarrusel.map((id) => (
         <div
           key={id}
-          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-out ${
-            fija ? 'sm:bg-fixed' : ''
-          }`}
+          className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-out sm:bg-fixed"
           style={{ backgroundImage: `url('${fondos[id].fondo}')`, opacity: activo === id ? 1 : 0 }}
         />
       ))}
-      <div className={`absolute inset-0 ${velo}`} />
+      <div className="absolute inset-0 bg-(--page-bg)/72 backdrop-blur-[2px] dark:bg-(--page-bg)/78" />
     </div>
   )
 }
@@ -58,31 +52,18 @@ function FichaPersonaje({ ficha, indice, fichaRef }) {
       {/* franja con el color del personaje */}
       <div className="h-1.5 w-full" style={{ backgroundColor: ficha.colorHex }} />
 
-      <div className="grid gap-6 p-6 sm:grid-cols-[minmax(0,190px)_1fr] sm:gap-8 sm:p-7">
-        {/* Retrato + su carta del TCG */}
-        <div className="mx-auto w-full max-w-[190px]">
-          <div
-            className="overflow-hidden rounded-2xl ring-2"
-            style={{ backgroundColor: `${ficha.colorHex}22`, '--tw-ring-color': ficha.colorHex }}
-          >
-            <img
-              src={ficha.retrato}
-              alt={ficha.nombre}
-              loading="lazy"
-              className="block h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
-            />
-          </div>
-          <Tilt className="mt-3 rounded-xl bg-(--surface-sunken) p-2">
-            <img
-              src={ficha.carta}
-              alt={`Carta de ${ficha.nombre}`}
-              loading="lazy"
-              className="block w-full rounded-lg shadow-md"
-            />
-          </Tilt>
-          <p className="mt-1 text-center text-[10px] uppercase tracking-wider text-(--page-text)/50">
-            Su carta en el TCG
-          </p>
+      <div className="grid gap-6 p-6 sm:grid-cols-[minmax(0,200px)_1fr] sm:gap-8 sm:p-7">
+        {/* Retrato */}
+        <div
+          className="mx-auto w-full max-w-50 overflow-hidden rounded-2xl ring-2"
+          style={{ backgroundColor: `${ficha.colorHex}22`, '--tw-ring-color': ficha.colorHex }}
+        >
+          <img
+            src={ficha.retrato}
+            alt={ficha.nombre}
+            loading="lazy"
+            className="block h-72 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+          />
         </div>
 
         {/* Identidad, datos y descripcion */}
@@ -138,14 +119,21 @@ function FichaPersonaje({ ficha, indice, fichaRef }) {
 }
 
 export default function Personajes() {
-  // Hermana del slide visible en el carrusel (arriba)
+  // Hermana del slide actual del carrusel
   const [personajeCarrusel, setPersonajeCarrusel] = useState(ordenCarrusel[0])
-  // Hermana de la ficha visible al hacer scroll -> fondo de TODA la seccion
+  // Hermana de la ficha que estas leyendo
   const [personajeFicha, setPersonajeFicha] = useState(ordenCarrusel[0])
+  // Mientras el carrusel se ve, es el que manda sobre el fondo
+  const [carruselALaVista, setCarruselALaVista] = useState(true)
+
+  const carruselRef = useRef(null)
   const fichasRef = useRef([])
 
+  // Un unico fondo para toda la seccion
+  const personajeActivo = carruselALaVista ? personajeCarrusel : personajeFicha
+
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const observadorFichas = new IntersectionObserver(
       (entries) => {
         const visible = entries
           .filter((entry) => entry.isIntersecting)
@@ -155,9 +143,18 @@ export default function Personajes() {
       },
       { threshold: [0.3, 0.6], rootMargin: '-10% 0px -25% 0px' },
     )
+    fichasRef.current.forEach((ficha) => ficha && observadorFichas.observe(ficha))
 
-    fichasRef.current.forEach((ficha) => ficha && observer.observe(ficha))
-    return () => observer.disconnect()
+    const observadorCarrusel = new IntersectionObserver(
+      ([entrada]) => setCarruselALaVista(entrada.isIntersecting),
+      { threshold: 0.35 },
+    )
+    if (carruselRef.current) observadorCarrusel.observe(carruselRef.current)
+
+    return () => {
+      observadorFichas.disconnect()
+      observadorCarrusel.disconnect()
+    }
   }, [])
 
   return (
@@ -167,62 +164,54 @@ export default function Personajes() {
       title="Personajes"
       intro={personajes.intro}
       alt
-      backdrop={
-        <FondoPersonaje
-          activo={personajeFicha}
-          fija
-          velo="bg-(--page-bg)/72 backdrop-blur-[2px] dark:bg-(--page-bg)/78"
-        />
-      }
+      backdrop={<FondoSeccion activo={personajeActivo} />}
     >
-      {/* Carrusel: su fondo cambia con la hermana del slide actual */}
-      <div className="relative mb-12 overflow-hidden rounded-3xl ring-1 ring-(--hairline)">
-        <FondoPersonaje activo={personajeCarrusel} velo="bg-black/45" />
+      {/* Carrusel: manda sobre el fondo de la seccion mientras se ve */}
+      <div ref={carruselRef} className="mb-14">
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          spaceBetween={20}
+          slidesPerView={1}
+          simulateTouch
+          touchStartPreventDefault={false}
+          threshold={5}
+          grabCursor
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 2800, disableOnInteraction: false }}
+          loop
+          onSlideChange={(swiper) => setPersonajeCarrusel(ordenCarrusel[swiper.realIndex])}
+          className="pb-10"
+        >
+          {ordenCarrusel.map((id) => (
+            <SwiperSlide key={id}>
+              <a
+                href={`#${id}`}
+                aria-label={`Ver ficha de ${porId[id].nombre}`}
+                className="block rounded-2xl focus:outline-none focus-visible:ring-4 focus-visible:ring-rosa/40"
+              >
+                <video
+                  src={fondos[id].video}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  draggable={false}
+                  onDragStart={(event) => event.preventDefault()}
+                  className="h-104 w-full cursor-pointer rounded-2xl object-cover shadow-2xl"
+                />
+              </a>
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
-        <div className="relative z-10 p-4 sm:p-6">
-          <Swiper
-            modules={[Pagination, Autoplay]}
-            spaceBetween={20}
-            slidesPerView={1}
-            simulateTouch
-            touchStartPreventDefault={false}
-            threshold={5}
-            grabCursor
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 2800, disableOnInteraction: false }}
-            loop
-            onSlideChange={(swiper) => setPersonajeCarrusel(ordenCarrusel[swiper.realIndex])}
-            className="pb-10"
-          >
-            {ordenCarrusel.map((id) => (
-              <SwiperSlide key={id}>
-                <a
-                  href={`#${id}`}
-                  aria-label={`Ver ficha de ${porId[id].nombre}`}
-                  className="block rounded-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-rosa/40"
-                >
-                  <video
-                    src={fondos[id].video}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="metadata"
-                    draggable={false}
-                    onDragStart={(event) => event.preventDefault()}
-                    className="h-96 w-full cursor-pointer rounded-xl object-cover shadow-lg"
-                  />
-                </a>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
-          <p
-            className="text-center text-sm font-extrabold uppercase tracking-[0.3em] text-white"
-            style={{ textShadow: '0 2px 10px rgba(0,0,0,0.6)' }}
+        <div className="text-center">
+          <span
+            className="inline-block rounded-full px-5 py-1.5 text-sm font-extrabold uppercase tracking-[0.25em] text-white transition-colors duration-700"
+            style={{ backgroundColor: porId[personajeCarrusel].colorHex }}
           >
             {porId[personajeCarrusel].nombre}
-          </p>
+          </span>
         </div>
       </div>
 
