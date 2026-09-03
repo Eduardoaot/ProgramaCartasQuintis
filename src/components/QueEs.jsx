@@ -27,12 +27,12 @@ export default function QueEs() {
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxPboMZbYC4y67PKMqFDEN9N_OtkjP8Io2SVgA9a6j3w&s=10",
   ]
   const coloresHover = [
-    "hover:bg-blue-100 hover:border-blue-300",
-    "hover:bg-red-100 hover:border-red-300",
-    "hover:bg-green-100 hover:border-green-300",
-    "hover:bg-purple-100 hover:border-purple-300",
-    "hover:bg-yellow-100 hover:border-yellow-300",
-    "hover:bg-red-100 hover:border-red-300",
+    'hover:bg-blue-100 hover:border-blue-300 dark:hover:bg-blue-400/20 dark:hover:border-blue-400/50',
+    'hover:bg-red-100 hover:border-red-300 dark:hover:bg-red-400/20 dark:hover:border-red-400/50',
+    'hover:bg-green-100 hover:border-green-300 dark:hover:bg-green-400/20 dark:hover:border-green-400/50',
+    'hover:bg-purple-100 hover:border-purple-300 dark:hover:bg-purple-400/20 dark:hover:border-purple-400/50',
+    'hover:bg-yellow-100 hover:border-yellow-300 dark:hover:bg-yellow-400/20 dark:hover:border-yellow-400/50',
+    'hover:bg-red-100 hover:border-red-300 dark:hover:bg-red-400/20 dark:hover:border-red-400/50',
   ]
 
   
@@ -55,7 +55,7 @@ export default function QueEs() {
         relative flex h-full flex-col overflow-hidden
         rounded-[28px]
         border border-rosa/20
-        bg-white
+        bg-(--surface)
         p-7
         text-left
         shadow-[0_10px_30px_rgba(142,36,83,0.07)]
@@ -66,7 +66,7 @@ export default function QueEs() {
 
         group-hover:-translate-y-1
         group-hover:border-rosa/35
-        group-hover:bg-rosa-claro/30
+        group-hover:bg-rosa/10
         group-hover:shadow-[0_18px_40px_rgba(142,36,83,0.13)]
 
         lg:p-8
@@ -90,11 +90,11 @@ export default function QueEs() {
         </p>
       </div>
 
-      <h3 className="mb-3 text-2xl font-extrabold text-vino">
+      <h3 className="mb-3 text-2xl font-extrabold text-vino dark:text-rosa">
         {queEs.tituloSinopsis}
       </h3>
 
-      <p className="text-base leading-7 text-tinta/80">
+      <p className="text-base leading-7 text-(--page-text)/80">
         {queEs.sinopsis}
       </p>
 
@@ -124,7 +124,7 @@ export default function QueEs() {
                 rounded-2xl
                 border
                 border-dorado/30
-                bg-[#fff8e9]
+                bg-dorado/10
                 p-4
                 transition-all
                 duration-300
@@ -141,7 +141,7 @@ export default function QueEs() {
                   text-xl
                   font-extrabold
                   leading-none
-                  text-vino
+                  text-vino dark:text-rosa
                   transition-transform
                   duration-300
                   group-hover:scale-105
@@ -150,7 +150,7 @@ export default function QueEs() {
                 {item.valor}
               </p>
 
-              <p className="mt-2 max-w-full break-words whitespace-normal text-[11px] font-bold uppercase leading-4 tracking-[0.08em] text-tinta/65 sm:text-xs">
+              <p className="mt-2 max-w-full break-words whitespace-normal text-[11px] font-bold uppercase leading-4 tracking-[0.08em] text-(--page-text)/65 sm:text-xs">
                 {item.etiqueta}
               </p>
             </div>
@@ -270,11 +270,11 @@ export default function QueEs() {
 
       {/* FIGURAS Y CONTEXTO */}
       <div className="grid gap-6 lg:grid-cols-[1.45fr_0.55fr]">
-        <Reveal delay={160} className="rounded-[28px] border border-rosa/20 bg-white p-6 text-left shadow-[0_8px_25px_rgba(142,36,83,0.06)] sm:p-7">
+        <Reveal delay={160} className="rounded-[28px] border border-rosa/20 bg-(--surface) p-6 text-left shadow-[0_8px_25px_rgba(142,36,83,0.06)] sm:p-7">
           <div className="mb-5 flex items-end justify-between gap-4">
             <div>
               <p className="mb-2 text-xs font-bold uppercase tracking-[0.22em] text-rosa">{queEs.tituloFiguras}</p>
-              <h3 className="text-2xl font-extrabold text-vino">{queEs.complemento}</h3>
+              <h3 className="text-2xl font-extrabold text-vino dark:text-rosa">{queEs.complemento}</h3>
             </div>
             <span className="hidden h-1 w-12 rounded-full bg-dorado sm:block" />
           </div>
@@ -298,7 +298,7 @@ export default function QueEs() {
           cursor-pointer
           rounded-2xl
           border border-rosa/15
-          bg-rosa-claro/45
+          bg-(--surface-alt)
           p-4
           transition-all duration-300
 
@@ -310,17 +310,17 @@ export default function QueEs() {
       >
         <div className="flex items-baseline justify-between gap-3">
 
-          <h4 className="text-sm font-extrabold text-vino">
+          <h4 className="text-sm font-extrabold text-vino dark:text-rosa">
             {figura.nombre}
           </h4>
 
-          <span className="shrink-0 text-xs text-tinta/55">
+          <span className="shrink-0 text-xs text-(--page-text)/55">
             {figura.japones}
           </span>
 
         </div>
 
-        <p className="mt-2 text-xs leading-5 text-tinta/70">
+        <p className="mt-2 text-xs leading-5 text-(--page-text)/70">
           {figura.texto}
         </p>
       </Reveal>
@@ -338,7 +338,7 @@ export default function QueEs() {
     -translate-x-1/2
     rounded-3xl
     border border-rosa/20
-    bg-white
+    bg-(--surface)
     p-3
     shadow-xl
 
@@ -371,7 +371,7 @@ export default function QueEs() {
       border-b
       border-r
       border-rosa/20
-      bg-white
+      bg-(--surface)
     "
   />
 </div>
@@ -383,15 +383,15 @@ export default function QueEs() {
 </div>
         </Reveal>
 
-        <Reveal delay={220} className="rounded-[28px] border border-dorado/25 bg-[#fffaf0] p-6 text-left shadow-[0_8px_25px_rgba(142,36,83,0.06)] sm:p-7">
+        <Reveal delay={220} className="rounded-[28px] border border-dorado/25 bg-dorado/10 p-6 text-left shadow-[0_8px_25px_rgba(142,36,83,0.06)] sm:p-7">
           <p className="mb-2 text-[15px] font-bold uppercase tracking-[0.22em] text-rosa">{queEs.tituloContexto}</p>
           <div className="space-y-5">
             {queEs.bloques.map((b) => (
-              <div key={b.titulo} className="group -mx-2 rounded-xl px-2 py-1 transition-300 ease-out hover:translate-x-1 hover:bg-white/60">
-                <h3 className="text-[18px] font-extrabold text-vino transition-colors duration-300 group-hover:text-rosa">
+              <div key={b.titulo} className="group -mx-2 rounded-xl px-2 py-1 transition-300 ease-out hover:translate-x-1 hover:bg-(--surface)/60">
+                <h3 className="text-[18px] font-extrabold text-vino dark:text-rosa transition-colors duration-300 group-hover:text-rosa">
                   {b.titulo}
                 </h3>
-                <p className="mt-1 text-[15px] leading-5 text-tinta/70">{b.texto}</p>
+                <p className="mt-1 text-[15px] leading-5 text-(--page-text)/70">{b.texto}</p>
               </div>
             ))}
           </div>

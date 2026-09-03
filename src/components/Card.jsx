@@ -8,6 +8,7 @@ import CardMedia from './CardMedia.jsx'
  * - wide: ocupa dos columnas en escritorio
  * - horizontal: imagen a un lado y texto al otro (fichas de personajes)
  * - id / cardRef: se reenvian al elemento raiz (anclas del carrusel y observer)
+ * - bgClass: fondo de la tarjeta (para dejar ver una imagen detras, p. ej.)
  */
 export default function Card({
   title,
@@ -15,6 +16,7 @@ export default function Card({
   images = [],
   wide = false,
   horizontal = false,
+  bgClass = 'bg-(--surface)',
   id,
   cardRef,
   delay = 0,
@@ -25,7 +27,7 @@ export default function Card({
       id={id}
       ref={cardRef}
       delay={delay}
-      className={`group relative flex flex-col gap-2 overflow-hidden rounded-2xl border-2 border-(--hairline) bg-(--surface) p-6 shadow-[0_6px_16px_rgba(142,36,83,0.10)] transition duration-300 hover:-translate-y-2 hover:border-rosa hover:shadow-[0_20px_35px_rgba(142,36,83,0.28)] ${
+      className={`group relative flex flex-col gap-2 overflow-hidden rounded-2xl border-2 border-(--hairline) ${bgClass} p-6 shadow-[0_6px_16px_rgba(142,36,83,0.10)] transition duration-300 hover:-translate-y-2 hover:border-rosa hover:shadow-[0_20px_35px_rgba(142,36,83,0.28)] ${
         horizontal ? 'sm:flex-row sm:items-center sm:gap-8' : ''
       } ${wide ? 'sm:col-span-2' : ''}`}
     >
