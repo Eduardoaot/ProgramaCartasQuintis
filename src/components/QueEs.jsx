@@ -18,22 +18,16 @@ export default function QueEs() {
   }
 }, [])
 
-  const imagenesFiguras = [
-    "https://imgs.search.brave.com/kFohUVs1DSAr0AhTXX2c_x9qxcboQFQXgWpnlwUZmjQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMud2lraWEubm9j/b29raWUubmV0L2th/bWVucmlkZXIvaW1h/Z2VzL2MvY2IvTWlr/dV9JdG8uanBnL3Jl/dmlzaW9uL2xhdGVz/dC9zY2FsZS10by13/aWR0aC1kb3duLzI2/OD9jYj0yMDI2MDEw/NDA1MzgyMg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp5onXVT3JRfSnTUuq1BQKLx0U7mQ9zSnE65qHwNjg6w&s=10",
-    "https://cdn-images.dzcdn.net/images/artist/9b23b69eb3f4d900953ba4e4a23ce945/1900x1900-000000-81-0-0.jpg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVG7N2KNXK7v-C7X5EUYlreHzYgs9-Tu9U03t4n2wT2g&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRBLGRvkdc_m_nWj36zOSuE7j6KFJmkdJoNkGxM5Gtrg&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxPboMZbYC4y67PKMqFDEN9N_OtkjP8Io2SVgA9a6j3w&s=10",
-  ]
-  const coloresHover = [
-    'hover:bg-blue-100 hover:border-blue-300 dark:hover:bg-blue-400/20 dark:hover:border-blue-400/50',
-    'hover:bg-red-100 hover:border-red-300 dark:hover:bg-red-400/20 dark:hover:border-red-400/50',
-    'hover:bg-green-100 hover:border-green-300 dark:hover:bg-green-400/20 dark:hover:border-green-400/50',
-    'hover:bg-purple-100 hover:border-purple-300 dark:hover:bg-purple-400/20 dark:hover:border-purple-400/50',
-    'hover:bg-yellow-100 hover:border-yellow-300 dark:hover:bg-yellow-400/20 dark:hover:border-yellow-400/50',
-    'hover:bg-red-100 hover:border-red-300 dark:hover:bg-red-400/20 dark:hover:border-red-400/50',
-  ]
+  // Clases de hover por figura. Tailwind necesita la clase completa escrita,
+  // por eso van en un mapa y no construidas al vuelo.
+  const coloresHover = {
+    blue: 'hover:bg-blue-100 hover:border-blue-300 dark:hover:bg-blue-400/20 dark:hover:border-blue-400/50',
+    red: 'hover:bg-red-100 hover:border-red-300 dark:hover:bg-red-400/20 dark:hover:border-red-400/50',
+    green: 'hover:bg-green-100 hover:border-green-300 dark:hover:bg-green-400/20 dark:hover:border-green-400/50',
+    purple: 'hover:bg-purple-100 hover:border-purple-300 dark:hover:bg-purple-400/20 dark:hover:border-purple-400/50',
+    yellow: 'hover:bg-yellow-100 hover:border-yellow-300 dark:hover:bg-yellow-400/20 dark:hover:border-yellow-400/50',
+    slate: 'hover:bg-slate-100 hover:border-slate-300 dark:hover:bg-slate-400/20 dark:hover:border-slate-400/50',
+  }
 
   
   return (
@@ -305,7 +299,7 @@ export default function QueEs() {
           hover:-translate-y-1
           hover:shadow-lg
 
-          ${coloresHover[index]}
+          ${coloresHover[figura.hover]}
         `}
       >
         <div className="flex items-baseline justify-between gap-3">
@@ -354,7 +348,7 @@ export default function QueEs() {
   `}
 >
   <img
-    src={imagenesFiguras[index]}
+    src={figura.imagen}
     alt={figura.nombre}
     className="h-44 w-36 rounded-2xl object-cover"
   />

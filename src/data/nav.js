@@ -11,3 +11,6 @@ export const navLinks = [
 ]
 
 export const SITE_TITLE = '五等分の花嫁 TCG'
+
+// Logo oficial del juego de cartas (descargado a public/img/)
+export const SITE_LOGO = '/img/logo-5hanayome.webp'

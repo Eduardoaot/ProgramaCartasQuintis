@@ -31,8 +31,6 @@ export default function Card({
         horizontal ? 'sm:flex-row sm:items-center sm:gap-8' : ''
       } ${wide ? 'sm:col-span-2' : ''}`}
     >
-      {/* destello */}
-      <span className="pointer-events-none absolute top-0 left-[-150%] z-10 h-full w-1/2 -skew-x-12 bg-linear-to-r from-transparent via-rosa/15 to-transparent group-hover:animate-shine" />
 
       <div className={horizontal ? 'order-last flex-1' : 'contents'}>
         {title && <h3 className="text-lg font-bold text-rosa">{title}</h3>}

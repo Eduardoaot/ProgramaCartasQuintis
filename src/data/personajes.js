@@ -127,29 +127,5 @@ export const personajes = {
         'La docencia, siguiendo el recuerdo de su madre. Y comer: su apetito es legendario entre las hermanas.',
       rasgo: 'Dos pasadores con forma de estrella en el flequillo.',
     },
-    {
-      id: 'futaro-uesugi',
-      nombre: 'Futaro Uesugi',
-      japones: '上杉 風太郎',
-      romaji: 'Uesugi Fūtarō',
-      orden: 'El tutor',
-      color: 'Gris',
-      colorHex: '#6d7788',
-      alias: 'Kintarou',
-      retrato: `${RETRATOS}/FutaroUesugi.jpg`,
-      datos: [
-        ['Cumpleaños', '15 de abril'],
-        ['Edad', '17 → 18 años'],
-        ['Altura', '178 cm'],
-        ['Ojos', 'Castaño claro'],
-        ['Ocupación', 'Estudiante y tutor'],
-        ['Seiyū', 'Yoshitsugu Matsuoka'],
-      ],
-      personalidad:
-        'Vive de forma austera y prefiere la soledad; evita relacionarse y tiene una expresión permanentemente seria. Es directo y no se anda con rodeos, algo que sus alumnas notan desde el primer día.',
-      pasion:
-        'Estudiar. Es el número uno de su promoción y acepta el trabajo de tutor privado para ayudar en casa.',
-      rasgo: 'En el TCG no compite por ser novia: es la carta de protagonista.',
-    },
   ],
 }

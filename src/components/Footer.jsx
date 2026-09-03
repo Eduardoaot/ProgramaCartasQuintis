@@ -1,12 +1,16 @@
-import { navLinks } from '../data/nav.js'
+import { navLinks, SITE_TITLE, SITE_LOGO } from '../data/nav.js'
 
 export default function Footer() {
   return (
     <footer className="bg-linear-to-br from-vino to-rosa px-6 py-12 text-center text-white">
       <div className="mx-auto max-w-6xl">
-        <p className="bg-linear-to-r from-white to-dorado bg-clip-text text-xl font-bold tracking-wide text-transparent">
-          五等分の花嫁 TCG
-        </p>
+        <img
+          src={SITE_LOGO}
+          alt={SITE_TITLE}
+          width="260"
+          height="78"
+          className="mx-auto h-14 w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]"
+        />
 
         <ul className="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm">
           {navLinks.map((link) => (

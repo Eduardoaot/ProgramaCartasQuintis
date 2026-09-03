@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { navLinks, SITE_TITLE } from '../data/nav.js'
+import { navLinks, SITE_TITLE, SITE_LOGO } from '../data/nav.js'
 import ThemeToggle from './ThemeToggle.jsx'
 
 export default function Navbar() {
@@ -57,11 +57,14 @@ export default function Navbar() {
       }}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 text-white">
-        <a
-          href="#inicio"
-          className="bg-linear-to-r from-white to-dorado bg-clip-text text-lg font-bold tracking-wide text-transparent"
-        >
-          {SITE_TITLE}
+        <a href="#inicio" className="flex shrink-0 items-center" aria-label={SITE_TITLE}>
+          <img
+            src={SITE_LOGO}
+            alt={SITE_TITLE}
+            width="200"
+            height="60"
+            className="h-9 w-auto drop-shadow-[0_1px_3px_rgba(0,,0,0.45)] sm:h-10"
+          />
         </a>
 
         {/* Escritorio */}

@@ -61,7 +61,7 @@ export const rarezas = {
           porCarton: '4 copias por carta',
           aparicion: 'Al final del sobre',
           caracteristicas: ['Ilustracion del manga a color', 'Con textura', 'Con foil'],
-          images: [{ src: `${IMG}/BP5/GYC-BP5-049_4C.png`, alt: 'Carta Go-toubun Rara (GR)' }],
+          images: [{ src: `${IMG}/BP5/GYC-BP5-049_4C.png`, alt: 'Carta Go-toubun Rara (GR)', foil: true }],
         },
         {
           codigo: 'ER',
@@ -74,7 +74,7 @@ export const rarezas = {
             'Con textura',
             'Con foil',
           ],
-          images: [{ src: `${IMG}/BP7/GYC-BP7-008_IMG.png`, alt: 'Carta Echara Rara (ER)' }],
+          images: [{ src: `${IMG}/BP7/GYC-BP7-008_IMG.png`, alt: 'Carta Echara Rara (ER)', foil: true }],
         },
       ],
     },
@@ -95,7 +95,7 @@ export const rarezas = {
           ],
           images: [
             { src: `${IMG}/BP7/GYC-BP7-004_4C.png`, alt: 'Version base de la carta +' },
-            { src: `${IMG}/BP7/GYC-BP7-004P_4C.png`, alt: 'Version paralela + (foil)' },
+            { src: `${IMG}/BP7/GYC-BP7-004P_4C.png`, alt: 'Version paralela + (foil)', foil: true },
           ],
         },
         {
@@ -109,7 +109,7 @@ export const rarezas = {
           ],
           images: [
             { src: `${IMG}/BP7/GYC-BP7-025_4c.png`, alt: 'Version base de la RR+' },
-            { src: `${IMG}/BP7/GYC-BP7-025P_4c.png`, alt: 'Version paralela RR+' },
+            { src: `${IMG}/BP7/GYC-BP7-025P_4c.png`, alt: 'Version paralela RR+', foil: true },
           ],
         },
         {
@@ -124,7 +124,7 @@ export const rarezas = {
           ],
           images: [
             { src: `${IMG}/BP7/GYC-BP7-038_4c.png`, alt: 'Version base de la HR' },
-            { src: `${IMG}/BP7/GYC-BP7-038P_IMG.png`, alt: 'Carta Hanayome Rare (HR)' },
+            { src: `${IMG}/BP7/GYC-BP7-038P_IMG.png`, alt: 'Carta Hanayome Rare (HR)', foil: true },
           ],
         },
         {
@@ -138,8 +138,8 @@ export const rarezas = {
             'Nombre de la hermana en grande',
           ],
           images: [
-            { src: `${IMG}/BP7/GYC-BP7-031P_img.png`, alt: 'Carta Special (SP)' },
-            { src: `${IMG}/BP7/GYC-BP7-058P1_img.png`, alt: 'Otra carta Special (SP)' },
+            { src: `${IMG}/BP7/GYC-BP7-031P_img.png`, alt: 'Carta Special (SP)', foil: true },
+            { src: `${IMG}/BP7/GYC-BP7-058P1_img.png`, alt: 'Otra carta Special (SP)', foil: true },
           ],
         },
         {
@@ -153,8 +153,8 @@ export const rarezas = {
             'Firma de las actrices de voz impresa',
           ],
           images: [
-            { src: `${IMG}/BP7/GYC-BP7-024P1_img.png`, alt: 'Carta Super Special (SSP)' },
-            { src: `${IMG}/BP7/GYC-BP7-008P_IMG.png`, alt: 'Otra carta Super Special (SSP)' },
+            { src: `${IMG}/BP7/GYC-BP7-024P1_img.png`, alt: 'Carta Super Special (SSP)', foil: true },
+            { src: `${IMG}/BP7/GYC-BP7-008P_IMG.png`, alt: 'Otra carta Super Special (SSP)', foil: true },
           ],
         },
         {
@@ -168,8 +168,8 @@ export const rarezas = {
             'ISP: tipo "Manga" a color con ilustracion del autor',
           ],
           images: [
-            { src: `${IMG}/BP6/GYC-BP6-080P1_IMG.png`, alt: 'Carta Hero Special (HSP)' },
-            { src: `${IMG}/BP7/GYC-BP7-012P1_IMG.png`, alt: 'Carta Itsutsugo Special (ISP)' },
+            { src: `${IMG}/BP6/GYC-BP6-080P1_IMG.png`, alt: 'Carta Hero Special (HSP)', foil: true },
+            { src: `${IMG}/BP7/GYC-BP7-012P1_IMG.png`, alt: 'Carta Itsutsugo Special (ISP)', foil: true },
           ],
         },
         {
@@ -183,8 +183,8 @@ export const rarezas = {
             'Usa la ilustracion de la secreta super especial',
           ],
           images: [
-            { src: `${IMG}/BP6/GYC-BP6-065P2_4C.png`, alt: 'Carta Go-toubun Special (GSP)' },
-            { src: `${IMG}/BP6/GYC-BP6-008_4C.png`, alt: 'Otra carta Go-toubun Special (GSP)' },
+            { src: `${IMG}/BP6/GYC-BP6-065P2_4C.png`, alt: 'Carta Go-toubun Special (GSP)', foil: true },
+            { src: `${IMG}/BP6/GYC-BP6-008_4C.png`, alt: 'Otra carta Go-toubun Special (GSP)', foil: true },
           ],
         },
       ],

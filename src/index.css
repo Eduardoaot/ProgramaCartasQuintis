@@ -123,17 +123,6 @@ img {
   transform: none;
 }
 
-.arena-card {
-  --arena-offset: 0px;
-  transform: translateX(var(--arena-offset)) translateY(20px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.arena-card--left { --arena-offset: -70px; }
-.arena-card--right { --arena-offset: 70px; }
-.arena-card.is-visible {
-  transform: translateX(0) translateY(0);
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
@@ -218,4 +207,66 @@ img {
 }
 .heart-pop {
   animation: heart-pop 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ===== Efecto foil / holografico de las cartas ===== */
+@keyframes foil-shift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.foil {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Barrido holografico de colores */
+.foil::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 12%,
+    rgba(255, 60, 160, 0.55) 28%,
+    rgba(255, 214, 84, 0.55) 40%,
+    rgba(84, 255, 214, 0.55) 52%,
+    rgba(130, 120, 255, 0.55) 64%,
+    transparent 86%
+  );
+  background-size: 220% 220%;
+  mix-blend-mode: color-dodge;
+  opacity: 0.34;
+  animation: foil-shift 7s linear infinite;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+/* Microrrayado que simula el laminado */
+.foil::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.16) 0px,
+    rgba(255, 255, 255, 0) 3px,
+    rgba(255, 255, 255, 0) 7px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.55;
+  z-index: 1;
+}
+
+.foil:hover::before {
+  opacity: 0.72;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .foil::before { animation: none; }
 }

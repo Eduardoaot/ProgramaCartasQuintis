@@ -44,7 +44,7 @@ export default function SSSPShowcase() {
           }`}
         >
           <Tilt max={22} className="rounded-2xl">
-            <div className="relative overflow-hidden rounded-2xl">
+            <div className="foil relative overflow-hidden rounded-2xl">
               <img
                 src={s.img}
                 alt={s.alt}
