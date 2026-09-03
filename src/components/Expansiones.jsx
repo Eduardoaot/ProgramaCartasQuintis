@@ -99,7 +99,7 @@ export default function Expansiones() {
           <Reveal as="h3" variant="up" className="mb-6 text-xl font-bold uppercase tracking-wider text-rosa">
             {temp.nombre}
           </Reveal>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2">
             {temp.sets.map((set, i) => (
               <SetCard
                 key={set.codigo}

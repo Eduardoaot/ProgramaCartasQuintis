@@ -73,7 +73,8 @@ export default function JuegoCartas() {
         <h3 className="mb-5 text-center text-2xl font-bold uppercase tracking-wider text-rosa sm:text-2xl">
           Tipos de carta
         </h3>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* flex en vez de grid: asi la ultima fila queda centrada */}
+        <div className="flex flex-wrap justify-center gap-4">
           {juego.tiposCarta.map((t, i) => {
             const posicion = i === 0 ? 'left' : i === juego.tiposCarta.length - 1 ? 'right' : 'center'
 
@@ -81,7 +82,7 @@ export default function JuegoCartas() {
               <Reveal
                 key={t.nombre}
                 delay={i * 100}
-                className={`arena-card arena-card--${posicion} rounded-xl border-t-4 ${bordePorTipo[t.nombre]} bg-white p-4 text-left shadow-md`}
+                className={`arena-card arena-card--${posicion} basis-full rounded-xl border-t-4 ${bordePorTipo[t.nombre]} bg-white p-4 text-left shadow-md sm:basis-[calc(50%-0.5rem)] lg:basis-[calc(33.333%-0.667rem)]`}
               >
                 <p className="font-bold text-vino">{t.nombre}</p>
                 <p className="text-sm text-tinta/80">{t.texto}</p>

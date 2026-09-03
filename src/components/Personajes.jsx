@@ -17,6 +17,7 @@ const fondos = {
   'miku-nakano': { video: '/videos/miku.mp4', fondo: '/videos/azul.jpg' },
   'yotsuba-nakano': { video: '/videos/yotsuba.mp4', fondo: '/videos/verde.jpg' },
   'itsuki-nakano': { video: '/videos/itsuki.mp4', fondo: '/videos/rojo.jpg' },
+  'futaro-uesugi': { video: '/videos/futaru.mp4', fondo: '/videos/gris.jpeg' },
 }
 
 const ordenCarrusel = Object.keys(fondos)

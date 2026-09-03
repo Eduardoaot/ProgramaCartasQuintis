@@ -49,14 +49,14 @@ export default function Navbar() {
     <nav
       className={`fixed inset-x-0 top-0 z-50 transition-[opacity,transform] duration-700 ease-out ${
         isHidden ? 'pointer-events-none -translate-y-3 opacity-0' : 'translate-y-0 opacity-100'
-      } ${!atTop ? 'shadow-[0_4px_20px_rgba(142,36,83,0.25)]' : ''}`}
+      } ${!atTop ? 'shadow-[0_4px_18px_rgba(142,36,83,0.18)]' : ''}`}
       style={{
         background: 'var(--nav-bg)',
         backdropFilter: 'blur(10px)',
         WebkitBackdropFilter: 'blur(10px)',
       }}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 text-white">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 text-(--nav-text)">
         <a href="#inicio" className="flex shrink-0 items-center" aria-label={SITE_TITLE}>
           <img
             src={SITE_LOGO}
@@ -74,10 +74,10 @@ export default function Navbar() {
               <li key={link.id}>
                 <a
                   href={`#${link.id}`}
-                  className="group relative pb-1 text-sm font-medium transition-colors hover:text-dorado"
+                  className="group relative pb-1 text-sm font-semibold transition-colors hover:text-rosa dark:hover:text-dorado"
                 >
                   {link.label}
-                  <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-dorado transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-rosa transition-all duration-300 group-hover:w-full dark:bg-dorado" />
                 </a>
               </li>
             ))}
@@ -93,18 +93,18 @@ export default function Navbar() {
             aria-label="Abrir menú"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-lg border border-white/40"
+            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-lg border border-current/40"
           >
-            <span className={`h-0.5 w-5 bg-white transition-transform ${open ? 'translate-y-2 rotate-45' : ''}`} />
-            <span className={`h-0.5 w-5 bg-white transition-opacity ${open ? 'opacity-0' : ''}`} />
-            <span className={`h-0.5 w-5 bg-white transition-transform ${open ? '-translate-y-2 -rotate-45' : ''}`} />
+            <span className={`h-0.5 w-5 bg-current transition-transform ${open ? 'translate-y-2 rotate-45' : ''}`} />
+            <span className={`h-0.5 w-5 bg-current transition-opacity ${open ? 'opacity-0' : ''}`} />
+            <span className={`h-0.5 w-5 bg-current transition-transform ${open ? '-translate-y-2 -rotate-45' : ''}`} />
           </button>
         </div>
       </div>
 
       {/* Móvil: panel */}
       <ul
-        className={`flex flex-col gap-1 overflow-hidden px-6 text-white transition-all duration-300 md:hidden ${
+        className={`flex flex-col gap-1 overflow-hidden px-6 text-(--nav-text) transition-all duration-300 md:hidden ${
           open ? 'max-h-96 py-4' : 'max-h-0 py-0'
         }`}
         style={{ background: 'var(--nav-panel-bg)' }}
@@ -114,7 +114,7 @@ export default function Navbar() {
             <a
               href={`#${link.id}`}
               onClick={() => setOpen(false)}
-              className="block rounded-md px-2 py-2 text-sm font-medium hover:bg-white/10 hover:text-dorado"
+              className="block rounded-md px-2 py-2 text-sm font-semibold hover:bg-current/10 hover:text-rosa dark:hover:text-dorado"
             >
               {link.label}
             </a>

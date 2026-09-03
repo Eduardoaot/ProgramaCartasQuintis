@@ -11,7 +11,7 @@ export default function ThemeToggle({ className = '' }) {
       onClick={toggle}
       aria-label={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
       title={isDark ? 'Modo claro' : 'Modo oscuro'}
-      className={`flex h-9 w-9 items-center justify-center rounded-full border border-white/40 bg-white/10 text-base transition hover:bg-white/20 ${className}`}
+      className={`flex h-9 w-9 items-center justify-center rounded-full border border-current/40 bg-current/10 text-base transition hover:bg-current/20 ${className}`}
     >
       <span className="transition-transform duration-500" style={{ transform: isDark ? 'rotate(0deg)' : 'rotate(180deg)' }}>
         {isDark ? '🌙' : '☀️'}

@@ -63,10 +63,10 @@ public/                    Archivos servidos tal cual, sin procesar
     logo-5hanayome.webp      Logo oficial del juego (navbar y footer)
     YoshitsuguMatsuoka.jpg   Retrato del seiyū de Futaro
   videos/
-    ichika.mp4 … itsuki.mp4  Los 5 vídeos del carrusel de Personajes
-    IchikaNakano.png …       Los 5 retratos de las fichas de Personajes
-    amarillo/rosa/azul/       Las 5 imágenes de fondo por color de hermana
-    verde/rojo.jpg
+    ichika.mp4 … futaru.mp4  Los 6 vídeos del carrusel de Personajes
+    IchikaNakano.png …       Los 6 retratos de las fichas de Personajes
+    amarillo/rosa/azul/       Las 6 imágenes de fondo por color de personaje
+    verde/rojo.jpg, gris.jpeg
 
 src/
   main.jsx                 Monta <App /> en #root e importa index.css
@@ -176,7 +176,8 @@ CSS** que se redefinen bajo `.dark`:
 | `--surface-alt` | `#fff5fa` | `#190f16` | Fondo de secciones alternas y chips |
 | `--surface-sunken` | `#fff5fa` | `#0d070b` | Hueco donde se apoyan las imágenes de carta |
 | `--hairline` | rosa 25 % | rosa 28 % | Bordes finos |
-| `--nav-bg` / `--nav-panel-bg` | vino 90 % | negro 82 % | Fondo de la navbar |
+| `--nav-bg` / `--nav-panel-bg` | rosa muy claro 88 % | negro 82 % | Fondo de la navbar |
+| `--nav-text` | `#8e2453` (vino) | `#f2e3ec` | Texto y adornos de la navbar |
 
 En el JSX se usan con la sintaxis canónica de Tailwind v4:
 `bg-(--surface)`, `text-(--page-text)/80`, `border-(--hairline)`.
@@ -331,7 +332,10 @@ como pieza reutilizable.
 ### 7.1 Navbar (`Navbar.jsx`)
 
 Barra **fija** (`position: fixed`) arriba del todo, con fondo semitransparente
-y `backdrop-blur`.
+y `backdrop-blur`. En modo claro es **rosa muy claro con texto vino**; en oscuro,
+negra con texto claro. El color sale de `--nav-bg` y `--nav-text`, y los
+adornos (bordes del botón del tema, barras de la hamburguesa) usan
+`currentColor` para adaptarse solos a los dos temas.
 
 **Comportamiento al hacer scroll:**
 
@@ -386,9 +390,10 @@ Responsable del contenido: **Gael**. Tres bloques:
 ### 7.4 Personajes (`Personajes.jsx`) — `#personajes`
 
 Responsable del contenido: **Issac**. Datos verificados en el wiki de Fandom.
+Seis fichas: las cinco hermanas Nakano y Futaro Uesugi.
 
 **Un único fondo para toda la sección.** El componente `FondoSeccion` apila las
-cinco imágenes de color (amarillo, rosa, azul, verde, rojo) en `position:
+seis imágenes de color (amarillo, rosa, azul, verde, rojo y gris para Futaro) en `position:
 absolute` y hace **crossfade** de 1 s cambiando su `opacity`. Va montado en la
 prop `backdrop` de `Section`, así cubre la sección entera. Lleva `sm:bg-fixed`
 (efecto parallax) y un velo del 72–78 % con desenfoque ligero para que el texto
@@ -407,7 +412,7 @@ personajeActivo = carruselALaVista ? personajeCarrusel : personajeFicha
 
 Así el autoplay no te cambia el fondo mientras lees las fichas.
 
-**El carrusel** (Swiper) muestra un vídeo por hermana, a ancho completo, sin
+**El carrusel** (Swiper) muestra un vídeo por personaje (las cinco hermanas y Futaro), a ancho completo, sin
 recuadro ni fondo propio. Configuración destacada:
 
 | Ajuste | Por qué |
@@ -463,7 +468,8 @@ mediante la prop `style` de `Section` con un velo blanco al 70 % y
 
 Contiene: dos bloques (cuándo nació, en qué consiste), las **partes de la
 mesa**, un panel degradado con **cómo se gana**, y los **cinco tipos de carta**
-con un color de borde cada uno (Personaje rosa, Episodio verde, Evento azul,
+en una fila flexible que deja **la última fila centrada** (en vez de una rejilla
+que los alinearía a la izquierda), con un color de borde cada uno (Personaje rosa, Episodio verde, Evento azul,
 Protagonista dorado, Carta E vino).
 
 Las tarjetas entran **deslizándose lateralmente** con las clases `.arena-card`
@@ -503,6 +509,7 @@ principiantes. Es la sección más larga: nueve bloques.
 Los ocho sets **BP1–BP8**, agrupados por temporada, con datos oficiales de
 `5hanayome-cardgame.com/products/bpN`.
 
+Se muestran en **dos columnas** para que la foto del cartón se vea grande.
 Arriba, dos pastillas con la ficha común (12 sobres por cartón a ¥5.280, 5
 cartas por sobre a ¥440). Cada tarjeta muestra la **foto del cartón** —sin
 hover 3D, a diferencia de las cartas—, el código del set, el nombre, un chip
@@ -516,9 +523,10 @@ código.
 Dos grupos:
 
 - **Cartas base** (C, U, R, RR, GR, ER) en rejilla de 3 columnas.
-- **Cartas paralelas** (+, RR+, HR, SP, SSP, HSP/ISP, GSP) en 2 columnas,
-  cada una mostrando **base y paralela** una al lado de la otra con el efecto
-  foil en las que corresponde.
+- **Cartas paralelas** (+, RR+, HR, SP, SSP, HSP/ISP, GSP) a **una sola
+  columna**, en tarjetas anchas: la ficha de texto a la izquierda y las dos
+  cartas grandes a la derecha, mostrando **base y paralela** con el efecto foil
+  en las que corresponde.
 
 Cada tarjeta lleva la sigla en una pastilla degradada, el nombre correcto, y
 una ficha normalizada: **cuántas copias por cartón**, **en qué parte del sobre
@@ -564,13 +572,14 @@ un array hace aparecer una tarjeta nueva automáticamente.
 Cada archivo lleva comentarios explicando la forma de los datos y de dónde
 salen. Puntos a tener en cuenta:
 
-- **`personajes.js`** — cada ficha necesita `id` (que es también el ancla),
+- **`personajes.js`** — seis fichas. Cada una necesita `id` (que es también el ancla),
   `colorHex` (tiñe franja, chips y anillo) y `retrato`. El `id` debe coincidir
   con las claves del objeto `fondos` de `Personajes.jsx` para que el fondo y el
   carrusel funcionen.
 - **`rarezas.js`** — la SSSP **no** va en `grupos`, va en el objeto `secreta`
   porque tiene su propio showcase. El campo `columnas` de cada grupo decide la
-  rejilla. Cada imagen admite `foil: true`.
+  rejilla: `1` activa además la tarjeta ancha con el texto y las cartas en dos
+  columnas internas. Cada imagen admite `foil: true`.
 - **`expansiones.js`** — `caja` es la URL de la foto del cartón; si es `null`
   sale el marcador.
 - **`queEs.js`** — cada figura del elenco lleva su `imagen` y una clave `hover`

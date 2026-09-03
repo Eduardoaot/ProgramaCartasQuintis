@@ -80,7 +80,7 @@ export const rarezas = {
     },
     {
       nombre: 'Cartas paralelas',
-      columnas: 2,
+      columnas: 1,
       nota:
         'Todas llevan foil y en ocasiones textura. Aparecen siempre en la ultima carta del sobre, una por sobre. Cada tarjeta muestra la version base y la paralela.',
       cartas: [

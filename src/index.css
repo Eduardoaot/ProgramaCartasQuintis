@@ -50,8 +50,9 @@
 
 /* ===== Base ===== */
 :root {
-  --nav-bg: rgba(142, 36, 83, 0.9);
-  --nav-panel-bg: rgba(142, 36, 83, 0.97);
+  --nav-bg: rgba(255, 240, 247, 0.88);
+  --nav-panel-bg: rgba(255, 240, 247, 0.97);
+  --nav-text: #8e2453;
   --page-bg: #ffffff;
   --page-text: #2b1622;
   --surface: #ffffff;
@@ -63,6 +64,7 @@
 .dark {
   --nav-bg: rgba(18, 10, 15, 0.82);
   --nav-panel-bg: rgba(18, 10, 15, 0.97);
+  --nav-text: #f2e3ec;
   --page-bg: #120a0f;
   --page-text: #f2e3ec;
   --surface: #211521;
