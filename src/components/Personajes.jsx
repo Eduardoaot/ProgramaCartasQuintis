@@ -4,10 +4,11 @@ import Reveal from './Reveal.jsx'
 import { personajes } from '../data/personajes.js'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination, Autoplay } from 'swiper/modules'
+import { Pagination, Autoplay, Navigation, Keyboard, Mousewheel } from 'swiper/modules'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 
 /** Video del carrusel e imagen de fondo con el color de cada hermana. */
 const fondos = {
@@ -193,17 +194,32 @@ export default function Personajes() {
       {/* Carrusel: manda sobre el fondo de la seccion mientras se ve */}
       <div ref={carruselRef} className="mb-14">
         <Swiper
-          modules={[Pagination, Autoplay]}
+          modules={[Pagination, Autoplay, Navigation, Keyboard, Mousewheel]}
           spaceBetween={20}
           slidesPerView={1}
+          speed={600}
+          loop
+          grabCursor
           simulateTouch
           touchStartPreventDefault={false}
-          threshold={5}
-          grabCursor
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 2800, disableOnInteraction: false }}
-          loop
+          /* No se pega al cursor: al soltar salta al slide, no sigue el dedo */
+          followFinger={false}
+          threshold={3}
+          touchRatio={1.4}
+          longSwipesRatio={0.15}
+          resistanceRatio={0.6}
+          /* Trackpad: solo el gesto horizontal mueve el carrusel */
+          mousewheel={{ forceToAxis: true, sensitivity: 1, thresholdDelta: 6 }}
+          keyboard={{ enabled: true, onlyInViewport: true }}
+          navigation
+          pagination={{ clickable: true, dynamicBullets: false }}
+          autoplay={{ delay: 3200, disableOnInteraction: false, pauseOnMouseEnter: true }}
           onSlideChange={(swiper) => setPersonajeCarrusel(ordenCarrusel[swiper.realIndex])}
+          style={{
+            '--swiper-navigation-color': porId[personajeCarrusel].colorHex,
+            '--swiper-pagination-color': porId[personajeCarrusel].colorHex,
+            '--swiper-navigation-size': '30px',
+          }}
           className="pb-10"
         >
           {ordenCarrusel.map((id) => (

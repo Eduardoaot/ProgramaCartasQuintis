@@ -1,8 +1,6 @@
 // Seccion "Personajes" — responsable: Issac
 // Datos verificados en https://go-toubun-no-hanayome.fandom.com/es
-// Retratos: PNG locales en public/videos/. Futaro todavia usa el del wiki;
-// para tenerlo local basta con dejar public/videos/FutaroUesugi.png y poner
-// su campo retrato a '/videos/FutaroUesugi.png'.
+// Retratos: imagenes locales en public/videos/ (mas fiables que hotlinkear).
 const RETRATOS = '/videos'
 
 export const personajes = {
@@ -138,8 +136,7 @@ export const personajes = {
       color: 'Gris',
       colorHex: '#6d7788',
       alias: 'Kintarou',
-      retrato:
-        'https://static.wikia.nocookie.net/go-toubun-no-hanayome/images/5/56/Fuutarou_Uesugi_Anime_II.png/revision/latest/scale-to-width-down/400?cb=20220524140824&path-prefix=es',
+      retrato: `${RETRATOS}/FutaroUesugi.jpg`,
       datos: [
         ['Cumpleaños', '15 de abril'],
         ['Edad', '17 → 18 años'],
