@@ -33,8 +33,8 @@ export default function QueEs() {
   return (
     <Section
       id="que-es"
-      eyebrow="La obra"
-      title="Qué son Las Quintillizas"
+      eyebrow="La ciudad"
+      title="Qué es Monterrey"
       intro={queEs.intro}
     >
 {/* SINOPSIS + IMAGEN */}
@@ -48,20 +48,20 @@ export default function QueEs() {
       className="
         relative flex h-full flex-col overflow-hidden
         rounded-[28px]
-        border border-rosa/20
+        border border-naranja/20
         bg-(--surface)
         p-7
         text-left
-        shadow-[0_10px_30px_rgba(142,36,83,0.07)]
+        shadow-[0_10px_30px_rgba(27,73,101,0.07)]
 
         transition-all
         duration-500
         ease-out
 
         group-hover:-translate-y-1
-        group-hover:border-rosa/35
-        group-hover:bg-rosa/10
-        group-hover:shadow-[0_18px_40px_rgba(142,36,83,0.13)]
+        group-hover:border-naranja/35
+        group-hover:bg-naranja/10
+        group-hover:shadow-[0_18px_40px_rgba(27,73,101,0.13)]
 
         lg:p-8
       "
@@ -72,19 +72,19 @@ export default function QueEs() {
             h-[2px]
             w-10
             rounded-full
-            bg-linear-to-r from-rosa to-dorado
+            bg-linear-to-r from-naranja to-oro
             transition-all
             duration-500
             group-hover:w-16
           "
         />
 
-        <p className="text-xs font-bold uppercase tracking-[0.22em] text-rosa">
+        <p className="text-xs font-bold uppercase tracking-[0.22em] text-naranja">
           {queEs.pestana}
         </p>
       </div>
 
-      <h3 className="mb-3 text-2xl font-extrabold text-vino dark:text-rosa">
+      <h3 className="mb-3 text-2xl font-extrabold text-sierra dark:text-naranja">
         {queEs.tituloSinopsis}
       </h3>
 
@@ -95,11 +95,11 @@ export default function QueEs() {
       <div className="mt-auto pt-7">
         <div className="mb-4 flex items-center justify-between">
 
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-rosa">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-naranja">
             {queEs.tituloReconocimientos}
           </p>
 
-          <span className="h-1 w-12 rounded-full bg-linear-to-r from-rosa to-dorado" />
+          <span className="h-1 w-12 rounded-full bg-linear-to-r from-naranja to-oro" />
 
         </div>
 
@@ -117,16 +117,16 @@ export default function QueEs() {
                 overflow-hidden
                 rounded-2xl
                 border
-                border-dorado/30
-                bg-dorado/10
+                border-oro/30
+                bg-oro/10
                 p-4
                 transition-all
                 duration-300
                 ease-out
 
                 hover:-translate-y-1
-                hover:border-dorado/60
-                hover:bg-dorado/20
+                hover:border-oro/60
+                hover:bg-oro/20
                 hover:shadow-md
               "
             >
@@ -135,7 +135,7 @@ export default function QueEs() {
                   text-xl
                   font-extrabold
                   leading-none
-                  text-vino dark:text-rosa
+                  text-sierra dark:text-naranja
                   transition-transform
                   duration-300
                   group-hover:scale-105
@@ -169,12 +169,12 @@ export default function QueEs() {
         overflow-hidden
         rounded-[28px]
         border
-        border-rosa/20
-        shadow-[0_10px_30px_rgba(142,36,83,0.09)]
+        border-naranja/20
+        shadow-[0_10px_30px_rgba(27,73,101,0.09)]
         transition-all
         duration-900
-        hover:border-rosa/40
-        hover:shadow-[0_18px_40px_rgba(142,36,83,0.16)]
+        hover:border-naranja/40
+        hover:shadow-[0_18px_40px_rgba(27,73,101,0.16)]
       "
     >
 
@@ -201,13 +201,13 @@ export default function QueEs() {
           absolute
           inset-0
           bg-linear-to-t
-          from-vino/90
-          via-vino/25
+          from-sierra/90
+          via-sierra/25
           to-transparent
           transition-all
           duration-900
-          group-hover:from-vino/95
-          group-hover:via-vino/50
+          group-hover:from-sierra/95
+          group-hover:via-sierra/50
         "
       />
 
@@ -226,7 +226,7 @@ export default function QueEs() {
         "
       >
 
-        <p className="mb-1 text-xs font-bold uppercase tracking-[0.22em] text-dorado">
+        <p className="mb-1 text-xs font-bold uppercase tracking-[0.22em] text-oro">
           {queEs.autor.profesion}
         </p>
 
@@ -264,13 +264,13 @@ export default function QueEs() {
 
       {/* FIGURAS Y CONTEXTO */}
       <div className="grid gap-6 lg:grid-cols-[1.45fr_0.55fr]">
-        <Reveal delay={160} className="rounded-[28px] border border-rosa/20 bg-(--surface) p-6 text-left shadow-[0_8px_25px_rgba(142,36,83,0.06)] sm:p-7">
+        <Reveal delay={160} className="rounded-[28px] border border-naranja/20 bg-(--surface) p-6 text-left shadow-[0_8px_25px_rgba(27,73,101,0.06)] sm:p-7">
           <div className="mb-5 flex items-end justify-between gap-4">
             <div>
-              <p className="mb-2 text-xs font-bold uppercase tracking-[0.22em] text-rosa">{queEs.tituloFiguras}</p>
-              <h3 className="text-2xl font-extrabold text-vino dark:text-rosa">{queEs.complemento}</h3>
+              <p className="mb-2 text-xs font-bold uppercase tracking-[0.22em] text-naranja">{queEs.tituloFiguras}</p>
+              <h3 className="text-2xl font-extrabold text-sierra dark:text-naranja">{queEs.complemento}</h3>
             </div>
-            <span className="hidden h-1 w-12 rounded-full bg-dorado sm:block" />
+            <span className="hidden h-1 w-12 rounded-full bg-oro sm:block" />
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
   {queEs.figuras.map((figura, index) => (
@@ -291,7 +291,7 @@ export default function QueEs() {
         className={`
           cursor-pointer
           rounded-2xl
-          border border-rosa/15
+          border border-naranja/15
           bg-(--surface-alt)
           p-4
           transition-all duration-300
@@ -304,12 +304,12 @@ export default function QueEs() {
       >
         <div className="flex items-baseline justify-between gap-3">
 
-          <h4 className="text-sm font-extrabold text-vino dark:text-rosa">
+          <h4 className="text-sm font-extrabold text-sierra dark:text-naranja">
             {figura.nombre}
           </h4>
 
           <span className="shrink-0 text-xs text-(--page-text)/55">
-            {figura.japones}
+            {figura.oficio}
           </span>
 
         </div>
@@ -331,7 +331,7 @@ export default function QueEs() {
     z-50
     -translate-x-1/2
     rounded-3xl
-    border border-rosa/20
+    border border-naranja/20
     bg-(--surface)
     p-3
     shadow-xl
@@ -364,7 +364,7 @@ export default function QueEs() {
       rotate-45
       border-b
       border-r
-      border-rosa/20
+      border-naranja/20
       bg-(--surface)
     "
   />
@@ -377,12 +377,12 @@ export default function QueEs() {
 </div>
         </Reveal>
 
-        <Reveal delay={220} className="rounded-[28px] border border-dorado/25 bg-dorado/10 p-6 text-left shadow-[0_8px_25px_rgba(142,36,83,0.06)] sm:p-7">
-          <p className="mb-2 text-[15px] font-bold uppercase tracking-[0.22em] text-rosa">{queEs.tituloContexto}</p>
+        <Reveal delay={220} className="rounded-[28px] border border-oro/25 bg-oro/10 p-6 text-left shadow-[0_8px_25px_rgba(27,73,101,0.06)] sm:p-7">
+          <p className="mb-2 text-[15px] font-bold uppercase tracking-[0.22em] text-naranja">{queEs.tituloContexto}</p>
           <div className="space-y-5">
             {queEs.bloques.map((b) => (
               <div key={b.titulo} className="group -mx-2 rounded-xl px-2 py-1 transition-300 ease-out hover:translate-x-1 hover:bg-(--surface)/60">
-                <h3 className="text-[18px] font-extrabold text-vino dark:text-rosa transition-colors duration-300 group-hover:text-rosa">
+                <h3 className="text-[18px] font-extrabold text-sierra dark:text-naranja transition-colors duration-300 group-hover:text-naranja">
                   {b.titulo}
                 </h3>
                 <p className="mt-1 text-[15px] leading-5 text-(--page-text)/70">{b.texto}</p>

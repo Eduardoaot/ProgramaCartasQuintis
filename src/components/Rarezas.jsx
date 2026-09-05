@@ -1,7 +1,7 @@
 import Section from './Section.jsx'
 import Reveal from './Reveal.jsx'
 import CardMedia from './CardMedia.jsx'
-import SSSPShowcase from './SSSPShowcase.jsx'
+import Insignia from './Insignia.jsx'
 import { rarezas } from '../data/rarezas.js'
 
 /** Rejilla segun las columnas que pida el grupo. */
@@ -14,37 +14,37 @@ const rejilla = {
 function Spec({ label, value, grande = false }) {
   return (
     <div className="flex flex-col">
-      <dt className="text-[11px] font-semibold uppercase tracking-wider text-rosa/80">{label}</dt>
+      <dt className="text-[11px] font-semibold uppercase tracking-wider text-naranja/80">{label}</dt>
       <dd className={`text-(--page-text)/90 ${grande ? 'text-base' : 'text-sm'}`}>{value}</dd>
     </div>
   )
 }
 
-function Encabezado({ carta, grande = false }) {
+function Encabezado({ platillo, grande = false }) {
   return (
     <div className="flex items-center gap-3">
       <span
-        className={`inline-flex items-center justify-center rounded-lg bg-linear-to-br from-vino to-rosa font-extrabold text-white ${
+        className={`inline-flex items-center justify-center rounded-lg bg-linear-to-br from-sierra to-naranja font-extrabold text-white ${
           grande ? 'min-w-14 px-3.5 py-1.5 text-lg' : 'min-w-10 px-2.5 py-1 text-sm'
         }`}
       >
-        {carta.codigo}
+        {platillo.codigo}
       </span>
       <h4
-        className={`font-bold text-vino dark:text-rosa ${
+        className={`font-bold text-sierra dark:text-naranja ${
           grande ? 'text-xl sm:text-2xl' : 'text-base sm:text-lg'
         }`}
       >
-        {carta.nombre}
+        {platillo.nombre}
       </h4>
     </div>
   )
 }
 
-function Rasgos({ carta }) {
+function Rasgos({ platillo }) {
   return (
     <div className="flex flex-wrap gap-2">
-      {carta.caracteristicas.map((c) => (
+      {platillo.caracteristicas.map((c) => (
         <span
           key={c}
           className="rounded-full bg-(--surface-alt) px-3 py-1 text-xs text-(--page-text)/80 ring-1 ring-(--hairline)"
@@ -56,32 +56,32 @@ function Rasgos({ carta }) {
   )
 }
 
-const cardBase =
-  'group relative overflow-hidden rounded-2xl border-2 border-(--hairline) bg-(--surface) shadow-[0_6px_16px_rgba(142,36,83,0.10)] transition duration-300 hover:-translate-y-2 hover:border-rosa hover:shadow-[0_20px_35px_rgba(142,36,83,0.28)]'
+const tarjetaBase =
+  'group relative overflow-hidden rounded-2xl border-2 border-(--hairline) bg-(--surface) shadow-[0_6px_16px_rgba(27,73,101,0.10)] transition duration-300 hover:-translate-y-2 hover:border-naranja hover:shadow-[0_20px_35px_rgba(27,73,101,0.28)]'
 
-function RarezaCard({ carta, delay, side, ancha = false }) {
-  const pie = carta.images.length > 1 && (
+function PlatilloCard({ platillo, delay, side, ancha = false }) {
+  const pie = platillo.images.length > 1 && (
     <p className="mt-2 text-center text-[10px] uppercase tracking-wider text-(--page-text)/50">
-      base · paralela
+      dos vistas
     </p>
   )
 
-  // Tarjeta ancha: una sola por fila, con el texto a un lado y las cartas
+  // Tarjeta ancha: una sola por fila, con el texto a un lado y las fotos
   // grandes al otro.
   if (ancha) {
     return (
-      <Reveal variant={side} delay={delay} className={`${cardBase} p-6 sm:p-8`}>
+      <Reveal variant={side} delay={delay} className={`${tarjetaBase} p-6 sm:p-8`}>
         <div className="grid gap-8 lg:grid-cols-[1fr_minmax(0,26rem)] lg:items-center">
           <div className="flex flex-col gap-5">
-            <Encabezado carta={carta} grande />
+            <Encabezado platillo={platillo} grande />
             <dl className="grid gap-4 sm:grid-cols-2">
-              <Spec label="Por cartón" value={carta.porCarton} grande />
-              <Spec label="En el sobre" value={carta.aparicion} grande />
+              <Spec label="Dónde" value={platillo.donde} grande />
+              <Spec label="Cuándo" value={platillo.cuando} grande />
             </dl>
-            <Rasgos carta={carta} />
+            <Rasgos platillo={platillo} />
           </div>
           <div>
-            <CardMedia images={carta.images} />
+            <CardMedia images={platillo.images} />
             {pie}
           </div>
         </div>
@@ -90,14 +90,14 @@ function RarezaCard({ carta, delay, side, ancha = false }) {
   }
 
   return (
-    <Reveal variant={side} delay={delay} className={`${cardBase} flex flex-col gap-3 p-6`}>
-      <Encabezado carta={carta} />
+    <Reveal variant={side} delay={delay} className={`${tarjetaBase} flex flex-col gap-3 p-6`}>
+      <Encabezado platillo={platillo} />
       <dl className="grid grid-cols-2 gap-3">
-        <Spec label="Por cartón" value={carta.porCarton} />
-        <Spec label="En el sobre" value={carta.aparicion} />
+        <Spec label="Dónde" value={platillo.donde} />
+        <Spec label="Cuándo" value={platillo.cuando} />
       </dl>
-      <Rasgos carta={carta} />
-      <CardMedia images={carta.images} />
+      <Rasgos platillo={platillo} />
+      <CardMedia images={platillo.images} />
       {pie}
     </Reveal>
   )
@@ -108,25 +108,25 @@ export default function Rarezas() {
     <>
       <Section
         id="rarezas"
-        eyebrow="Coleccionismo"
-        title="Las rarezas que hay"
+        eyebrow="Gastronomía"
+        title="Sabores de Monterrey"
         intro={rarezas.intro}
       >
         {rarezas.grupos.map((grupo) => (
           <div key={grupo.nombre} className="mb-14 last:mb-0">
             <Reveal variant="up" className="mb-6">
-              <h3 className="text-xl font-bold uppercase tracking-wider text-rosa">{grupo.nombre}</h3>
+              <h3 className="text-xl font-bold uppercase tracking-wider text-naranja">{grupo.nombre}</h3>
               {grupo.nota && (
-                <p className="mx-auto mt-2 max-w-3xl text-sm text-vino/80 dark:text-rosa-claro/70">
+                <p className="mx-auto mt-2 max-w-3xl text-sm text-sierra/80 dark:text-arena/70">
                   {grupo.nota}
                 </p>
               )}
             </Reveal>
             <div className={`grid gap-6 ${rejilla[grupo.columnas] ?? rejilla[3]}`}>
-              {grupo.cartas.map((carta, i) => (
-                <RarezaCard
-                  key={carta.codigo + carta.nombre}
-                  carta={carta}
+              {grupo.cartas.map((platillo, i) => (
+                <PlatilloCard
+                  key={platillo.codigo + platillo.nombre}
+                  platillo={platillo}
                   delay={(i % 3) * 60}
                   side={i % 2 === 0 ? 'left' : 'right'}
                   ancha={grupo.columnas === 1}
@@ -137,7 +137,7 @@ export default function Rarezas() {
         ))}
       </Section>
 
-      <SSSPShowcase />
+      <Insignia />
     </>
   )
 }

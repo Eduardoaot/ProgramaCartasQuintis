@@ -1,190 +1,103 @@
-// Seccion "Las rarezas que hay".
-// Info normalizada por carta:
-//   codigo         -> sigla oficial (C, U, R, RR, GR, ER, +, RR+, HR, SP, SSP, HSP, ISP, GSP, SSSP)
-//   nombre         -> nombre correcto de la rareza
-//   porCarton      -> cuantas copias de esa carta salen por carton
-//   aparicion      -> en que parte del sobre aparece
-//   caracteristicas-> rasgos visuales (ilustracion, textura, foil, firma, numeracion...)
+// Seccion "Sabores de Monterrey".
+// Info normalizada por platillo:
+//   codigo         -> abreviatura corta para la etiqueta
+//   nombre         -> nombre del platillo
+//   donde          -> en que lugar se come
+//   cuando         -> en que momento aparece en la mesa
+//   caracteristicas-> como se reconoce
 //
-// La SSSP NO va en `grupos`: tiene su propio showcase (objeto `secreta`).
-const IMG = 'https://5hanayome-cardgame.com/wordpress/wp-content/images/cardlist'
+// El cabrito NO va en `grupos`: tiene su propio escaparate (objeto `insignia`).
+//
+// PENDIENTE: revisar y actualizar el precio de referencia de `insignia.valor`.
+import { foto } from './imagenes.js'
 
 export const rarezas = {
   intro:
-    'Un carton contiene varios sobres y cada sobre reparte las cartas por orden de rareza. Aqui esta cada rareza con su nombre correcto, cuantas veces sale por carton, donde aparece en el sobre y como se reconoce.',
+    'La cocina regia es carne, fuego y trigo. Aquí está cada platillo con su nombre, dónde se come, en qué momento aparece y cómo se reconoce.',
   grupos: [
     {
-      nombre: 'Cartas base',
+      nombre: 'Los platillos de siempre',
       columnas: 3,
       nota:
-        'Ocupan las primeras 4 posiciones de cada sobre. Las GR y ER son la excepcion: aparecen al final del sobre.',
+        'Los que encuentras en cualquier mesa del área metropolitana, del puesto de barrio al restaurante de manteles largos.',
       cartas: [
         {
-          codigo: 'C',
-          nombre: 'Comun',
-          porCarton: '8 a 9 copias por carta',
-          aparicion: 'Primeras 4 cartas del sobre',
-          caracteristicas: ['Captura del anime', 'Sin textura', 'Sin foil'],
-          images: [{ src: `${IMG}/BP5/GYC-BP5-036_4C.png`, alt: 'Carta Comun (C)' }],
-        },
-        {
-          codigo: 'U',
-          nombre: 'Poco Comun',
-          porCarton: '7 a 8 copias por carta',
-          aparicion: 'Primeras 4 cartas del sobre',
-          caracteristicas: ['Captura del manga', 'Sin textura', 'Sin foil'],
-          images: [{ src: `${IMG}/BP5/GYC-BP5-019_4C.png`, alt: 'Carta Poco Comun (U)' }],
-        },
-        {
-          codigo: 'R',
-          nombre: 'Rara',
-          porCarton: '6 copias por carta',
-          aparicion: 'Primeras 4 cartas del sobre',
-          caracteristicas: ['Ilustracion de anime', 'Sin textura', 'Sin foil'],
-          images: [{ src: `${IMG}/BP5/GYC-BP5-044P_4C.png`, alt: 'Carta Rara (R)' }],
-        },
-        {
-          codigo: 'RR',
-          nombre: 'Doble Rara',
-          porCarton: '5 copias por carta',
-          aparicion: 'Primeras 4 cartas del sobre',
-          caracteristicas: [
-            'Ilustracion de anime especial o ilustracion original',
-            'Sin textura',
-            'Sin foil',
+          codigo: 'MAC',
+          nombre: 'Machacado con huevo',
+          donde: 'Fondas, cenadurías y taquerías de barrio',
+          cuando: 'Desayuno, cualquier día',
+          caracteristicas: ['Carne seca deshebrada', 'Revuelta con huevo', 'Se come en burrito de harina'],
+          images: [
+            { src: foto.machacado, alt: 'Plato de machacado con huevo' },
+            { src: foto.machaca, alt: 'Huevo con machaca servido con frijoles' },
           ],
-          images: [{ src: `${IMG}/BP5/GYC-BP5-016_4C.png`, alt: 'Carta Doble Rara (RR)' }],
         },
         {
-          codigo: 'GR',
-          nombre: 'Go-toubun Rara',
-          porCarton: '4 copias por carta',
-          aparicion: 'Al final del sobre',
-          caracteristicas: ['Ilustracion del manga a color', 'Con textura', 'Con foil'],
-          images: [{ src: `${IMG}/BP5/GYC-BP5-049_4C.png`, alt: 'Carta Go-toubun Rara (GR)', foil: true }],
+          codigo: 'ASA',
+          nombre: 'Carne asada',
+          donde: 'En el patio de cualquier casa',
+          cuando: 'Sábado o domingo, sin falta',
+          caracteristicas: ['Arrachera y agujas', 'Carbón o leña de mezquite', 'Con tortillas de harina'],
+          images: [{ src: foto.carneAsada, alt: 'Asador con carne al carbón' }],
         },
         {
-          codigo: 'ER',
-          nombre: 'Echara Rara',
-          porCarton: '2 de las 5 posibles por carton',
-          aparicion: 'Al final del sobre',
-          caracteristicas: [
-            'Ilustracion especial del anime',
-            'Color en el borde',
-            'Con textura',
-            'Con foil',
-          ],
-          images: [{ src: `${IMG}/BP7/GYC-BP7-008_IMG.png`, alt: 'Carta Echara Rara (ER)', foil: true }],
+          codigo: 'ASP',
+          nombre: 'Asado de puerco',
+          donde: 'Fiestas, bodas y comidas grandes',
+          cuando: 'Comida de celebración',
+          caracteristicas: ['Puerco guisado en chile ancho', 'Cocción larga y lenta', 'Se sirve con arroz'],
+          images: [{ src: foto.asadoPuerco, alt: 'Cazuela de asado de puerco' }],
+        },
+        {
+          codigo: 'FCH',
+          nombre: 'Frijoles charros',
+          donde: 'Siempre al lado de la asada',
+          cuando: 'De guarnición, todo el año',
+          caracteristicas: ['Frijol bayo caldoso', 'Con tocino y chorizo', 'Cilantro y chile fresco'],
+          images: [{ src: foto.frijolesCharros, alt: 'Olla de frijoles charros' }],
+        },
+        {
+          codigo: 'DIS',
+          nombre: 'Discada norteña',
+          donde: 'Ranchos y reuniones grandes',
+          cuando: 'Cuando hay mucha gente que alimentar',
+          caracteristicas: ['Se hace sobre un disco de arado', 'Varias carnes en la misma mezcla', 'Se come en taco de harina'],
+          images: [{ src: foto.discada, alt: 'Discada cocinándose sobre un disco de arado' }],
         },
       ],
     },
     {
-      nombre: 'Cartas paralelas',
+      nombre: 'Para llevar',
       columnas: 1,
       nota:
-        'Todas llevan foil y en ocasiones textura. Aparecen siempre en la ultima carta del sobre, una por sobre. Cada tarjeta muestra la version base y la paralela.',
+        'Lo que se compra de salida: el dulce típico del estado y el mercado donde cabe toda la despensa regia. Cada tarjeta muestra dos vistas.',
       cartas: [
         {
-          codigo: '+',
-          nombre: 'Paralela + (C+, U+, R+)',
-          porCarton: 'C+ y U+: 2 por carton · R+: unas 11 de cada 15',
-          aparicion: 'Ultima carta del sobre',
+          codigo: 'GLO',
+          nombre: 'Glorias de Linares',
+          donde: 'Linares, Nuevo León — y en toda la ciudad',
+          cuando: 'De regreso a casa, siempre',
           caracteristicas: [
-            'Misma ilustracion que la version base',
-            'Solo foil (sin textura extra)',
+            'Leche quemada de cabra',
+            'Con nuez picada',
+            'Envueltas en celofán rojo',
+            'El dulce típico del estado',
           ],
-          images: [
-            { src: `${IMG}/BP7/GYC-BP7-004_4C.png`, alt: 'Version base de la carta +' },
-            { src: `${IMG}/BP7/GYC-BP7-004P_4C.png`, alt: 'Version paralela + (foil)', foil: true },
-          ],
+          images: [{ src: foto.glorias, alt: 'Bolsa de glorias de Linares', destacada: true }],
         },
         {
-          codigo: 'RR+',
-          nombre: 'Doble Rara Paralela',
-          porCarton: 'Aprox. 1 cada varios cartones',
-          aparicion: 'Ultima carta del sobre',
+          codigo: 'MER',
+          nombre: 'Mercado Juárez',
+          donde: 'Centro de Monterrey, junto a la Macroplaza',
+          cuando: 'A la hora de comer',
           caracteristicas: [
-            'Con textura y foil',
-            'Ilustracion completa o expandida respecto a la RR base',
+            'Cabrito y machacado en el mismo pasillo',
+            'Dulces regionales a granel',
+            'Artesanía, botas y sombreros',
           ],
           images: [
-            { src: `${IMG}/BP7/GYC-BP7-025_4c.png`, alt: 'Version base de la RR+' },
-            { src: `${IMG}/BP7/GYC-BP7-025P_4c.png`, alt: 'Version paralela RR+', foil: true },
-          ],
-        },
-        {
-          codigo: 'HR',
-          nombre: 'Hanayome Rare',
-          porCarton: 'Insercion baja (tirada corta)',
-          aparicion: 'Ultima carta del sobre',
-          caracteristicas: [
-            'Basada en una carta R',
-            'Foil en toda la carta',
-            'Texturizado dorado en letras y fondo',
-          ],
-          images: [
-            { src: `${IMG}/BP7/GYC-BP7-038_4c.png`, alt: 'Version base de la HR' },
-            { src: `${IMG}/BP7/GYC-BP7-038P_IMG.png`, alt: 'Carta Hanayome Rare (HR)', foil: true },
-          ],
-        },
-        {
-          codigo: 'SP',
-          nombre: 'Special',
-          porCarton: 'Insercion baja',
-          aparicion: 'Ultima carta del sobre',
-          caracteristicas: [
-            'Ilustracion del anime',
-            'Texturizado dorado especial',
-            'Nombre de la hermana en grande',
-          ],
-          images: [
-            { src: `${IMG}/BP7/GYC-BP7-031P_img.png`, alt: 'Carta Special (SP)', foil: true },
-            { src: `${IMG}/BP7/GYC-BP7-058P1_img.png`, alt: 'Otra carta Special (SP)', foil: true },
-          ],
-        },
-        {
-          codigo: 'SSP',
-          nombre: 'Super Special',
-          porCarton: 'Insercion muy baja',
-          aparicion: 'Ultima carta del sobre',
-          caracteristicas: [
-            'Ilustracion original del juego o del autor a color',
-            'Texturizado dorado especial',
-            'Firma de las actrices de voz impresa',
-          ],
-          images: [
-            { src: `${IMG}/BP7/GYC-BP7-024P1_img.png`, alt: 'Carta Super Special (SSP)', foil: true },
-            { src: `${IMG}/BP7/GYC-BP7-008P_IMG.png`, alt: 'Otra carta Super Special (SSP)', foil: true },
-          ],
-        },
-        {
-          codigo: 'HSP / ISP',
-          nombre: 'Hero Special / Itsutsugo Special',
-          porCarton: 'Insercion muy baja',
-          aparicion: 'Ultima carta del sobre',
-          caracteristicas: [
-            'Misma rareza, dos variantes',
-            'HSP: incluye a Futaro y funciona como carta de heroe',
-            'ISP: tipo "Manga" a color con ilustracion del autor',
-          ],
-          images: [
-            { src: `${IMG}/BP6/GYC-BP6-080P1_IMG.png`, alt: 'Carta Hero Special (HSP)', foil: true },
-            { src: `${IMG}/BP7/GYC-BP7-012P1_IMG.png`, alt: 'Carta Itsutsugo Special (ISP)', foil: true },
-          ],
-        },
-        {
-          codigo: 'GSP',
-          nombre: 'Go-toubun Special',
-          porCarton: 'La mas dificil de obtener del set',
-          aparicion: 'Ultima carta del sobre',
-          caracteristicas: [
-            'Segunda categoria mas alta',
-            'Solo foil, como las paralelas "+"',
-            'Usa la ilustracion de la secreta super especial',
-          ],
-          images: [
-            { src: `${IMG}/BP6/GYC-BP6-065P2_4C.png`, alt: 'Carta Go-toubun Special (GSP)', foil: true },
-            { src: `${IMG}/BP6/GYC-BP6-008_4C.png`, alt: 'Otra carta Go-toubun Special (GSP)', foil: true },
+            { src: foto.mercadoJuarez, alt: 'Interior del Mercado Juárez de Monterrey' },
+            { src: foto.mercadoJuarez2, alt: 'Puestos del Mercado Juárez', destacada: true },
           ],
         },
       ],
@@ -192,25 +105,25 @@ export const rarezas = {
   ],
 
   // La joya de la corona: se muestra en grande, sobre fondo oscuro, sin tarjeta.
-  secreta: {
-    codigo: 'SSSP',
-    nombre: 'Special Super Super Parallel',
-    titular: 'La carta más codiciada del juego',
+  insignia: {
+    codigo: 'CABRITO',
+    nombre: 'Cabrito al pastor',
+    titular: 'El platillo insignia de Nuevo León',
     descripcion:
-      'Una sola ilustración por set, dibujada por Negi Haruba especialmente para el TCG. Va firmada de imprenta y numerada a mano del 000 al 099. Existen copias sin numerar, pero las numeradas son las que mueven el mercado.',
-    porCarton: 'Ninguna garantizada — inserción tipo "caja de la suerte"',
-    aparicion: 'Última carta del sobre, en cajas selladas especiales',
-    numeracion: '000 / 099',
+      'Cabrito lechal de menos de un mes, abierto y ensartado en una varilla que se clava en torno al fuego de mezquite. Se cuece de pie, girando lentamente durante horas, y se sirve por piezas: pierna, riñonada, paleta o pecho. No lleva más condimento que sal: todo el sabor viene del animal y del humo.',
+    donde: 'Mercado Juárez y los asaderos del centro',
+    cuando: 'Comida de domingo y de ocasión',
+    temporada: 'Todo el año',
     caracteristicas: [
-      'Ilustración exclusiva del autor para el juego',
-      'Firma de Negi Haruba impresa',
-      'Texturizado y foil especiales',
-      'Numeración serigrafiada a mano',
+      'Cabrito lechal de menos de un mes',
+      'Solo sal y fuego de mezquite',
+      'Cocción vertical de varias horas',
+      'Se pide por pieza, no por plato',
     ],
-    // Precio de referencia del mercado secundario japonés (revisar y actualizar).
-    valor: '¥150.000 – ¥400.000',
-    valorNota: 'Copias numeradas y firmadas, mercado JP. Valor de referencia — actualizar.',
-    img: `${IMG}/BP1/GYC-BP1-001P2_4c.png`,
-    alt: 'Carta secreta SSSP firmada y numerada',
+    // Precio de referencia de una orden en Monterrey (revisar y actualizar).
+    valor: '$400 – $700 MXN',
+    valorNota: 'Precio orientativo de una orden en la ciudad. Valor de referencia — actualizar.',
+    img: foto.cabrito,
+    alt: 'Cabrito al pastor cocinándose alrededor del fuego',
   },
 }

@@ -2,15 +2,17 @@
 export const navLinks = [
   { id: 'inicio', label: 'Inicio' },
   { id: 'que-es', label: 'Qué es' },
-  { id: 'personajes', label: 'Personajes' },
-  { id: 'antecedentes', label: 'Antecedentes' },
-  { id: 'juego', label: 'El juego' },
-  { id: 'tutorial', label: 'Tutorial' },
-  { id: 'expansiones', label: 'Expansiones' },
-  { id: 'rarezas', label: 'Rarezas' },
+  { id: 'personajes', label: 'Íconos' },
+  { id: 'antecedentes', label: 'Historia' },
+  { id: 'juego', label: 'Área metro' },
+  { id: 'tutorial', label: 'Guía' },
+  { id: 'expansiones', label: 'Municipios' },
+  { id: 'rarezas', label: 'Sabores' },
 ]
 
-export const SITE_TITLE = '五等分の花嫁 TCG'
+export const SITE_TITLE = 'Monterrey · Nuevo León'
 
-// Logo oficial del juego de cartas (descargado a public/img/)
-export const SITE_LOGO = '/img/logo-5hanayome.webp'
+// Logotipos propios (SVG en public/img/). El blanco es para el pie de pagina,
+// que va sobre el degradado oscuro.
+export const SITE_LOGO = '/img/logo-monterrey.svg'
+export const SITE_LOGO_BLANCO = '/img/logo-monterrey-blanco.svg'

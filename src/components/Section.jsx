@@ -31,16 +31,16 @@ export default function Section({
       <div className="relative z-10 mx-auto max-w-6xl">
         <Reveal className="text-center">
           {eyebrow && (
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-rosa">
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-naranja">
               {eyebrow}
             </p>
           )}
-          <h2 className="relative inline-block pb-3 text-3xl font-extrabold text-vino sm:text-4xl dark:text-rosa">
+          <h2 className="relative inline-block pb-3 text-3xl font-extrabold text-sierra sm:text-4xl dark:text-naranja">
             {title}
-            <span className="absolute bottom-0 left-1/2 h-1 w-16 -translate-x-1/2 rounded bg-linear-to-r from-rosa to-dorado" />
+            <span className="absolute bottom-0 left-1/2 h-1 w-16 -translate-x-1/2 rounded bg-linear-to-r from-naranja to-oro" />
           </h2>
           {intro && (
-            <p className="mx-auto mt-5 max-w-2xl text-base text-vino/80 dark:text-rosa-claro/70">
+            <p className="mx-auto mt-5 max-w-2xl text-base text-sierra/80 dark:text-arena/70">
               {intro}
             </p>
           )}

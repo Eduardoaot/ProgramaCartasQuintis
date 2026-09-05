@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import Section from './Section.jsx'
 import Reveal from './Reveal.jsx'
 import { personajes } from '../data/personajes.js'
+import { foto } from '../data/imagenes.js'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Autoplay, Navigation, Keyboard, Mousewheel } from 'swiper/modules'
@@ -10,22 +11,25 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
-/** Video del carrusel e imagen de fondo con el color de cada hermana. */
+/**
+ * Una sola foto por icono: es la que se ve en el carrusel y, a la vez, la que
+ * queda de fondo de toda la seccion cuando ese icono esta activo.
+ */
 const fondos = {
-  'ichika-nakano': { video: '/videos/ichika.mp4', fondo: '/videos/amarillo.jpg' },
-  'nino-nakano': { video: '/videos/nino.mp4', fondo: '/videos/rosa.jpg' },
-  'miku-nakano': { video: '/videos/miku.mp4', fondo: '/videos/azul.jpg' },
-  'yotsuba-nakano': { video: '/videos/yotsuba.mp4', fondo: '/videos/verde.jpg' },
-  'itsuki-nakano': { video: '/videos/itsuki.mp4', fondo: '/videos/rojo.jpg' },
-  'futaro-uesugi': { video: '/videos/futaru.mp4', fondo: '/videos/gris.jpeg' },
+  'cerro-de-la-silla': foto.cerroSilla,
+  macroplaza: foto.macroplaza,
+  'parque-fundidora': foto.fundidora,
+  'paseo-santa-lucia': foto.santaLucia,
+  'cumbres-chipinque': foto.huasteca,
+  'barrio-antiguo': foto.barrioAntiguoNoche,
 }
 
 const ordenCarrusel = Object.keys(fondos)
 const porId = Object.fromEntries(personajes.fichas.map((f) => [f.id, f]))
 
 /**
- * Fondo de toda la seccion: apila las cinco imagenes y hace crossfade a la del
- * personaje activo, ya venga del carrusel o de la ficha que estas leyendo.
+ * Fondo de toda la seccion: apila las seis fotos y hace crossfade a la del
+ * icono activo, ya venga del carrusel o de la ficha que estas leyendo.
  */
 function FondoSeccion({ activo }) {
   return (
@@ -34,15 +38,15 @@ function FondoSeccion({ activo }) {
         <div
           key={id}
           className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-out sm:bg-fixed"
-          style={{ backgroundImage: `url('${fondos[id].fondo}')`, opacity: activo === id ? 1 : 0 }}
+          style={{ backgroundImage: `url('${fondos[id]}')`, opacity: activo === id ? 1 : 0 }}
         />
       ))}
-      <div className="absolute inset-0 bg-(--page-bg)/72 backdrop-blur-[2px] dark:bg-(--page-bg)/78" />
+      <div className="absolute inset-0 bg-(--page-bg)/78 backdrop-blur-[4px] dark:bg-(--page-bg)/82" />
     </div>
   )
 }
 
-/** Ficha de un personaje: retrato, identidad, datos del wiki y descripcion. */
+/** Ficha de un icono: foto, identidad, datos y descripcion. */
 function FichaPersonaje({ ficha, indice, fichaRef }) {
   return (
     <Reveal
@@ -51,7 +55,7 @@ function FichaPersonaje({ ficha, indice, fichaRef }) {
       variant={indice % 2 === 0 ? 'left' : 'right'}
       className="group scroll-mt-24 overflow-hidden rounded-3xl border border-(--hairline) bg-(--surface)/88 shadow-[0_10px_35px_rgba(0,0,0,0.18)] backdrop-blur-md transition duration-300 hover:-translate-y-1"
     >
-      {/* franja con el color del personaje */}
+      {/* franja con el color del icono */}
       <div className="h-1.5 w-full" style={{ backgroundColor: ficha.colorHex }} />
 
       <div className="grid gap-6 p-6 sm:grid-cols-[minmax(0,200px)_1fr] sm:gap-8 sm:p-7">
@@ -80,8 +84,8 @@ function FichaPersonaje({ ficha, indice, fichaRef }) {
         {/* Identidad, datos y descripcion */}
         <div className="min-w-0 text-left">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <h3 className="text-2xl font-extrabold text-vino dark:text-white">{ficha.nombre}</h3>
-            <span className="text-lg font-bold text-(--page-text)/55">{ficha.japones}</span>
+            <h3 className="text-2xl font-extrabold text-sierra dark:text-white">{ficha.nombre}</h3>
+            <span className="text-lg font-bold text-(--page-text)/55">{ficha.ubicacion}</span>
           </div>
 
           <div className="mt-2 flex flex-wrap items-center gap-2">
@@ -89,10 +93,10 @@ function FichaPersonaje({ ficha, indice, fichaRef }) {
               className="rounded-full px-3 py-1 text-xs font-bold text-white"
               style={{ backgroundColor: ficha.colorHex }}
             >
-              {ficha.orden} · {ficha.color}
+              {ficha.distintivo} · {ficha.color}
             </span>
             <span className="rounded-full bg-(--surface-alt) px-3 py-1 text-xs font-semibold text-(--page-text)/70 ring-1 ring-(--hairline)">
-              {ficha.romaji}
+              {ficha.categoria}
             </span>
             {ficha.alias && (
               <span className="rounded-full bg-(--surface-alt) px-3 py-1 text-xs text-(--page-text)/70 ring-1 ring-(--hairline)">
@@ -113,14 +117,14 @@ function FichaPersonaje({ ficha, indice, fichaRef }) {
           </dl>
 
           <div className="mt-5 space-y-3 text-sm leading-relaxed text-(--page-text)/85">
-            <p>{ficha.personalidad}</p>
+            <p>{ficha.descripcion}</p>
             <p>
-              <strong style={{ color: ficha.colorHex }}>Su pasión: </strong>
-              {ficha.pasion}
+              <strong style={{ color: ficha.colorHex }}>No te pierdas: </strong>
+              {ficha.imperdible}
             </p>
             <p>
-              <strong style={{ color: ficha.colorHex }}>Rasgo distintivo: </strong>
-              {ficha.rasgo}
+              <strong style={{ color: ficha.colorHex }}>Dato curioso: </strong>
+              {ficha.dato}
             </p>
           </div>
         </div>
@@ -130,33 +134,18 @@ function FichaPersonaje({ ficha, indice, fichaRef }) {
 }
 
 export default function Personajes() {
-  // Hermana del slide actual del carrusel
+  // Icono del slide actual del carrusel
   const [personajeCarrusel, setPersonajeCarrusel] = useState(ordenCarrusel[0])
-  // Hermana de la ficha que estas leyendo
+  // Icono de la ficha que estas leyendo
   const [personajeFicha, setPersonajeFicha] = useState(ordenCarrusel[0])
   // Mientras el carrusel se ve, es el que manda sobre el fondo
   const [carruselALaVista, setCarruselALaVista] = useState(true)
 
   const carruselRef = useRef(null)
-  const videosRef = useRef({})
   const fichasRef = useRef([])
 
   // Un unico fondo para toda la seccion
   const personajeActivo = carruselALaVista ? personajeCarrusel : personajeFicha
-
-  // Solo suena/corre el video de la hermana visible: cinco a la vez saturaban
-  // el navegador y hacian que algunas imagenes ni se descargaran.
-  useEffect(() => {
-    Object.entries(videosRef.current).forEach(([id, el]) => {
-      if (!el) return
-      if (id === personajeCarrusel) {
-        el.preload = 'auto'
-        el.play().catch(() => {})
-      } else {
-        el.pause()
-      }
-    })
-  }, [personajeCarrusel])
 
   useEffect(() => {
     const observadorFichas = new IntersectionObserver(
@@ -186,8 +175,8 @@ export default function Personajes() {
   return (
     <Section
       id="personajes"
-      eyebrow="Quiénes son"
-      title="Personajes"
+      eyebrow="Los seis lugares"
+      title="Íconos de Monterrey"
       intro={personajes.intro}
       alt
       backdrop={<FondoSeccion activo={personajeActivo} />}
@@ -228,17 +217,12 @@ export default function Personajes() {
               <a
                 href={`#${id}`}
                 aria-label={`Ver ficha de ${porId[id].nombre}`}
-                className="block rounded-2xl focus:outline-none focus-visible:ring-4 focus-visible:ring-rosa/40"
+                className="block rounded-2xl focus:outline-none focus-visible:ring-4 focus-visible:ring-naranja/40"
               >
-                <video
-                  ref={(el) => {
-                    videosRef.current[id] = el
-                  }}
-                  src={fondos[id].video}
-                  loop
-                  muted
-                  playsInline
-                  preload="none"
+                <img
+                  src={fondos[id]}
+                  alt={porId[id].nombre}
+                  loading="lazy"
                   draggable={false}
                   onDragStart={(event) => event.preventDefault()}
                   className="h-104 w-full cursor-pointer rounded-2xl object-cover shadow-2xl"

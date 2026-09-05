@@ -49,7 +49,7 @@ export default function Navbar() {
     <nav
       className={`fixed inset-x-0 top-0 z-50 transition-[opacity,transform] duration-700 ease-out ${
         isHidden ? 'pointer-events-none -translate-y-3 opacity-0' : 'translate-y-0 opacity-100'
-      } ${!atTop ? 'shadow-[0_4px_18px_rgba(142,36,83,0.18)]' : ''}`}
+      } ${!atTop ? 'shadow-[0_4px_18px_rgba(27,73,101,0.18)]' : ''}`}
       style={{
         background: 'var(--nav-bg)',
         backdropFilter: 'blur(10px)',
@@ -74,10 +74,10 @@ export default function Navbar() {
               <li key={link.id}>
                 <a
                   href={`#${link.id}`}
-                  className="group relative pb-1 text-sm font-semibold transition-colors hover:text-rosa dark:hover:text-dorado"
+                  className="group relative pb-1 text-sm font-semibold transition-colors hover:text-naranja dark:hover:text-oro"
                 >
                   {link.label}
-                  <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-rosa transition-all duration-300 group-hover:w-full dark:bg-dorado" />
+                  <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-naranja transition-all duration-300 group-hover:w-full dark:bg-oro" />
                 </a>
               </li>
             ))}
@@ -114,7 +114,7 @@ export default function Navbar() {
             <a
               href={`#${link.id}`}
               onClick={() => setOpen(false)}
-              className="block rounded-md px-2 py-2 text-sm font-semibold hover:bg-current/10 hover:text-rosa dark:hover:text-dorado"
+              className="block rounded-md px-2 py-2 text-sm font-semibold hover:bg-current/10 hover:text-naranja dark:hover:text-oro"
             >
               {link.label}
             </a>

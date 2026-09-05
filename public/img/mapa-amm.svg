@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img"
+     aria-label="Mapa esquematico del area metropolitana de Monterrey">
+  <rect width="1200" height="760" rx="24" fill="#fdf4ea"/>
+
+  <!-- Sierra Madre Oriental cerrando el poniente y el sur -->
+  <path d="M0 760 L120 470 L215 590 L320 400 L430 610 L520 700 L560 760 Z" fill="#1b4965" opacity="0.20"/>
+  <path d="M0 760 L96 545 L186 660 L300 500 L400 690 L470 760 Z" fill="#1b4965" opacity="0.32"/>
+  <text x="150" y="700" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700"
+        fill="#1b4965" opacity="0.75">Sierra Madre Oriental</text>
+
+  <!-- Cerro de la Silla al oriente -->
+  <path d="M930 700 L985 566 L1020 618 L1062 560 L1130 700 Z" fill="#1b4965" opacity="0.38"/>
+  <text x="1030" y="726" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20"
+        font-weight="700" fill="#1b4965" opacity="0.8">Cerro de la Silla</text>
+
+  <!-- Rio Santa Catarina, de poniente a oriente -->
+  <path d="M300 520 C 480 470, 700 500, 1010 452" fill="none" stroke="#3e84c0" stroke-width="11"
+        stroke-linecap="round" opacity="0.55"/>
+  <text x="330" y="505" font-family="Inter, Arial, sans-serif" font-size="19" font-style="italic"
+        font-weight="600" fill="#3e84c0">Rio Santa Catarina</text>
+
+  <circle cx="600" cy="420" r="118" fill="#cf5a22" opacity="0.16"/>
+  <circle cx="600" cy="420" r="118" fill="none" stroke="#cf5a22" stroke-width="4"/>
+  <text x="600" y="426" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="700" fill="#cf5a22">Monterrey</text>
+  <circle cx="398" cy="262" r="74" fill="#1b4965" opacity="0.16"/>
+  <circle cx="398" cy="262" r="74" fill="none" stroke="#1b4965" stroke-width="4"/>
+  <text x="398" y="268" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="700" fill="#1b4965">Garcia</text>
+  <circle cx="600" cy="214" r="82" fill="#1b4965" opacity="0.16"/>
+  <circle cx="600" cy="214" r="82" fill="none" stroke="#1b4965" stroke-width="4"/>
+  <text x="600" y="220" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="700" fill="#1b4965">Escobedo</text>
+  <circle cx="742" cy="250" r="80" fill="#1b4965" opacity="0.16"/>
+  <circle cx="742" cy="250" r="80" fill="none" stroke="#1b4965" stroke-width="4"/>
+  <text x="742" y="256" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="700" fill="#1b4965">S. Nicolas</text>
+  <circle cx="886" cy="228" r="78" fill="#1b4965" opacity="0.16"/>
+  <circle cx="886" cy="228" r="78" fill="none" stroke="#1b4965" stroke-width="4"/>
+  <text x="886" y="234" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="700" fill="#1b4965">Apodaca</text>
+  <circle cx="958" cy="122" r="84" fill="#3e84c0" opacity="0.16"/>
+  <circle cx="958" cy="122" r="84" fill="none" stroke="#3e84c0" stroke-width="4"/>
+  <text x="958" y="128" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#3e84c0">Salinas Vict.</text>
+  <circle cx="838" cy="404" r="78" fill="#1b4965" opacity="0.16"/>
+  <circle cx="838" cy="404" r="78" fill="none" stroke="#1b4965" stroke-width="4"/>
+  <text x="838" y="410" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="700" fill="#1b4965">Guadalupe</text>
+  <circle cx="988" cy="402" r="66" fill="#1b4965" opacity="0.16"/>
+  <circle cx="988" cy="402" r="66" fill="none" stroke="#1b4965" stroke-width="4"/>
+  <text x="988" y="408" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#1b4965">Juarez</text>
+  <circle cx="1092" cy="300" r="76" fill="#3e84c0" opacity="0.16"/>
+  <circle cx="1092" cy="300" r="76" fill="none" stroke="#3e84c0" stroke-width="4"/>
+  <text x="1092" y="306" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#3e84c0">Cadereyta</text>
+  <circle cx="452" cy="462" r="84" fill="#1b4965" opacity="0.16"/>
+  <circle cx="452" cy="462" r="84" fill="none" stroke="#1b4965" stroke-width="4"/>
+  <text x="452" y="468" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#1b4965">Sta. Catarina</text>
+  <circle cx="562" cy="566" r="88" fill="#dfa13a" opacity="0.16"/>
+  <circle cx="562" cy="566" r="88" fill="none" stroke="#dfa13a" stroke-width="4"/>
+  <text x="562" y="572" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="19" font-weight="700" fill="#dfa13a">San Pedro</text>
+  <circle cx="856" cy="618" r="72" fill="#4f8a5b" opacity="0.16"/>
+  <circle cx="856" cy="618" r="72" fill="none" stroke="#4f8a5b" stroke-width="4"/>
+  <text x="856" y="624" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#4f8a5b">Santiago</text>
+
+  <text x="600" y="52" text-anchor="middle" font-family="Poppins, sans-serif" font-size="27"
+        font-weight="800" letter-spacing="3" fill="#1b4965">AREA METROPOLITANA DE MONTERREY</text>
+  <text x="600" y="80" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18"
+        fill="#1b4965" opacity="0.65">Esquema orientativo: posiciones relativas, no a escala</text>
+
+  <g font-family="Inter, Arial, sans-serif" font-size="17" font-weight="600">
+    <circle cx="60" cy="120" r="9" fill="#cf5a22"/>
+    <text x="80" y="126" fill="#1b4965">Municipio central</text>
+    <circle cx="60" cy="152" r="9" fill="#1b4965"/>
+    <text x="80" y="158" fill="#1b4965">Municipio conurbado</text>
+    <circle cx="60" cy="184" r="9" fill="#3e84c0"/>
+    <text x="80" y="190" fill="#1b4965">Municipio periferico</text>
+  </g>
+</svg>

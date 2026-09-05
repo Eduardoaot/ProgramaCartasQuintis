@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 100" role="img" aria-label="Monterrey, Nuevo Leon">
+  <!-- Silueta del Cerro de la Silla -->
+  <path d="M8 74 L44 26 L62 48 L78 34 L96 46 L112 22 L150 74 Z" fill="#ffffff"/>
+  <path d="M62 48 L78 34 L96 46 L86 52 L74 47 Z" fill="#ffdcb0" opacity="0.85"/>
+  <circle cx="122" cy="20" r="7" fill="#ffdcb0"/>
+  <text x="164" y="52" font-family="Poppins, Trebuchet MS, sans-serif" font-size="34" font-weight="800"
+        letter-spacing="1.5" fill="#ffffff">MONTERREY</text>
+  <text x="166" y="76" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600"
+        letter-spacing="5.5" fill="#ffdcb0">NUEVO LEON</text>
+</svg>

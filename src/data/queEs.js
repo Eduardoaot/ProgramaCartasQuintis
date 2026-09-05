@@ -1,96 +1,98 @@
-// Seccion "Qué son Las Quintillizas" — responsable: Gael
-import autorImg from '../assets/autor.png'
+// Seccion "Que es Monterrey" — la identidad de la ciudad, quien la fundo,
+// las figuras que salieron de ella y el contexto que la explica.
+import { foto } from './imagenes.js'
 
 export const queEs = {
   intro:
-    'La obra que inspira este juego de cartas: cinco hermanas, un tutor y una historia inolvidable.',
-  pestana: 'La historia',
-    tituloSinopsis: 'Sinopsis',
+    'La ciudad que da nombre a todo esto: una capital industrial encajada entre montañas, con 430 años de historia a cuestas.',
+  pestana: 'La ciudad',
+  tituloSinopsis: 'La Sultana del Norte',
   sinopsis:
-    'Futaro Uesugi, un estudiante brillante pero pobre, es contratado como tutor privado de las cinco hermanas Nakano: Ichika, Nino, Miku, Yotsuba e Itsuki. Ninguna quiere estudiar y todas reprueban. Lo que empieza como un empleo se convierte en la historia de cómo una de ellas terminará casándose con él.',
-  fechaCreacion: '2017 - 2020',
+    'Monterrey es la capital de Nuevo León y el centro de la tercera zona metropolitana más grande de México. Fundada en 1596 en un valle semiárido al pie de la Sierra Madre Oriental, pasó de ser un puesto fronterizo olvidado a convertirse en el mayor polo industrial y corporativo del norte del país. Hoy su área metropolitana reúne a más de cinco millones de personas repartidas en una docena de municipios que funcionan como una sola ciudad.',
+  fechaCreacion: '1596 — hoy',
   autor: {
-    profesion: 'Mangaka',
-    nombre: 'Negi Haruba',
-    descripcion: 'Mangaka japonés, creador de Las Quintillizas. Publicado por Kodansha en Weekly Shōnen Magazine.',
-    imagen: autorImg,
-    informacion:'Nacimiento: 27 de julio de 1991 (edad 35 años), Japón',
+    profesion: 'Fundador',
+    nombre: 'Diego de Montemayor',
+    descripcion:
+      'Militar y explorador español. El 20 de septiembre de 1596 refundó el asentamiento con el nombre de Ciudad Metropolitana de Nuestra Señora de Monterrey, en honor al virrey conde de Monterrey.',
+    imagen: foto.montemayorMural,
+    informacion: 'Fundación definitiva: 20 de septiembre de 1596 · Nuevo Reino de León',
   },
-  tituloReconocimientos: 'Reconocimientos',
+  tituloReconocimientos: 'La ciudad en cifras',
   reconocimientos: [
-    { valor: '+20 M', etiqueta: 'copias en circulación' },
-    { valor: '2019', etiqueta: 'Premio Kodansha Manga' },
-    { valor: '¥2.24 B', etiqueta: 'taquilla' },
-    { valor: '1.7 M', etiqueta: 'espectadores' },
+    { valor: '5.3 M', etiqueta: 'habitantes en el área metro' },
+    { valor: '1596', etiqueta: 'año de la fundación definitiva' },
+    { valor: '540 m', etiqueta: 'de altitud sobre el nivel del mar' },
+    { valor: '3.ª', etiqueta: 'zona metropolitana de México' },
   ],
-  tituloFiguras: 'Figuras destacadas',
-  complemento: 'El elenco detrás del fenómeno',
+  tituloFiguras: 'Figuras regiomontanas',
+  complemento: 'Quiénes salieron de aquí',
   figuras: [
     {
-      nombre: 'Miku Itō',
-      japones: '伊藤美来',
-      texto: 'Voz de Miku Nakano y figura reconocible de la franquicia.',
-      imagen:
-        'https://imgs.search.brave.com/kFohUVs1DSAr0AhTXX2c_x9qxcboQFQXgWpnlwUZmjQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMud2lraWEubm9j/b29raWUubmV0L2th/bWVucmlkZXIvaW1h/Z2VzL2MvY2IvTWlr/dV9JdG8uanBnL3Jl/dmlzaW9uL2xhdGVz/dC9zY2FsZS10by13/aWR0aC1kb3duLzI2/OD9jYj0yMDI2MDEw/NDA1MzgyMg',
+      nombre: 'Alfonso Reyes',
+      oficio: 'Escritor',
+      texto:
+        'Ensayista, poeta y diplomático. La Capilla Alfonsina y una de las avenidas principales de la ciudad llevan su nombre.',
+      imagen: foto.alfonsoReyes,
       hover: 'blue',
     },
     {
-      nombre: 'Inori Minase',
-      japones: '水瀬いのり',
-      texto: 'Voz de Itsuki Nakano, anime, música y eventos.',
-      imagen:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp5onXVT3JRfSnTUuq1BQKLx0U7mQ9zSnE65qHwNjg6w&s=10',
-      hover: 'red',
-    },
-    {
-      nombre: 'Ayane Sakura',
-      japones: '佐倉綾音',
-      texto: 'Voz de Yotsuba Nakano y parte esencial del elenco.',
-      imagen:
-        'https://cdn-images.dzcdn.net/images/artist/9b23b69eb3f4d900953ba4e4a23ce945/1900x1900-000000-81-0-0.jpg',
-      hover: 'green',
-    },
-    {
-      nombre: 'Ayana Taketatsu',
-      japones: '竹達彩奈',
-      texto: 'Voz de Nino Nakano y figura esencial en la evolución emocional y musical de Las Quintillizas.',
-      imagen:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVG7N2KNXK7v-C7X5EUYlreHzYgs9-Tu9U03t4n2wT2g&s',
+      nombre: 'Fray Servando Teresa de Mier',
+      oficio: 'Independencia',
+      texto:
+        'Fraile dominico nacido en Monterrey en 1763. Su sermón de 1794 le costó el destierro y lo volvió una de las voces intelectuales de la Independencia.',
+      imagen: foto.frayServando,
       hover: 'purple',
     },
     {
-      nombre: 'Kana Hanazawa',
-      japones: '花澤香菜',
-      texto: 'Voz de Ichika Nakano y parte esencial del elenco.',
-      imagen:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRBLGRvkdc_m_nWj36zOSuE7j6KFJmkdJoNkGxM5Gtrg&s',
+      nombre: 'Eugenio Garza Sada',
+      oficio: 'Industrial',
+      texto:
+        'Empresario clave del grupo cervecero regiomontano e impulsor de la fundación del Tecnológico de Monterrey en 1943.',
+      imagen: foto.garzaSada,
       hover: 'yellow',
     },
     {
-      nombre: 'Yoshitsugu Matsuoka',
-      japones: '松岡 禎丞',
+      nombre: 'Celso Piña',
+      oficio: 'Música',
       texto:
-        'Voz de Futaro Uesugi. Seiyū nacido en Hokkaido en 1986 y afiliado a I’m Enterprise; premiado como mejor actor nuevo y, más tarde, como mejor actor principal en los Seiyū Awards.',
-      imagen: '/img/YoshitsuguMatsuoka.jpg',
+        '«El Rebelde del Acordeón». Desde la colonia Independencia mezcló la cumbia colombiana con el sonido regio y la llevó al mundo.',
+      imagen: foto.celsoPina,
+      hover: 'green',
+    },
+    {
+      nombre: 'Gloria Trevi',
+      oficio: 'Música',
+      texto:
+        'Nacida en Monterrey en 1968, una de las artistas mexicanas con mayor proyección internacional en pop y rock.',
+      imagen: foto.gloriaTrevi,
+      hover: 'red',
+    },
+    {
+      nombre: 'El Gran Silencio',
+      oficio: 'Banda',
+      texto:
+        'Grupo formado en la colonia Independencia y símbolo de la Avanzada Regia, el movimiento musical que puso a Monterrey en el mapa en los noventa.',
+      imagen: foto.granSilencio,
       hover: 'slate',
     },
   ],
   tituloContexto: 'Contexto',
   bloques: [
     {
-      titulo: 'Manga y Anime',
+      titulo: 'Capital de Nuevo León',
       texto:
-        'Manga publicado en Weekly Shōnen Magazine entre 2017 y 2020. El anime culminó con una película en 2022.',
+        'Sede de los poderes del estado y municipio más poblado de la entidad, con poco más de 1.1 millones de habitantes.',
     },
     {
-      titulo: 'Productora',
+      titulo: 'Motor industrial',
       texto:
-        'Bushiroad / Yuhodo · licencia oficial de Kodansha.',
+        'Cuna de la Cervecería Cuauhtémoc (1890) y de la Fundidora de Fierro y Acero (1900). Hoy concentra la mayor densidad de corporativos del país.',
     },
     {
-      titulo: 'Presentación oficial',
+      titulo: 'Entre montañas',
       texto:
-        'Tenshin Iidairō (天津飯大郎) es el conductor habitual de los programas y eventos oficiales de la franquicia.',
+        'La cierran el Cerro de la Silla, las Mitras, el Topo Chico y la Sierra Madre Oriental, dentro del Parque Nacional Cumbres de Monterrey.',
     },
   ],
 }

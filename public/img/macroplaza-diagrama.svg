@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 1000" role="img"
+     aria-label="Esquema del corredor Macroplaza, Paseo Santa Lucia y Parque Fundidora">
+  <rect width="700" height="1000" rx="26" fill="#fdf4ea"/>
+  <rect x="255" y="70" width="190" height="660" rx="18" fill="#f7eadc"/>
+  <text x="350" y="46" text-anchor="middle" font-family="Poppins, sans-serif" font-size="26"
+        font-weight="800" letter-spacing="3" fill="#1b4965">MACROPLAZA</text>
+
+  <!-- Eje norte-sur de la Macroplaza -->
+  <line x1="350" y1="120" x2="350" y2="700" stroke="#1b4965" stroke-width="12" stroke-linecap="round"/>
+  <!-- Paseo Santa Lucia hacia el oriente -->
+  <path d="M350 700 C 350 800, 460 830, 600 850" fill="none" stroke="#dfa13a" stroke-width="12"
+        stroke-linecap="round" stroke-dasharray="26 18"/>
+  <text x="392" y="806" font-family="Inter, Arial, sans-serif" font-size="23" font-style="italic"
+        font-weight="600" fill="#dfa13a">Paseo Santa Lucia</text>
+  <line x1="350" y1="300" x2="200" y2="300" stroke="#1b4965" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  <line x1="350" y1="380" x2="500" y2="380" stroke="#1b4965" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  <line x1="350" y1="520" x2="500" y2="520" stroke="#1b4965" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  <line x1="350" y1="600" x2="200" y2="600" stroke="#1b4965" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  <text x="396" y="129" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600" fill="#1b4965">Palacio de Gobierno</text>
+  <circle cx="350" cy="120" r="30" fill="#ffffff" stroke="#cf5a22" stroke-width="7"/>
+  <text x="396" y="224" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600" fill="#1b4965">Explanada de los Heroes</text>
+  <circle cx="350" cy="215" r="30" fill="#ffffff" stroke="#cf5a22" stroke-width="7"/>
+  <text x="154" y="309" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600" fill="#1b4965">Museo de Historia Mexicana</text>
+  <circle cx="200" cy="300" r="30" fill="#ffffff" stroke="#cf5a22" stroke-width="7"/>
+  <text x="546" y="389" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600" fill="#1b4965">Catedral Metropolitana</text>
+  <circle cx="500" cy="380" r="30" fill="#ffffff" stroke="#cf5a22" stroke-width="7"/>
+  <text x="396" y="454" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600" fill="#1b4965">Faro del Comercio</text>
+  <circle cx="350" cy="445" r="30" fill="#ffffff" stroke="#cf5a22" stroke-width="7"/>
+  <text x="546" y="529" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600" fill="#1b4965">MARCO</text>
+  <circle cx="500" cy="520" r="30" fill="#ffffff" stroke="#cf5a22" stroke-width="7"/>
+  <text x="154" y="609" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600" fill="#1b4965">Barrio Antiguo</text>
+  <circle cx="200" cy="600" r="30" fill="#ffffff" stroke="#cf5a22" stroke-width="7"/>
+  <text x="396" y="709" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600" fill="#1b4965">Palacio Municipal</text>
+  <circle cx="350" cy="700" r="30" fill="#ffffff" stroke="#cf5a22" stroke-width="7"/>
+  <text x="554" y="859" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="600" fill="#1b4965">Parque Fundidora</text>
+  <circle cx="600" cy="850" r="30" fill="#ffffff" stroke="#cf5a22" stroke-width="7"/>
+  <text x="350" y="960" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="21"
+        fill="#1b4965" opacity="0.65">Del norte (Gobierno) al sur (Palacio Municipal)</text>
+</svg>

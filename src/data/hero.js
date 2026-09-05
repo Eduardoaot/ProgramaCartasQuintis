@@ -1,9 +1,11 @@
-// Contenido del header / hero. La imagen de fondo es el cambio que se mantuvo
-// del trabajo en curso de `main` (imagen de las Nakano a pantalla completa).
+// Contenido del header / hero. La imagen de fondo es una panoramica de la
+// ciudad con la Sierra Madre al fondo.
+import { foto } from './imagenes.js'
+
 export const hero = {
-  bgImage: 'https://i.redd.it/m5j32kyrhdn31.png',
-  eyebrow: 'Trading Card Game',
-  title: 'El Juego de Cartas de Las Quintillizas',
-  text: 'Colecciona a las cinco hermanas Nakano, arma tu mazo y consigue tres novias antes que tu rival.',
-  cta: { label: 'Conoce el juego', href: '#que-es' },
+  bgImage: foto.panoramica,
+  eyebrow: 'Nuevo León · México',
+  title: 'Monterrey y su Área Metropolitana',
+  text: 'La Sultana del Norte: montaña, acero y una de las zonas urbanas más grandes de México.',
+  cta: { label: 'Conoce la ciudad', href: '#que-es' },
 }

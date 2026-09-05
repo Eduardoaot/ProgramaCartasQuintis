@@ -27,15 +27,15 @@ export default function Card({
       id={id}
       ref={cardRef}
       delay={delay}
-      className={`group relative flex flex-col gap-2 overflow-hidden rounded-2xl border-2 border-(--hairline) ${bgClass} p-6 shadow-[0_6px_16px_rgba(142,36,83,0.10)] transition duration-300 hover:-translate-y-2 hover:border-rosa hover:shadow-[0_20px_35px_rgba(142,36,83,0.28)] ${
+      className={`group relative flex flex-col gap-2 overflow-hidden rounded-2xl border-2 border-(--hairline) ${bgClass} p-6 shadow-[0_6px_16px_rgba(27,73,101,0.10)] transition duration-300 hover:-translate-y-2 hover:border-naranja hover:shadow-[0_20px_35px_rgba(27,73,101,0.28)] ${
         horizontal ? 'sm:flex-row sm:items-center sm:gap-8' : ''
       } ${wide ? 'sm:col-span-2' : ''}`}
     >
 
       <div className={horizontal ? 'order-last flex-1' : 'contents'}>
-        {title && <h3 className="text-lg font-bold text-rosa">{title}</h3>}
+        {title && <h3 className="text-lg font-bold text-naranja">{title}</h3>}
         {subtitle && (
-          <p className="text-xs font-semibold uppercase tracking-wider text-dorado">{subtitle}</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-oro">{subtitle}</p>
         )}
         {children && (
           <div

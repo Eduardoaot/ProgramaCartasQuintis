@@ -1,103 +1,148 @@
-// Seccion "Las expansiones que existen" (antes "Sets disponibles").
+// Seccion "Los municipios del area metropolitana".
 //
-// Datos oficiales de https://5hanayome-cardgame.com/products/bpN
-// Se muestran las fotos de los CARTONES / cajas, no de las cartas.
+// Se muestran los cuatro municipios centrales y los conurbados que absorbieron
+// el crecimiento de las ultimas decadas.
+//
+// PENDIENTE: las poblaciones son del Censo de Poblacion y Vivienda 2020 (INEGI)
+// y los anios de fundacion vienen de las fichas municipales. Conviene
+// verificarlos contra la fuente oficial antes de publicar.
+import { foto } from './imagenes.js'
 
 export const expansiones = {
   intro:
-    'La linea "Booster Pack" (vol.1 a vol.7) es el nucleo del juego. Cada sobre trae 5 cartas por 440 yenes y cada carton trae 12 sobres por 5.280 yenes, mas un sobre PR de regalo con ilustraciones del manga.',
+    'El área metropolitana de Monterrey la forman una docena de municipios que crecieron hasta pegarse unos con otros. Aquí están los cuatro centrales —donde vive y trabaja la mayor parte de la gente— y los conurbados que recibieron el crecimiento de las últimas décadas.',
   fichaComun: {
-    sobresPorCaja: '12 sobres por cartón (¥5.280)',
-    cartasPorSobre: '5 cartas por sobre (¥440)',
+    poblacion: 'Unos 5.3 millones de habitantes',
+    municipios: '12 municipios conurbados',
   },
-  temporadas: [
+  grupos: [
     {
-      nombre: 'Temporada 1',
-      sets: [
+      nombre: 'Municipios centrales',
+      municipios: [
         {
-          codigo: 'BP1',
-          titulo: 'Booster Pack vol.1',
-          lanzamiento: '18 oct 2024',
-          totalCartas: '168 tipos (81 normales + 87 paralelas)',
+          codigo: 'MTY',
+          titulo: 'Monterrey',
+          lanzamiento: 'Fundado en 1596',
+          poblacion: '1 142 994 habitantes',
           descripcion:
-            'Set base del juego. Rarezas GR·RR·R·U·C mas las paralelas, y estrena la SSSP y las SP con la firma de las cinco actrices de voz. Cada cartón incluye un sobre PR con arte del manga.',
-          destacado: 'Primera SSSP: ilustración firmada de Negi Haruba, numerada 001-099',
-          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2024/09/11160145/BP.png',
+            'La capital del estado y el municipio con el centro histórico, la Macroplaza, el Barrio Antiguo y el Parque Fundidora. Concentra los poderes estatales y la mayor parte de la oferta cultural.',
+          destacado: 'Capital de Nuevo León y corazón del área metropolitana',
+          caja: foto.centro,
         },
         {
-          codigo: 'BP2',
-          titulo: 'Booster Pack vol.2 — «Una existencia irreemplazable»',
-          lanzamiento: '24 ene 2025',
-          totalCartas: '167 tipos (81 normales + 86 paralelas)',
+          codigo: 'SPGG',
+          titulo: 'San Pedro Garza García',
+          lanzamiento: 'Municipio desde 1882',
+          poblacion: '132 169 habitantes',
           descripcion:
-            'Amplia el juego con las primeras cartas SP paralelas y las series C+/U+/R+/RR+. El tema gira en torno al vinculo irreemplazable entre las cinco hermanas.',
-          destacado: 'SSSP firmada y numerada + cartas con autógrafo de las seiyū',
-          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2024/10/02154553/GYCwebSP2.png',
+            'El municipio más pequeño de los centrales y el más rico del país. Reúne Valle Oriente, las torres corporativas más altas de México y la entrada al parque ecológico Chipinque.',
+          destacado: 'El mayor ingreso per cápita de México',
+          caja: foto.sanPedro,
         },
         {
-          codigo: 'BP3',
-          titulo: 'Booster Pack vol.3 — «Siempre, en cualquier lugar»',
-          lanzamiento: '18 abr 2025',
-          totalCartas: '168 tipos (81 normales + 87 paralelas)',
+          codigo: 'SNG',
+          titulo: 'San Nicolás de los Garza',
+          lanzamiento: 'Fundado en 1597',
+          poblacion: '412 199 habitantes',
           descripcion:
-            'Profundiza en las ilustraciones originales del manga y reparte una SSSP protagonizada por Miku Nakano.',
-          destacado: 'SSSP de Miku Nakano, firmada y numerada 001-099',
-          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2024/12/30130916/vol.3.png',
+            'Municipio residencial e industrial al norte de Monterrey. Ahí está Ciudad Universitaria, el campus principal de la Universidad Autónoma de Nuevo León.',
+          destacado: 'Sede de Ciudad Universitaria de la UANL',
+          caja: foto.sanNicolas,
         },
         {
-          codigo: 'BP4',
-          titulo: 'Booster Pack vol.4 — «Unas vacaciones de verano sin casualidades»',
-          lanzamiento: '31 jul 2025',
-          totalCartas: '169 tipos (81 normales + 88 paralelas)',
+          codigo: 'GPE',
+          titulo: 'Guadalupe',
+          lanzamiento: 'Fundado en 1716',
+          poblacion: '643 143 habitantes',
           descripcion:
-            'Cierre del primer bloque. Sube a 2 las SSSP del set, cada una con ilustración a mano de Negi Haruba y numeración única.',
-          destacado: 'Dos SSSP distintas con firma serigrafiada',
-          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2025/04/18212429/vol.4PKG-1.png',
+            'El municipio del oriente, pegado a Monterrey. A sus pies arranca el Cerro de la Silla y en su territorio están el Parque La Pastora y el estadio de Rayados.',
+          destacado: 'Aquí empieza el ascenso al Cerro de la Silla',
+          caja: foto.cerroSillaVertical,
         },
       ],
     },
     {
-      nombre: 'Temporada 2',
-      sets: [
+      nombre: 'Municipios conurbados',
+      municipios: [
         {
-          codigo: 'BP5',
-          titulo: 'Booster Pack vol.5 — «Un día a día que sigue avanzando»',
-          lanzamiento: '16 ene 2026',
-          totalCartas: '180 tipos (81 normales + 99 paralelas)',
+          codigo: 'APO',
+          titulo: 'Apodaca',
+          lanzamiento: 'Fundado en 1585',
+          poblacion: '656 464 habitantes',
           descripcion:
-            'Arranque de la segunda tanda. Estrena la rareza GSP ("Go-toubun Special") con arte original de personajes y amplia mucho las SP y SP paralelas.',
-          destacado: 'Debut de la rareza GSP',
-          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2025/10/15114429/z.png',
+            'El municipio más poblado después de Monterrey. Concentra el aeropuerto internacional y buena parte de los parques industriales del área metropolitana.',
+          destacado: 'Aeropuerto Internacional Mariano Escobedo',
+          caja: foto.apodaca,
         },
         {
-          codigo: 'BP6',
-          titulo: 'Booster Pack vol.6 — «El día a día vuelto una fiesta»',
-          lanzamiento: '30 abr 2026',
-          totalCartas: '180 tipos (81 normales + 99 paralelas)',
+          codigo: 'ESC',
+          titulo: 'General Escobedo',
+          lanzamiento: 'Fundado en 1604',
+          poblacion: '481 157 habitantes',
           descripcion:
-            'Introduce las Cartas E (mazo E / engage): 10 personajes E y 5 protagonistas E que se juegan desde un mazo aparte. Añade las rarezas ER, HSP y HR, y garantiza 2 cartas "hit" por cartón.',
-          destacado: 'Estreno de las Cartas E y de las rarezas ER / HSP / HR',
-          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2026/02/27105856/a.png',
+            'Municipio del norte, con fuerte vocación industrial y automotriz. Creció aceleradamente a partir de los años noventa con la vivienda de interés social.',
+          destacado: 'Corredor industrial y automotriz del norte',
+          caja: foto.escobedo,
         },
         {
-          codigo: 'BP7',
-          titulo: 'Booster Pack vol.7 — «"Ternura" al máximo, ¡Chomolungma!»',
-          lanzamiento: '31 jul 2026',
-          totalCartas: '180 tipos (81 normales + 99 paralelas)',
+          codigo: 'JRZ',
+          titulo: 'Juárez',
+          lanzamiento: 'Fundado en 1604',
+          poblacion: '466 680 habitantes',
           descripcion:
-            'Estrena la rareza ISP ("Itsutsugo Special"), que sustituye a las HSP, con ilustraciones originales del autor. Las primeras ediciones incluyen un mini-shikishi de una serie de 10.',
-          destacado: 'Nueva rareza ISP + mini-shikishi en primeras ediciones',
-          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2026/06/06110909/a.png',
+            'El municipio que más creció en lo que va del siglo: pasó de pueblo a ciudad dormitorio en menos de veinte años. Comparte el Cerro de la Silla con Guadalupe.',
+          destacado: 'El crecimiento más acelerado del área metropolitana',
+          caja: foto.cerroSillaJuarez,
         },
         {
-          codigo: 'BP8',
-          titulo: 'Booster Pack vol.8 — «¡El amor y la juventud en su punto álgido!»',
-          lanzamiento: '30 oct 2026',
-          totalCartas: '180 tipos (81 normales + 99 paralelas)',
+          codigo: 'SCT',
+          titulo: 'Santa Catarina',
+          lanzamiento: 'Fundado en 1596',
+          poblacion: '306 322 habitantes',
           descripcion:
-            'Entrega más reciente. Mismo reparto de rarezas (ER, GR, RR, R, U, C y sus paralelas hasta SSSP) con ilustraciones originales del manga a color y arte del anime, más un mini-shikishi por cartón de una serie de 10.',
-          destacado: 'SSSP firmada y numerada 001-099 + firmas de las seiyū',
-          caja: 'https://5hanayome-cardgame.com/wordpress/wp-content/uploads/2026/07/29194203/a-1.png',
+            'Al poniente, encajonado entre la Sierra Madre y el río Santa Catarina. En su territorio está el Cañón de la Huasteca, la puerta de entrada a la sierra.',
+          destacado: 'Entrada al Cañón de la Huasteca',
+          caja: foto.santaCatarina,
+        },
+        {
+          codigo: 'GAR',
+          titulo: 'García',
+          lanzamiento: 'Fundado en 1583',
+          poblacion: '415 619 habitantes',
+          descripcion:
+            'Municipio del noroeste que multiplicó su población en dos décadas. Guarda las Grutas de García, un sistema de cavernas al que se sube en teleférico.',
+          destacado: 'Las Grutas de García y su teleférico',
+          caja: foto.garcia,
+        },
+        {
+          codigo: 'STG',
+          titulo: 'Santiago',
+          lanzamiento: 'Fundado en 1646',
+          poblacion: '45 997 habitantes',
+          descripcion:
+            'Pueblo Mágico al sur, a unos 40 km del centro. Ahí están la cascada Cola de Caballo y la Presa de la Boca, la escapada de fin de semana de toda la ciudad.',
+          destacado: 'Pueblo Mágico: Cola de Caballo y Presa de la Boca',
+          caja: foto.santiago,
+        },
+        {
+          codigo: 'CAD',
+          titulo: 'Cadereyta Jiménez',
+          lanzamiento: 'Fundado en 1637',
+          poblacion: '95 534 habitantes',
+          descripcion:
+            'Al oriente del área metropolitana, con un casco antiguo bien conservado y la refinería de Pemex que le da su perfil industrial.',
+          destacado: 'Refinería de Pemex y casco histórico',
+          caja: foto.cadereyta,
+        },
+        {
+          codigo: 'SAV',
+          titulo: 'Salinas Victoria',
+          lanzamiento: 'Origen del siglo XVII',
+          poblacion: 'Unos 82 000 habitantes',
+          descripcion:
+            'El extremo norte del área metropolitana. Su suelo barato y su posición sobre la carretera a Nuevo Laredo lo volvieron el nuevo frente de expansión logística e industrial.',
+          destacado: 'Puerta logística hacia la frontera',
+          caja: foto.salinasVictoria,
         },
       ],
     },

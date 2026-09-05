@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 
 /**
- * Efecto "hover 3D": la carta se inclina siguiendo el cursor y vuelve a su
+ * Efecto "hover 3D": la foto se inclina siguiendo el cursor y vuelve a su
  * sitio al salir. Respeta prefers-reduced-motion.
  *
  * Props:
