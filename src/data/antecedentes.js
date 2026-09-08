@@ -1,8 +1,8 @@
 // Seccion "Historia": de donde viene Monterrey.
 //
-//  - origen     -> por que hubo tres intentos de fundacion
-//  - fundaciones-> los tres asentamientos (1577, 1582, 1596)
-//  - hitos      -> los cuatro hechos que la volvieron una ciudad industrial
+//  - origen      -> por que hubo tres intentos de fundacion
+//  - fundaciones -> los tres asentamientos (1577, 1582, 1596)
+//  - hitos       -> los cuatro hechos que la volvieron una ciudad industrial
 import { foto } from './imagenes.js'
 
 export const antecedentes = {
@@ -19,24 +19,28 @@ export const antecedentes = {
     titulo: 'Las tres fundaciones',
     texto:
       'Cada intento llevó un nombre distinto y lo encabezó un hombre distinto. Solo el de 1596 sobrevivió y es el que la ciudad celebra cada 20 de septiembre.',
-    sets: [
+    intentos: [
       {
-        nombre: 'Santa Lucía · 1577',
-        periodo: 'Alberto del Canto',
+        anio: '1577',
+        nombre: 'Santa Lucía',
+        fundador: 'Alberto del Canto',
         enlace: 'https://es.wikipedia.org/wiki/Alberto_del_Canto',
-        caja: foto.santaLucia,
+        imagen: foto.santaLucia,
       },
       {
-        nombre: 'San Luis Rey de Francia · 1582',
-        periodo: 'Luis Carvajal y de la Cueva',
+        anio: '1582',
+        nombre: 'San Luis Rey de Francia',
+        fundador: 'Luis Carvajal y de la Cueva',
         enlace: 'https://es.wikipedia.org/wiki/Luis_Carvajal_y_de_la_Cueva',
-        caja: foto.museoHistoria,
+        imagen: foto.museoHistoria,
       },
       {
-        nombre: 'Nuestra Señora de Monterrey · 1596',
-        periodo: 'Diego de Montemayor',
+        anio: '1596',
+        nombre: 'Nuestra Señora de Monterrey',
+        fundador: 'Diego de Montemayor',
         enlace: 'https://es.wikipedia.org/wiki/Diego_de_Montemayor',
-        caja: foto.montemayorMural,
+        imagen: foto.montemayorMural,
+        perduro: true,
       },
     ],
   },
@@ -45,29 +49,35 @@ export const antecedentes = {
     titulo: 'Lo que la volvió industrial',
     texto:
       'Durante casi tres siglos Monterrey fue una ciudad pequeña y pobre. El cambio llegó en cuatro pasos, entre finales del siglo XIX y el final del XX:',
-    cartas: [
+    eventos: [
       {
-        nombre: 'Cervecería Cuauhtémoc — el primer gran capital regio',
-        valor: '1890',
-        img: foto.cerveceria1890,
+        anio: '1890',
+        nombre: 'Cervecería Cuauhtémoc',
+        texto: 'El primer gran capital regio.',
+        imagen: foto.cerveceria1890,
         enlace: 'https://es.wikipedia.org/wiki/Cervecer%C3%ADa_Cuauht%C3%A9moc_Moctezuma',
       },
       {
-        nombre: 'Fundidora de Fierro y Acero — la primera acería de América Latina',
-        valor: '1900',
-        img: foto.horno3,
-        enlace: 'https://es.wikipedia.org/wiki/Compa%C3%B1%C3%ADa_Fundidora_de_Fierro_y_Acero_de_Monterrey',
+        anio: '1900',
+        nombre: 'Fundidora de Fierro y Acero',
+        texto: 'La primera acería de América Latina.',
+        imagen: foto.horno3,
+        enlace:
+          'https://es.wikipedia.org/wiki/Compa%C3%B1%C3%ADa_Fundidora_de_Fierro_y_Acero_de_Monterrey',
       },
       {
-        nombre: 'Tecnológico de Monterrey — la industria funda su universidad',
-        valor: '1943',
-        img: foto.tecDeMonterrey,
-        enlace: 'https://es.wikipedia.org/wiki/Instituto_Tecnol%C3%B3gico_y_de_Estudios_Superiores_de_Monterrey',
+        anio: '1943',
+        nombre: 'Tecnológico de Monterrey',
+        texto: 'La industria funda su universidad.',
+        imagen: foto.tecDeMonterrey,
+        enlace:
+          'https://es.wikipedia.org/wiki/Instituto_Tecnol%C3%B3gico_y_de_Estudios_Superiores_de_Monterrey',
       },
       {
-        nombre: 'Metrorrey — la metrópoli se conecta consigo misma',
-        valor: '1991',
-        img: foto.metrorrey,
+        anio: '1991',
+        nombre: 'Metrorrey',
+        texto: 'La metrópoli se conecta consigo misma.',
+        imagen: foto.metrorrey,
         enlace: 'https://es.wikipedia.org/wiki/Metrorrey',
       },
     ],

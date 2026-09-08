@@ -1,3 +1,4 @@
+import Icono from './Icono.jsx'
 import { useTheme } from '../hooks/useTheme.js'
 
 /** Botón sol / luna para alternar el modo oscuro. */
@@ -13,8 +14,11 @@ export default function ThemeToggle({ className = '' }) {
       title={isDark ? 'Modo claro' : 'Modo oscuro'}
       className={`flex h-9 w-9 items-center justify-center rounded-full border border-current/40 bg-current/10 text-base transition hover:bg-current/20 ${className}`}
     >
-      <span className="transition-transform duration-500" style={{ transform: isDark ? 'rotate(0deg)' : 'rotate(180deg)' }}>
-        {isDark ? '🌙' : '☀️'}
+      <span
+        className="transition-transform duration-500"
+        style={{ transform: isDark ? 'rotate(0deg)' : 'rotate(180deg)' }}
+      >
+        <Icono nombre={isDark ? 'lucide/moon' : 'lucide/sun'} tam={17} />
       </span>
     </button>
   )

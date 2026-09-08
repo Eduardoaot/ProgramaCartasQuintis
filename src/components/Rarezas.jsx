@@ -81,7 +81,7 @@ function PlatilloCard({ platillo, delay, side, ancha = false }) {
             <Rasgos platillo={platillo} />
           </div>
           <div>
-            <CardMedia images={platillo.images} />
+            <CardMedia images={platillo.images} proporcion="aspect-16/10" />
             {pie}
           </div>
         </div>
@@ -117,7 +117,7 @@ export default function Rarezas() {
             <Reveal variant="up" className="mb-6">
               <h3 className="text-xl font-bold uppercase tracking-wider text-naranja">{grupo.nombre}</h3>
               {grupo.nota && (
-                <p className="mx-auto mt-2 max-w-3xl text-sm text-sierra/80 dark:text-arena/70">
+                <p className="mt-2 max-w-3xl text-sm text-sierra/80 dark:text-arena/70">
                   {grupo.nota}
                 </p>
               )}

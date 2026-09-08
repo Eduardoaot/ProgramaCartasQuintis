@@ -1,12 +1,31 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Section from './Section.jsx'
 import Reveal from './Reveal.jsx'
-import Tilt from './Tilt.jsx'
+import MapaReal from './MapaReal.jsx'
+import BotonAgenda from './BotonAgenda.jsx'
+import Icono from './Icono.jsx'
+import Numero from './Numero.jsx'
 import { useReveal } from '../hooks/useReveal.js'
+import { useAgenda } from '../context/AgendaContext.jsx'
 import { tutorial } from '../data/tutorial.js'
+import { mapaCentro, mapaMetropolitano } from '../data/mapas.js'
+import { video } from '../data/videos.js'
 
 const { objetivo, transporte, recorrido, planes, mapa, dia, armaTuViaje, imperdibles, regionalismos } =
   tutorial
+
+/* Encabezado comun de cada bloque de la guia */
+function Bloque({ titulo, nota, children, className = '' }) {
+  return (
+    <div className={`mt-20 ${className}`}>
+      <Reveal variant="up" className="mx-auto mb-8 max-w-3xl text-center">
+        <h3 className="text-sm font-bold uppercase tracking-[0.25em] text-naranja">{titulo}</h3>
+        {nota && <p className="mt-3 text-sm text-sierra/80 dark:text-arena/70">{nota}</p>}
+      </Reveal>
+      {children}
+    </div>
+  )
+}
 
 /* Cuenta ascendente al entrar en pantalla */
 function useCountUp(target, run, ms = 900) {
@@ -26,402 +45,667 @@ function useCountUp(target, run, ms = 900) {
   return value
 }
 
-/* ---------- 1. Objetivo ---------- */
+/* ---------- 1. La meta ---------- */
 function Objetivo() {
   const [ref, visible] = useReveal({ threshold: 0.35 })
+  const clip = video.obispado
+
   return (
     <Reveal
-      variant="zoom"
-      className="mx-auto max-w-3xl overflow-hidden rounded-3xl bg-linear-to-br from-sierra via-naranja to-sierra p-8 text-center text-white shadow-xl"
+      variant="up"
+      className="mx-auto grid max-w-4xl gap-8 overflow-hidden rounded-3xl bg-linear-to-br from-sierra to-sierra-oscuro p-8 text-white shadow-[0_18px_40px_rgba(16,51,74,0.35)] sm:p-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-stretch"
     >
-      <h3 className="text-xs font-bold uppercase tracking-[0.35em] text-white/80">{objetivo.titulo}</h3>
-      <div ref={ref} className="mt-5 flex justify-center gap-4">
-        {Array.from({ length: objetivo.imprescindibles }).map((_, i) => (
-          <span
-            key={i}
-            className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 text-3xl ring-2 ring-white/40 ${
-              visible ? 'heart-pop' : 'opacity-0'
-            }`}
-            style={visible ? { animationDelay: `${i * 180}ms` } : undefined}
-          >
-            📍
-          </span>
-        ))}
+      {/* El texto se reparte para llegar al alto del video */}
+      <div className="flex flex-col justify-between gap-6">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.35em] text-oro">{objetivo.titulo}</p>
+          <p className="mt-4 text-lg leading-relaxed text-white/90">{objetivo.texto}</p>
+          <p className="mt-3.5 text-sm leading-relaxed text-white/65">{objetivo.texto2}</p>
+        </div>
+
+        <ul ref={ref} className="grid gap-2.5">
+          {objetivo.lugares.map((lugar, i) => (
+            <li
+              key={lugar.nombre}
+              className={`flex items-start gap-3.5 rounded-2xl bg-white/10 px-4 py-3 ring-1 ring-white/20 transition duration-300 hover:bg-white/15 ${
+                visible ? 'pop-in' : 'opacity-0'
+              }`}
+              style={visible ? { animationDelay: `${i * 160}ms` } : undefined}
+            >
+              <Numero n={i + 1} tam="sm" tono="claro" className="mt-0.5" />
+              <span className="min-w-0">
+                <span className="block font-display text-sm font-bold leading-tight">
+                  {lugar.nombre}
+                </span>
+                <span className="mt-0.5 block text-xs leading-snug text-white/60">
+                  {lugar.texto}
+                </span>
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <p className="border-l-2 border-oro pl-4 text-sm leading-snug text-white/70">
+          {objetivo.cierre}
+        </p>
       </div>
-      <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-white/95">{objetivo.texto}</p>
+
+      {/* La ciudad desde el mirador del Obispado */}
+      <figure className="mx-auto flex w-52 min-h-96 flex-none flex-col sm:w-60 lg:min-h-[27rem]">
+        <video
+          className="w-full flex-1 rounded-2xl bg-black/40 object-cover shadow-[0_18px_40px_rgba(0,0,0,0.45)] ring-1 ring-white/20"
+          src={clip.src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          aria-label={clip.descripcion}
+        />
+        <figcaption className="mt-2 text-center text-[11px] text-white/45">
+          <a href={clip.enlace} target="_blank" rel="noopener noreferrer" className="hover:text-white/80">
+            Vista desde el Obispado · {clip.autor} · {clip.licencia}
+          </a>
+        </figcaption>
+      </figure>
     </Reveal>
   )
 }
 
 /* ---------- 2. Como moverte ---------- */
 function Transporte() {
+  const { app } = transporte
+
   return (
-    <div className="mt-16">
-      <Reveal variant="up" className="mb-6 text-center">
-        <h3 className="text-xl font-bold uppercase tracking-wider text-naranja">{transporte.titulo}</h3>
-      </Reveal>
+    <Bloque titulo={transporte.titulo}>
       <div className="grid gap-6 md:grid-cols-3">
         {transporte.items.map((m, i) => (
           <Reveal
             key={m.nombre}
             variant="up"
             delay={i * 90}
-            className="group relative rounded-2xl border-2 border-(--hairline) bg-(--surface) p-6 text-left shadow-[0_6px_16px_rgba(27,73,101,0.10)] transition duration-300 hover:-translate-y-2 hover:border-naranja"
+            className="group rounded-2xl border border-(--hairline) bg-(--surface) p-6 text-left shadow-[0_6px_16px_rgba(27,73,101,0.10)] transition duration-300 hover:-translate-y-1.5 hover:border-naranja hover:shadow-[0_18px_32px_rgba(27,73,101,0.22)]"
           >
-            {/* barras que sugieren distancia recorrida */}
-            <div className="mb-4 flex h-16 items-end gap-1.5">
-              {[0, 1, 2, 3].map((k) => (
-                <span
-                  key={k}
-                  className="w-6 rounded-md bg-linear-to-b from-naranja to-sierra transition-all duration-300 group-hover:translate-y-[-3px]"
-                  style={{ height: `${40 + k * 8}%`, transitionDelay: `${k * 40}ms` }}
-                />
-              ))}
-            </div>
-            <p className="text-lg font-bold text-sierra dark:text-naranja">{m.nombre}</p>
-            <p className="text-sm font-semibold text-oro">{m.cantidad}</p>
-            <p className="mt-2 text-sm text-(--page-text)/80">{m.detalle}</p>
+            <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-(--surface-alt) ring-1 ring-(--hairline) transition duration-300 group-hover:scale-110">
+              <Icono nombre={m.icono} tam={26} />
+            </span>
+            <p className="font-display text-lg font-bold text-sierra dark:text-naranja">{m.nombre}</p>
+            <p className="mt-0.5 text-xs font-semibold uppercase tracking-wider text-oro">
+              {m.cantidad}
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-(--page-text)/80">{m.detalle}</p>
           </Reveal>
         ))}
       </div>
-    </div>
+
+      {/* Urbani: como se paga el transporte */}
+      <Reveal
+        variant="up"
+        delay={120}
+        className="mt-8 overflow-hidden rounded-3xl border border-(--hairline) bg-(--surface-alt) p-7 shadow-[0_8px_22px_rgba(27,73,101,0.12)] sm:p-9"
+      >
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)]">
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full bg-linear-to-br from-sierra to-naranja px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-white">
+              <Icono nombre="lucide/smartphone-nfc" tam={16} color="ffffff" /> {app.nombre}
+            </span>
+            <h4 className="mt-4 font-display text-xl font-bold text-sierra dark:text-naranja">
+              {app.titular}
+            </h4>
+            <p className="mt-3 text-sm leading-relaxed text-(--page-text)/85">{app.texto}</p>
+
+            <ul className="mt-5 flex flex-wrap gap-2">
+              {app.sirvePara.map((s) => (
+                <li
+                  key={s}
+                  className="rounded-full bg-(--surface) px-3 py-1 text-xs font-semibold text-sierra ring-1 ring-(--hairline) dark:text-naranja"
+                >
+                  {s}
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={app.enlace}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-naranja underline-offset-4 hover:underline"
+            >
+              urbani.com.mx <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <ol className="grid gap-4 sm:grid-cols-3">
+            {app.comoFunciona.map((paso, i) => (
+              <li
+                key={paso.titulo}
+                className="rounded-2xl bg-(--surface) p-5 ring-1 ring-(--hairline) transition duration-300 hover:-translate-y-1 hover:ring-naranja"
+              >
+                <Numero n={i + 1} tam="md" />
+                <p className="mt-3 font-display text-sm font-bold text-sierra dark:text-naranja">
+                  {paso.titulo}
+                </p>
+                <p className="mt-1.5 text-xs leading-relaxed text-(--page-text)/75">{paso.texto}</p>
+              </li>
+            ))}
+            <li className="rounded-2xl border-l-4 border-oro bg-(--surface) p-4 text-xs leading-snug text-(--page-text)/75 sm:col-span-3">
+              {app.nota}
+            </li>
+          </ol>
+        </div>
+      </Reveal>
+    </Bloque>
   )
 }
 
 /* ---------- 3. Anatomia del centro ---------- */
-function Recorrido() {
-  const [ref, visible] = useReveal({ threshold: 0.3 })
-  return (
-    <div className="mt-16">
-      <Reveal variant="up" className="mb-2 text-center">
-        <h3 className="text-xl font-bold uppercase tracking-wider text-naranja">{recorrido.titulo}</h3>
-        <p className="mt-2 text-sm text-sierra/80 dark:text-arena/70">{recorrido.nota}</p>
-      </Reveal>
-      <div
-        ref={ref}
-        className="mx-auto grid max-w-4xl items-start gap-10 md:grid-cols-[minmax(0,340px)_1fr]"
-      >
-        <figure className="relative mx-auto w-full max-w-85">
-          <img
-            src={recorrido.img}
-            alt={recorrido.alt}
-            loading="lazy"
-            className={`w-full rounded-xl shadow-2xl ring-1 ring-black/10 transition-all duration-700 ${
-              visible ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'
-            }`}
-          />
-          {recorrido.partes.map((p, i) => {
-            const above = p.y > 68
-            return (
-              <span
-                key={p.n}
-                className="group absolute z-10 -translate-x-1/2 -translate-y-1/2"
-                style={{ left: `${p.x}%`, top: `${p.y}%` }}
-              >
-                <span
-                  className={`flex h-7 w-7 cursor-help items-center justify-center rounded-full border-2 border-white bg-naranja text-xs font-bold text-white shadow-[0_2px_8px_rgba(0,0,0,0.4)] ${
-                    visible ? 'anatomy-pin' : 'opacity-0'
-                  }`}
-                  style={visible ? { animationDelay: `${i * 110}ms` } : undefined}
-                >
-                  {p.n}
-                </span>
-                <span
-                  className={`pointer-events-none absolute left-1/2 z-20 w-48 -translate-x-1/2 rounded-lg bg-sierra px-3 py-2 text-xs text-white opacity-0 shadow-xl transition-opacity duration-200 group-hover:opacity-100 dark:bg-naranja ${
-                    above ? 'bottom-9' : 'top-9'
-                  }`}
-                >
-                  <strong className="block">{p.label}</strong>
-                  {p.texto}
-                </span>
-              </span>
-            )
-          })}
-        </figure>
+const marcadoresCentro = mapaCentro.puntos.map((p) => ({
+  id: p.n,
+  lat: p.lat,
+  lng: p.lng,
+  etiqueta: p.n,
+  titulo: p.nombre,
+  texto: p.texto,
+  tono: p.destacado ? 'sierra' : 'naranja',
+}))
 
+function Recorrido() {
+  const [activo, setActivo] = useState(null)
+
+  return (
+    <Bloque titulo={recorrido.titulo} nota={recorrido.nota}>
+      <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,300px)]">
         <div>
-          <ol className="grid gap-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
-            {recorrido.partes.map((p, i) => (
-              <Reveal
-                key={p.n}
-                variant={i % 2 ? 'right' : 'left'}
-                delay={i * 40}
-                as="li"
-                className="flex gap-2 rounded-lg border border-(--hairline) bg-(--surface) p-2.5 text-left"
-              >
-                <span className="flex h-5 w-5 flex-none items-center justify-center rounded-full bg-sierra text-[11px] font-bold text-white dark:bg-naranja">
-                  {p.n}
-                </span>
-                <span className="text-xs leading-snug text-(--page-text)/90">
-                  <strong className="text-sierra dark:text-naranja">{p.label}.</strong> {p.texto}
-                </span>
-              </Reveal>
+          <MapaReal
+            centro={mapaCentro.centro}
+            zoom={mapaCentro.zoom}
+            marcadores={marcadoresCentro}
+            rutas={mapaCentro.rutas}
+            seleccionado={activo}
+            onSeleccionar={setActivo}
+            zoomEnfoque={16}
+            alto="h-[440px] sm:h-[540px]"
+            ariaLabel="Mapa del centro de Monterrey con los nueve puntos del recorrido"
+          />
+
+          <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-(--page-text)/70">
+            {recorrido.leyenda.map((l) => (
+              <span key={l.texto} className="flex items-center gap-2">
+                <span
+                  aria-hidden="true"
+                  className="h-1 w-8 rounded-full"
+                  style={{ background: l.color }}
+                />
+                {l.texto}
+              </span>
             ))}
-          </ol>
+          </div>
+
           {recorrido.variantes && (
-            <Reveal
-              variant="up"
-              delay={120}
-              className="mt-4 rounded-xl bg-(--surface-alt) p-3 text-left text-xs leading-snug text-(--page-text)/85 ring-1 ring-(--hairline)"
-            >
+            <p className="mt-4 rounded-xl border-l-4 border-naranja bg-(--surface) p-4 text-sm leading-snug text-(--page-text)/85 shadow-[0_6px_16px_rgba(27,73,101,0.10)]">
               <strong className="text-naranja">Distancias:</strong> {recorrido.variantes}
-            </Reveal>
+            </p>
           )}
         </div>
+
+        {/* Indice del recorrido: pulsar lleva el mapa al punto */}
+        <div className="lg:sticky lg:top-24">
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-(--page-text)/45">
+            De norte a sur
+          </p>
+          <ol className="flex flex-col gap-1.5">
+            {mapaCentro.puntos.map((p) => {
+              const activoAqui = activo === p.n
+              return (
+                <li key={p.n}>
+                  <button
+                    type="button"
+                    onClick={() => setActivo(p.n)}
+                    aria-current={activoAqui}
+                    className={`flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition duration-300 ${
+                      activoAqui
+                        ? 'border-naranja bg-naranja/10 text-naranja'
+                        : 'border-(--hairline) bg-(--surface) text-(--page-text)/85 hover:border-naranja hover:bg-(--surface-alt)'
+                    }`}
+                  >
+                    <Numero n={p.n} tam="sm" />
+                    <span className="text-sm font-semibold leading-tight">{p.nombre}</span>
+                  </button>
+                </li>
+              )
+            })}
+          </ol>
+          <p className="mt-3 text-xs text-(--page-text)/50">
+            El detalle de cada punto sale en el globo del mapa.
+          </p>
+        </div>
       </div>
-    </div>
+    </Bloque>
   )
 }
 
 /* ---------- 4. Los planes ---------- */
 function Planes() {
   return (
-    <div className="mt-16 space-y-6">
-      <Reveal variant="up" className="text-center">
-        <h3 className="text-xl font-bold uppercase tracking-wider text-naranja">Los planes</h3>
-      </Reveal>
-      {planes.map((t, i) => (
-        <Reveal
-          key={t.codigo}
-          variant={i % 2 === 0 ? 'left' : 'right'}
-          className={`mx-auto flex max-w-3xl flex-col items-center gap-5 rounded-2xl border-2 border-(--hairline) bg-(--surface) p-5 shadow-[0_6px_16px_rgba(27,73,101,0.10)] transition duration-300 hover:border-naranja sm:gap-7 ${
-            i % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
-          }`}
-        >
-          <Tilt className="w-36 flex-none rounded-lg bg-(--surface-sunken) p-2">
-            <img src={t.img} alt={t.nombre} loading="lazy" className="block w-full rounded-md shadow-lg" />
-          </Tilt>
-          <div className="text-left">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-md bg-linear-to-br from-sierra to-naranja px-2 py-0.5 text-xs font-extrabold text-white">
-                {t.codigo}
+    <Bloque titulo={planes.titulo} nota={planes.nota}>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {planes.items.map((plan, i) => (
+          <Reveal
+            key={plan.id}
+            variant="up"
+            delay={(i % 3) * 90}
+            className="group flex flex-col overflow-hidden rounded-2xl border border-(--hairline) bg-(--surface) shadow-[0_6px_16px_rgba(27,73,101,0.10)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_38px_rgba(27,73,101,0.22)]"
+          >
+            <div className="relative aspect-16/10 overflow-hidden">
+              <img
+                src={plan.imagen}
+                alt={plan.nombre}
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+              />
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 bg-linear-to-t from-sierra/80 via-transparent to-transparent"
+              />
+              <span className="absolute bottom-3 left-4 text-xs font-bold uppercase tracking-[0.2em] text-white/90">
+                {plan.zona}
               </span>
-              <h4 className="text-lg font-bold text-sierra dark:text-naranja">{t.nombre}</h4>
+              <span className="absolute right-3 top-3 rounded-full bg-(--surface)/95 px-3 py-1 text-[11px] font-bold text-sierra dark:text-naranja">
+                <span className="inline-flex items-center gap-1.5">
+                  <Icono nombre="lucide/clock" tam={12} /> {plan.duracion}
+                </span>
+              </span>
             </div>
-            <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-oro">{t.valor}</p>
-            <p className="mt-2 text-sm text-(--page-text)/90">{t.texto}</p>
-            <p className="mt-2 text-sm text-(--page-text)/75">
-              <strong className="text-naranja">Cómo hacerlo:</strong> {t.comoSeUsa}
-            </p>
-          </div>
-        </Reveal>
-      ))}
-    </div>
+
+            <div className="flex flex-1 flex-col gap-3 p-5">
+              <h4 className="font-display text-lg font-bold leading-snug text-sierra dark:text-naranja">
+                {plan.nombre}
+              </h4>
+              <p className="text-sm leading-relaxed text-(--page-text)/85">{plan.texto}</p>
+              <p className="rounded-xl bg-(--surface-alt) p-3 text-xs leading-snug text-(--page-text)/80 ring-1 ring-(--hairline)">
+                <strong className="text-naranja">Cómo hacerlo:</strong> {plan.consejo}
+              </p>
+              <BotonAgenda
+                className="mt-auto self-start"
+                item={{
+                  id: `plan-${plan.id}`,
+                  tipo: 'plan',
+                  nombre: plan.nombre,
+                  detalle: plan.zona,
+                  dias: plan.dias,
+                  imagen: plan.imagen,
+                }}
+              />
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </Bloque>
   )
 }
 
 /* ---------- 5. El mapa del area metropolitana ---------- */
 function Mapa() {
+  const [activo, setActivo] = useState(null)
+  const [pestana, setPestana] = useState('lugares')
+
+  const marcadores = useMemo(
+    () => [
+      ...mapaMetropolitano.municipios.map((m) => ({
+        id: `mun-${m.nombre}`,
+        lat: m.lat,
+        lng: m.lng,
+        etiqueta: '',
+        tono: 'naranja',
+        grande: m.grupo === 'central',
+        titulo: m.nombre,
+        texto: `${m.poblacion} habitantes (Censo 2020)`,
+      })),
+      ...mapaMetropolitano.lugares.map((l) => ({
+        id: `lug-${l.nombre}`,
+        lat: l.lat,
+        lng: l.lng,
+        etiqueta: '',
+        tono: 'cielo',
+        titulo: l.nombre,
+        texto: l.texto,
+      })),
+    ],
+    [],
+  )
+
+  const listas = {
+    lugares: mapaMetropolitano.lugares.map((l) => ({
+      id: `lug-${l.nombre}`,
+      nombre: l.nombre,
+      detalle: l.texto,
+      tono: 'cielo',
+      lugar: l,
+    })),
+    municipios: mapaMetropolitano.municipios.map((m) => ({
+      id: `mun-${m.nombre}`,
+      nombre: m.nombre,
+      detalle: `${m.poblacion} hab. · ${m.grupo === 'central' ? 'Central' : 'Conurbado'}`,
+      tono: 'naranja',
+    })),
+  }
+
   return (
-    <div className="mt-16">
-      <Reveal variant="up" className="mb-4 text-center">
-        <h3 className="text-xl font-bold uppercase tracking-wider text-naranja">{mapa.titulo}</h3>
-        <p className="mx-auto mt-2 max-w-2xl text-sm text-sierra/80 dark:text-arena/70">{mapa.nota}</p>
-      </Reveal>
-
-      <Reveal variant="scale" className="mx-auto max-w-3xl">
-        <figure className="overflow-hidden rounded-2xl border-2 border-(--hairline) bg-(--surface-sunken) p-2 shadow-[0_12px_34px_rgba(27,73,101,0.20)]">
-          <img
-            src={mapa.esquema}
-            alt="Mapa esquemático del área metropolitana de Monterrey"
-            loading="lazy"
-            className="block w-full rounded-xl transition duration-500 hover:scale-[1.02]"
+    <Bloque titulo={mapa.titulo} nota={mapa.nota}>
+      <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,340px)]">
+        <div>
+          <MapaReal
+            centro={mapaMetropolitano.centro}
+            zoom={mapaMetropolitano.zoom}
+            marcadores={marcadores}
+            seleccionado={activo}
+            onSeleccionar={setActivo}
+            zoomEnfoque={12}
+            alto="h-[460px] sm:h-[580px]"
+            ariaLabel="Mapa del área metropolitana de Monterrey con sus municipios y lugares de interés"
           />
-          <figcaption className="px-2 pb-1 pt-2 text-center text-xs text-(--page-text)/60">
-            Esquema orientativo: Monterrey al centro y los municipios conurbados alrededor.
-          </figcaption>
-        </figure>
-      </Reveal>
 
-      <Reveal variant="up" className="mx-auto mt-4 max-w-2xl rounded-xl bg-(--surface) p-4 text-center text-sm text-(--page-text)/85 ring-1 ring-(--hairline)">
-        {mapa.relacion}
-      </Reveal>
+          <p className="mt-4 rounded-xl border-l-4 border-naranja bg-(--surface) p-4 text-sm text-(--page-text)/85 shadow-[0_6px_16px_rgba(27,73,101,0.10)]">
+            {mapa.relacion}
+          </p>
+        </div>
 
-      <div className="mx-auto mt-6 grid max-w-3xl gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {mapa.zonas.map((z, i) => (
-          <Reveal
-            key={z.nombre}
-            variant="scale"
-            delay={i * 50}
-            className="rounded-xl border border-(--hairline) bg-(--surface) p-3 text-left"
+        {/* Indice conmutable: pulsar mueve el mapa */}
+        <div className="lg:sticky lg:top-24">
+          <div
+            aria-label="Qué mostrar en el mapa"
+            className="mb-4 flex gap-1 rounded-full bg-(--surface-alt) p-1 ring-1 ring-(--hairline)"
           >
-            <p className="text-sm font-bold text-sierra dark:text-naranja">{z.nombre}</p>
-            <p className="text-xs text-(--page-text)/80">{z.texto}</p>
-          </Reveal>
-        ))}
+            {[
+              ['lugares', `Lugares (${mapaMetropolitano.lugares.length})`],
+              ['municipios', `Municipios (${mapaMetropolitano.municipios.length})`],
+            ].map(([clave, etiqueta]) => (
+              <button
+                key={clave}
+                type="button"
+                aria-pressed={pestana === clave}
+                onClick={() => setPestana(clave)}
+                className={`flex-1 rounded-full px-3 py-2 text-xs font-bold transition duration-300 ${
+                  pestana === clave
+                    ? 'bg-sierra text-white shadow-sm dark:bg-naranja'
+                    : 'text-(--page-text)/60 hover:text-naranja'
+                }`}
+              >
+                {etiqueta}
+              </button>
+            ))}
+          </div>
+
+          <ul className="flex max-h-[430px] flex-col gap-1.5 overflow-y-auto pr-1">
+            {listas[pestana].map((item) => {
+              const activoAqui = activo === item.id
+              return (
+                <li key={item.id} className="flex items-stretch gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => setActivo(item.id)}
+                    aria-current={activoAqui}
+                    className={`flex min-w-0 flex-1 items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition duration-300 ${
+                      activoAqui
+                        ? 'border-naranja bg-naranja/10'
+                        : 'border-(--hairline) bg-(--surface) hover:border-naranja hover:bg-(--surface-alt)'
+                    }`}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={`h-2.5 w-2.5 flex-none rounded-full ${
+                        item.tono === 'cielo' ? 'bg-cielo' : 'bg-naranja'
+                      }`}
+                    />
+                    <span className="min-w-0">
+                      <span className="block truncate text-sm font-semibold text-sierra dark:text-naranja">
+                        {item.nombre}
+                      </span>
+                      <span className="block truncate text-xs text-(--page-text)/60">
+                        {item.detalle}
+                      </span>
+                    </span>
+                  </button>
+
+                  {item.lugar && (
+                    <BotonParada lugar={item.lugar} />
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+          <p className="mt-3 text-xs text-(--page-text)/50">
+            Pulsa un nombre para volar hasta él. El{' '}
+            <span className="font-bold text-naranja">+</span> lo guarda como parada en tu agenda.
+          </p>
+        </div>
       </div>
-    </div>
+    </Bloque>
+  )
+}
+
+/** Botón compacto para guardar un lugar del mapa como parada de la agenda. */
+function BotonParada({ lugar }) {
+  const { tiene, alternar } = useAgenda()
+  const id = `parada-${lugar.nombre}`
+  const dentro = tiene(id)
+
+  return (
+    <button
+      type="button"
+      onClick={() =>
+        alternar({
+          id,
+          tipo: 'parada',
+          nombre: lugar.nombre,
+          detalle: lugar.texto,
+          imagen: lugar.imagen,
+        })
+      }
+      aria-pressed={dentro}
+      aria-label={
+        dentro ? `Quitar ${lugar.nombre} de la agenda` : `Añadir ${lugar.nombre} a la agenda`
+      }
+      title={dentro ? 'En tu agenda' : 'Añadir a mi agenda'}
+      className={`flex w-9 flex-none items-center justify-center rounded-xl border text-sm font-bold transition duration-300 ${
+        dentro
+          ? 'border-cactus bg-cactus text-white'
+          : 'border-(--hairline) bg-(--surface) text-(--page-text)/45 hover:border-naranja hover:bg-naranja hover:text-white'
+      }`}
+    >
+      <Icono
+        nombre={dentro ? 'lucide/check' : 'lucide/plus'}
+        tam={15}
+        color={dentro ? 'ffffff' : undefined}
+      />
+    </button>
   )
 }
 
 /* ---------- 6. Un dia en la ciudad ---------- */
 function Dia() {
   return (
-    <div className="mt-16">
-      <Reveal variant="up" className="mb-6 text-center">
-        <h3 className="text-xl font-bold uppercase tracking-wider text-naranja">{dia.titulo}</h3>
-      </Reveal>
-      <div className="mx-auto grid max-w-4xl gap-4 md:grid-cols-4">
-        {dia.fases.map((f, i) => (
-          <Reveal
-            key={f.nombre}
-            variant="up"
-            delay={i * 110}
-            className="relative rounded-2xl border-2 border-(--hairline) bg-(--surface) p-5 text-left shadow-[0_6px_16px_rgba(27,73,101,0.10)] transition duration-300 hover:-translate-y-2 hover:border-naranja"
-          >
-            <span className="absolute -top-3 left-5 flex h-7 w-7 items-center justify-center rounded-full bg-linear-to-br from-sierra to-naranja text-sm font-bold text-white ring-4 ring-(--page-bg)">
-              {i + 1}
-            </span>
-            <p className="mt-2 font-bold text-sierra dark:text-naranja">{f.nombre}</p>
-            <p className="text-xs font-semibold tracking-wide text-oro">{f.clave}</p>
-            <p className="mt-2 text-xs leading-snug text-(--page-text)/85">{f.texto}</p>
-            {i < dia.fases.length - 1 && (
-              <span className="pointer-events-none absolute -right-3 top-1/2 hidden -translate-y-1/2 text-xl text-naranja md:block">
-                →
+    <Bloque titulo={dia.titulo}>
+      <div className="relative mx-auto max-w-4xl">
+        <span
+          aria-hidden="true"
+          className="absolute left-0 right-0 top-6 hidden h-0.5 bg-linear-to-r from-sierra via-naranja to-oro md:block"
+        />
+        <div className="grid gap-6 md:grid-cols-4">
+          {dia.fases.map((f, i) => (
+            <Reveal
+              key={f.nombre}
+              variant="up"
+              delay={i * 110}
+              className="group relative flex flex-col items-start"
+            >
+              <span className="relative z-10 rounded-full bg-(--page-bg) p-1 shadow-lg transition duration-300 group-hover:scale-110">
+                <Numero n={i + 1} tam="lg" />
               </span>
-            )}
-          </Reveal>
-        ))}
+              <p className="mt-4 font-display text-base font-bold text-sierra dark:text-naranja">
+                {f.nombre}
+              </p>
+              <p className="text-xs font-semibold tracking-wide text-oro">{f.clave}</p>
+              <p className="mt-2 text-sm leading-snug text-(--page-text)/85">{f.texto}</p>
+            </Reveal>
+          ))}
+        </div>
       </div>
-    </div>
+    </Bloque>
   )
 }
 
 /* ---------- 7. Como armar la visita ---------- */
 function ArmaTuViaje() {
   const [ref, visible] = useReveal({ threshold: 0.4 })
-  const { ciudad, excursiones, recomendado } = armaTuViaje.formula
-  const b = useCountUp(ciudad, visible)
-  const e = useCountUp(excursiones, visible, 700)
-  const r = useCountUp(recomendado, visible)
-  const total = b + e
-  const ok = total >= recomendado
-
   return (
-    <div className="mt-16">
-      <Reveal variant="up" className="mb-6 text-center">
-        <h3 className="text-xl font-bold uppercase tracking-wider text-naranja">{armaTuViaje.titulo}</h3>
-      </Reveal>
+    <Bloque titulo={armaTuViaje.titulo}>
+      <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,340px)]">
+        <ol className="relative border-l-2 border-naranja/40 pl-8">
+          {armaTuViaje.pasos.map((p, i) => (
+            <Reveal
+              key={p.titulo}
+              as="li"
+              variant="left"
+              delay={i * 100}
+              className="relative mb-8 last:mb-0"
+            >
+              <span className="absolute left-[-2.75rem] rounded-full bg-(--page-bg) p-1">
+                <Numero n={i + 1} tam="md" />
+              </span>
+              <p className="font-display text-base font-bold text-sierra dark:text-naranja">
+                {p.titulo}
+              </p>
+              <p className="mt-1 text-sm leading-relaxed text-(--page-text)/85">{p.texto}</p>
+            </Reveal>
+          ))}
+        </ol>
 
-      <ol className="relative mx-auto max-w-2xl border-l-2 border-naranja/40 pl-8">
-        {armaTuViaje.pasos.map((p, i) => (
-          <Reveal key={p.titulo} as="li" variant="left" delay={i * 100} className="relative mb-6 last:mb-0">
-            <span className="absolute -left-10.5 flex h-8 w-8 items-center justify-center rounded-full bg-linear-to-br from-sierra to-naranja text-sm font-bold text-white ring-4 ring-(--page-bg)">
-              {i + 1}
-            </span>
-            <p className="font-bold text-sierra dark:text-naranja">{p.titulo}</p>
-            <p className="text-sm text-(--page-text)/85">{p.texto}</p>
-          </Reveal>
-        ))}
-      </ol>
-
-      {/* Cuenta de dias, con animacion de conteo */}
-      <Reveal variant="zoom" className="mx-auto mt-8 max-w-3xl">
-        <div
-          ref={ref}
-          className="flex flex-wrap items-center justify-center gap-3 rounded-2xl bg-(--surface) p-6 text-center ring-1 ring-(--hairline) sm:gap-4"
-        >
-          <Chip label="Días en la ciudad" value={b} />
-          <span className="text-2xl font-bold text-naranja">+</span>
-          <Chip label="Días de excursión" value={e} />
-          <span className={`text-2xl font-extrabold ${ok ? 'text-emerald-500' : 'text-naranja'}`}>≥</span>
-          <Chip label="Mínimo recomendado" value={r} tone="sierra" />
-          <span
-            className={`ml-1 rounded-full px-4 py-1.5 text-sm font-extrabold text-white transition-colors ${
-              ok ? 'bg-emerald-500' : 'bg-naranja'
-            }`}
+        <Reveal variant="right">
+          <div
+            ref={ref}
+            className="rounded-2xl border border-(--hairline) bg-(--surface) p-6 shadow-[0_6px_16px_rgba(27,73,101,0.10)]"
           >
-            {ok ? '¡Viaje completo!' : '…'}
-          </span>
-        </div>
-      </Reveal>
-    </div>
+            <p className="text-sm text-(--page-text)/75">{armaTuViaje.reparto.nota}</p>
+            <ul className="mt-5 flex flex-col gap-3">
+              {armaTuViaje.reparto.items.map((item) => (
+                <TileDias key={item.label} item={item} visible={visible} />
+              ))}
+            </ul>
+            <a
+              href="#agenda"
+              className="mt-5 flex items-center justify-center gap-2 rounded-full border border-(--hairline) px-4 py-2.5 text-xs font-bold text-sierra transition duration-300 hover:border-naranja hover:bg-naranja hover:text-white dark:text-naranja dark:hover:text-white"
+            >
+              <Icono nombre="lucide/calendar-days" tam={16} /> Ver mi agenda
+            </a>
+          </div>
+        </Reveal>
+      </div>
+    </Bloque>
   )
 }
 
-function Chip({ label, value, tone }) {
+function TileDias({ item, visible }) {
+  const n = useCountUp(item.dias, visible)
   return (
-    <div className="flex flex-col items-center">
+    <li
+      className={`flex items-center gap-4 rounded-xl p-3 ${
+        item.destacado ? 'bg-sierra text-white' : 'bg-(--surface-alt) ring-1 ring-(--hairline)'
+      }`}
+    >
       <span
-        className={`flex h-14 w-14 items-center justify-center rounded-2xl text-2xl font-extrabold text-white ${
-          tone === 'sierra' ? 'bg-sierra' : 'bg-linear-to-br from-naranja to-sierra'
+        className={`flex h-12 w-12 flex-none items-center justify-center rounded-xl font-display text-2xl font-extrabold text-white ${
+          item.destacado ? 'bg-white/15' : 'bg-linear-to-br from-naranja to-sierra'
         }`}
       >
-        {value}
+        {n}
       </span>
-      <span className="mt-1 max-w-24 text-[10px] font-semibold uppercase tracking-wide text-(--page-text)/60">
-        {label}
+      <span
+        className={`text-sm font-semibold ${
+          item.destacado ? 'text-white/90' : 'text-(--page-text)/80'
+        }`}
+      >
+        {item.label}
       </span>
-    </div>
+    </li>
   )
 }
 
 /* ---------- 8. Los imperdibles ---------- */
 function Imperdibles() {
   return (
-    <div className="mt-16">
-      <Reveal variant="up" className="mb-6 text-center">
-        <h3 className="text-xl font-bold uppercase tracking-wider text-naranja">Los imperdibles</h3>
-      </Reveal>
-      <Reveal
-        variant="zoom"
-        className="mx-auto max-w-3xl rounded-2xl bg-linear-to-br from-sierra to-naranja p-8 text-center text-white shadow-xl"
-      >
-        <p className="text-white/95">{imperdibles.texto}</p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          {imperdibles.lugares.map((h, i) => {
-            const esencial = i < imperdibles.objetivo
-            return (
-              <Reveal key={h.nombre} variant="zoom" delay={i * 110} className="relative">
-                <img
-                  src={h.img}
-                  alt={h.nombre}
-                  loading="lazy"
-                  className={`h-28 w-20 rounded-lg object-cover object-top shadow-lg transition ${
-                    esencial ? 'ring-4 ring-oro' : 'opacity-45 grayscale'
-                  }`}
-                />
-                {esencial && (
-                  <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-oro text-xs font-bold text-sierra">
-                    ✓
-                  </span>
-                )}
-                <span className="mt-1 block text-xs">{h.nombre}</span>
-              </Reveal>
-            )
-          })}
-        </div>
-        <p className="mt-6 inline-block rounded-full bg-white/15 px-5 py-1.5 text-lg font-extrabold">
-          {imperdibles.objetivo} de 5 = ya conociste Monterrey
-        </p>
-      </Reveal>
-    </div>
+    <Bloque titulo={imperdibles.titulo} nota={imperdibles.texto}>
+      <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        {imperdibles.lugares.map((lugar, i) => (
+          <Reveal
+            key={lugar.nombre}
+            variant="scale"
+            delay={i * 90}
+            className="group relative overflow-hidden rounded-2xl shadow-[0_8px_20px_rgba(27,73,101,0.18)]"
+          >
+            <img
+              src={lugar.imagen}
+              alt={lugar.nombre}
+              loading="lazy"
+              className="aspect-3/4 w-full object-cover transition duration-700 group-hover:scale-110"
+            />
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 bg-linear-to-t from-sierra/90 via-sierra/20 to-transparent transition duration-500 group-hover:from-sierra"
+            />
+            {lugar.esencial && (
+              <span className="absolute left-2 top-2 rounded-full bg-oro px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-sierra">
+                Esencial
+              </span>
+            )}
+            <span className="absolute inset-x-0 bottom-0 p-3 font-display text-sm font-bold leading-tight text-white">
+              {lugar.nombre}
+            </span>
+          </Reveal>
+        ))}
+      </div>
+    </Bloque>
   )
 }
 
 /* ---------- 9. Como se habla aqui ---------- */
 function Regionalismos() {
   return (
-    <div className="mt-16">
-      <Reveal variant="up" className="mb-6 text-center">
-        <h3 className="text-xl font-bold uppercase tracking-wider text-naranja">Cómo se habla aquí</h3>
-        <p className="mt-2 text-sm text-sierra/80 dark:text-arena/70">Pasa el cursor por cada palabra.</p>
-      </Reveal>
+    <Bloque titulo={regionalismos.titulo} nota={regionalismos.nota}>
       <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {regionalismos.map((kw, i) => (
+        {regionalismos.palabras.map((kw, i) => (
           <Reveal key={kw.k} variant="scale" delay={i * 55} className="flip h-28" tabIndex={0}>
             <div className="flip-inner">
-              <div className="flip-face rounded-xl border-2 border-(--hairline) bg-(--surface) p-4 text-center">
-                <p className="font-bold text-sierra dark:text-naranja">{kw.k}</p>
+              <div className="flip-face flip-frente">
+                <p className="font-display text-lg font-bold text-sierra dark:text-naranja">
+                  {kw.k}
+                </p>
+                <span aria-hidden="true" className="flip-pista">
+                  girar
+                </span>
               </div>
-              <div className="flip-face flip-back rounded-xl bg-linear-to-br from-sierra to-naranja p-4 text-center text-white">
+              <div className="flip-face flip-back">
                 <p className="text-xs leading-snug">{kw.d}</p>
               </div>
             </div>
           </Reveal>
         ))}
       </div>
-    </div>
+
+      {/* Puente a la seccion del hilo */}
+      <Reveal variant="up" className="mx-auto mt-10 max-w-2xl text-center">
+        <p className="text-sm text-(--page-text)/75">
+          ¿Te falta una? El hilo de las palabras sigue abierto y puedes añadir la tuya con lo que
+          significa para ti.
+        </p>
+        <a
+          href="#hilo"
+          className="mt-4 inline-flex items-center gap-2 rounded-full bg-linear-to-br from-sierra to-naranja px-7 py-3 text-sm font-bold text-white shadow-[0_10px_24px_rgba(207,90,34,0.3)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
+        >
+          Ir al hilo de las palabras <span aria-hidden="true">→</span>
+        </a>
+      </Reveal>
+    </Bloque>
   )
 }
 

@@ -31,6 +31,7 @@ export const foto = {
   colaDeCaballo: `${C}/f/f8/Cola_de_Caballo.JPG`,
   grutasGarcia: `${C}/0/0c/Grutas_de_Garc%C3%ADa.jpg`,
   presaLaBoca: `${C}/1/17/Presa_La_Boca%2C_Santiago%2C_Nuevo_Le%C3%B3n%2C_M%C3%A9xico_-_3.jpg`,
+  chipinque: `${C}/7/72/Chipinque%2C_San_Pedro%2C_M%C3%A9xico.jpg`,
   laPastora: `${C}/b/b7/Rio_la_Silla_en_el_Bosque_la_Pastora.png`,
 
   // Historia e industria
@@ -41,6 +42,7 @@ export const foto = {
   metrorrey: `${C}/e/e6/CRRC_MM-24_Metrorrey.jpg`,
   puenteUnidad: `${C}/a/ac/Puente_Atirantado.jpg`,
   estadioBBVA: `${C}/e/e1/Estadio_BBVA_Bancomer.jpg`,
+  aeropuerto: `${C}/0/0d/Aeropuerto_Internacional_de_Monterrey.jpg`,
 
   // Personas
   alfonsoReyes: `${C}/5/5c/Alfonso_Reyes_Ochoa_%28cropped%29.jpg`,
@@ -60,6 +62,10 @@ export const foto = {
   santiago: `${C}/d/d8/Santiago_Ap%C3%B3stol_desde_el_Mirador.jpg`,
   cadereyta: `${C}/e/ed/Plaza_principal_de_Cadereyta_Jim%C3%A9nez_con_estatua_de_Miguel_Hidalgo.jpg`,
   salinasVictoria: `${C}/b/bc/Templo_de_Nuestra_Se%C3%B1ora_de_Guadalupe_en_Salinas_Victoria.jpg`,
+  pesqueria: `${C}/8/8e/Panoramic_view_of_town_hall_Pesquer%C3%ADa.jpg`,
+  elCarmen: `${C}/a/a4/Palacio_Municipal_de_El_Carmen.jpg`,
+  // De General Zuazua y Cienega de Flores no hay foto libre en Commons: sus
+  // fichas se quedan con el marcador de posicion.
 
   // Cocina regia
   cabrito: `${C}/b/b9/Cabrito_-_Monterrey.JPG`,
@@ -73,4 +79,15 @@ export const foto = {
   glorias: `${C}/a/a4/Bolsa_de_Glorias_de_Linares.jpg`,
   mercadoJuarez: `${C}/9/95/Mercado_Ju%C3%A1rez_de_Monterrey_-_2.jpg`,
   mercadoJuarez2: `${C}/2/24/Mercado_Ju%C3%A1rez_de_Monterrey_-_3.jpg`,
+  carneAsadaPlato: `${C}/d/d0/Carne_asada_%284472586086%29.jpg`,
+  // Vertical, para el escaparate del platillo insignia
+  carneAsadaVertical: `${C}/6/6a/Ima20180329_153312.jpg`,
+  parrillada: `${C}/8/85/Parrillada_Carne_asada.jpg`,
+  // La tortilla de harina es de todo el norte; estas fotos son de Sonora.
+  tortillasHarina: `${C}/c/cd/Se%C3%B1ora_haciendo_tortillas_de_harina_01.jpg`,
+  tortillasHarina2: `${C}/f/f3/Tortillas_de_harina_en_proceso_01.jpg`,
+
+  // Bustamante: Pueblo Magico a 107 km al noroeste
+  bustamante: `${C}/d/dd/Bustamante_-_panoramio_-_Tereso_Hern%C3%A1ndez.jpg`,
+  grutasBustamante: `${C}/7/7b/Grutas_de_Bustamante_1.jpg`,
 }

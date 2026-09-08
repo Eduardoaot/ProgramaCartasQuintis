@@ -6,9 +6,11 @@
 //   cuando         -> en que momento aparece en la mesa
 //   caracteristicas-> como se reconoce
 //
-// El cabrito NO va en `grupos`: tiene su propio escaparate (objeto `insignia`).
+// La carne asada NO va en `grupos`: tiene su propio escaparate (objeto
+// `insignia`), porque en Monterrey es menos un platillo que un ritual de fin
+// de semana. El cabrito, que antes ocupaba ese lugar, es ahora una carta mas.
 //
-// PENDIENTE: revisar y actualizar el precio de referencia de `insignia.valor`.
+// PENDIENTE: revisar y actualizar los precios de referencia.
 import { foto } from './imagenes.js'
 
 export const rarezas = {
@@ -22,6 +24,22 @@ export const rarezas = {
         'Los que encuentras en cualquier mesa del área metropolitana, del puesto de barrio al restaurante de manteles largos.',
       cartas: [
         {
+          codigo: 'CAB',
+          nombre: 'Cabrito al pastor',
+          donde: 'Mercado Juárez y los asaderos del centro',
+          cuando: 'Comida de domingo y de ocasión',
+          caracteristicas: [
+            'Cabrito lechal de menos de un mes',
+            'Solo sal y fuego de mezquite',
+            'Cocción vertical de varias horas',
+            'Se pide por pieza, no por plato',
+          ],
+          images: [
+            { src: foto.cabrito, alt: 'Cabrito al pastor cocinándose alrededor del fuego' },
+            { src: foto.cabritos, alt: 'Cabritos ensartados en varilla junto a las brasas' },
+          ],
+        },
+        {
           codigo: 'MAC',
           nombre: 'Machacado con huevo',
           donde: 'Fondas, cenadurías y taquerías de barrio',
@@ -31,14 +49,6 @@ export const rarezas = {
             { src: foto.machacado, alt: 'Plato de machacado con huevo' },
             { src: foto.machaca, alt: 'Huevo con machaca servido con frijoles' },
           ],
-        },
-        {
-          codigo: 'ASA',
-          nombre: 'Carne asada',
-          donde: 'En el patio de cualquier casa',
-          cuando: 'Sábado o domingo, sin falta',
-          caracteristicas: ['Arrachera y agujas', 'Carbón o leña de mezquite', 'Con tortillas de harina'],
-          images: [{ src: foto.carneAsada, alt: 'Asador con carne al carbón' }],
         },
         {
           codigo: 'ASP',
@@ -63,6 +73,21 @@ export const rarezas = {
           cuando: 'Cuando hay mucha gente que alimentar',
           caracteristicas: ['Se hace sobre un disco de arado', 'Varias carnes en la misma mezcla', 'Se come en taco de harina'],
           images: [{ src: foto.discada, alt: 'Discada cocinándose sobre un disco de arado' }],
+        },
+        {
+          codigo: 'TOR',
+          nombre: 'Tortillas de harina',
+          donde: 'En toda mesa del norte, hechas en casa o al peso',
+          cuando: 'Con todo y a todas horas',
+          caracteristicas: [
+            'Trigo en vez de maíz',
+            'Se estiran a mano y se cuecen en comal',
+            'Envuelven la asada, la machaca y la discada',
+          ],
+          images: [
+            { src: foto.tortillasHarina, alt: 'Señora estirando tortillas de harina' },
+            { src: foto.tortillasHarina2, alt: 'Tortillas de harina cociéndose en el comal' },
+          ],
         },
       ],
     },
@@ -106,24 +131,25 @@ export const rarezas = {
 
   // La joya de la corona: se muestra en grande, sobre fondo oscuro, sin tarjeta.
   insignia: {
-    codigo: 'CABRITO',
-    nombre: 'Cabrito al pastor',
+    codigo: 'ASADA',
+    nombre: 'Carne asada',
     titular: 'El platillo insignia de Nuevo León',
     descripcion:
-      'Cabrito lechal de menos de un mes, abierto y ensartado en una varilla que se clava en torno al fuego de mezquite. Se cuece de pie, girando lentamente durante horas, y se sirve por piezas: pierna, riñonada, paleta o pecho. No lleva más condimento que sal: todo el sabor viene del animal y del humo.',
-    donde: 'Mercado Juárez y los asaderos del centro',
-    cuando: 'Comida de domingo y de ocasión',
+      'Hablar de Monterrey es hablar de carne asada, y aquí es menos un platillo que un ritual: el asador se prende el fin de semana y alrededor se junta la familia entera. Lo que la distingue del resto del país es la contención — cortes delgados, sal gruesa y leña o carbón de mezquite, que perfuma la carne con un humo dulce e inconfundible. El corte estrella es la arrachera, aunque la aguja norteña le pelea el lugar.',
+    donde: 'En el patio de cualquier casa',
+    cuando: 'Sábado o domingo, sin falta',
     temporada: 'Todo el año',
     caracteristicas: [
-      'Cabrito lechal de menos de un mes',
-      'Solo sal y fuego de mezquite',
-      'Cocción vertical de varias horas',
-      'Se pide por pieza, no por plato',
+      'Arrachera y aguja norteña',
+      'Cortes delgados, de un centímetro',
+      'Leña o carbón de mezquite',
+      'Sal gruesa y nada más',
+      'Con tortillas de harina y frijoles charros',
     ],
-    // Precio de referencia de una orden en Monterrey (revisar y actualizar).
-    valor: '$400 – $700 MXN',
-    valorNota: 'Precio orientativo de una orden en la ciudad. Valor de referencia — actualizar.',
-    img: foto.cabrito,
-    alt: 'Cabrito al pastor cocinándose alrededor del fuego',
+    // Precio de referencia de un kilo de arrachera en Monterrey (revisar).
+    valor: '$300 – $500 MXN',
+    valorNota: 'Precio orientativo del kilo de arrachera en la ciudad. Valor de referencia — actualizar.',
+    img: foto.carneAsadaVertical,
+    alt: 'Carne asada recién salida del asador',
   },
 }

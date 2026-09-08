@@ -1,61 +1,103 @@
+import { useState } from 'react'
 import { hero } from '../data/hero.js'
+import { video } from '../data/videos.js'
 
+const clip = video.macroplaza
+
+/**
+ * Cabecera de la pagina: un vuelo de dron sobre la Macroplaza a pantalla
+ * completa, con el texto anclado abajo a la izquierda.
+ *
+ * La foto panoramica sigue ahi de `poster`: se ve mientras el video carga y
+ * se queda para siempre si el navegador no reproduce webm o si el visitante
+ * pidio menos movimiento.
+ */
 export default function Hero() {
+  const [listo, setListo] = useState(false)
+
   return (
     <header
       id="inicio"
-      className="relative isolate flex min-h-[92vh] flex-col items-center justify-center gap-6 overflow-hidden px-6 pb-24 pt-36 text-center text-white sm:pt-40"
-      style={{
-        backgroundImage: `linear-gradient(rgba(8, 26, 38, 0.50), rgba(8, 26, 38, 0.86)), url("${hero.bgImage}")`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
+      className="relative isolate flex min-h-screen items-end overflow-hidden pb-20 pt-32 text-white"
     >
-      {/* Blobs animados heredados de la rama IA */}
-      <span
+      {/* Poster: la panoramica de siempre, debajo del video */}
+      <img
+        src={hero.bgImage}
+        alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute -top-16 -left-16 -z-10 h-64 w-64 animate-blob rounded-full bg-oro opacity-30 blur-[50px]"
-      />
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-24 -right-20 -z-10 h-72 w-72 animate-blob rounded-full bg-naranja opacity-30 blur-[50px] [animation-delay:-5s]"
-      />
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute right-[10%] top-[40%] -z-10 h-44 w-44 animate-blob rounded-full bg-oro opacity-25 blur-[50px] [animation-delay:-9s]"
+        className="absolute inset-0 -z-30 h-full w-full scale-105 object-cover"
       />
 
-      <span className="inline-block animate-fade-up rounded-full border border-white/60 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] [animation-delay:0.1s]">
-        {hero.eyebrow}
-      </span>
+      <video
+        className={`video-portada absolute inset-0 -z-20 h-full w-full object-cover transition-opacity duration-1000 ${
+          listo ? 'opacity-100' : 'opacity-0'
+        }`}
+        src={clip.src}
+        poster={clip.poster}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+        tabIndex={-1}
+        onCanPlay={() => setListo(true)}
+      />
 
-      <h1 className="max-w-3xl animate-fade-up text-4xl font-extrabold leading-tight [animation-delay:0.25s] [text-shadow:0_4px_18px_rgba(0,0,0,0.4)] sm:text-5xl">
-        {hero.title}
-      </h1>
+      {/* Velo inferior para que se lea el texto y velo superior para la navbar */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-linear-to-t from-[#07131c] via-[#07131c]/72 to-[#07131c]/20"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 -z-10 h-40 bg-linear-to-b from-[#07131c]/85 to-transparent"
+      />
 
-      <p className="max-w-xl animate-fade-up text-lg text-white/95 [animation-delay:0.4s] [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]">
-        {hero.text}
-      </p>
+      <div className="relative mx-auto w-full max-w-6xl px-6">
+        <p className="flex animate-fade-up items-center gap-4 text-xs font-semibold uppercase tracking-[0.35em] text-oro [animation-delay:0.1s]">
+          <span aria-hidden="true" className="h-px w-10 bg-oro/70" />
+          {hero.eyebrow}
+        </p>
 
+        <h1 className="mt-6 max-w-4xl animate-fade-up font-display text-4xl font-extrabold leading-[1.05] tracking-tight [animation-delay:0.22s] [text-shadow:0_2px_24px_rgba(0,0,0,0.45)] sm:text-6xl lg:text-7xl">
+          {hero.title}
+        </h1>
+
+        <p className="mt-6 max-w-xl animate-fade-up border-l-2 border-naranja pl-5 text-lg leading-relaxed text-white/85 [animation-delay:0.36s]">
+          {hero.text}
+        </p>
+
+        <a
+          href={hero.cta.href}
+          className="group mt-10 inline-flex animate-fade-up items-center gap-3 rounded-full bg-naranja px-8 py-3.5 font-semibold text-white shadow-[0_12px_30px_rgba(207,90,34,0.35)] transition duration-300 [animation-delay:0.5s] hover:-translate-y-0.5 hover:bg-white hover:text-sierra"
+        >
+          {hero.cta.label}
+          <span
+            aria-hidden="true"
+            className="transition-transform duration-300 group-hover:translate-x-1"
+          >
+            →
+          </span>
+        </a>
+      </div>
+
+      {/* Credito del video: la licencia CC BY-SA obliga a atribuir */}
       <a
-        href={hero.cta.href}
-        className="group relative mt-2 inline-flex animate-fade-up items-center gap-2 overflow-hidden rounded-full bg-sierra px-9 py-3.5 font-bold text-white shadow-[0_10px_25px_rgba(0,0,0,0.3)] transition duration-300 [animation-delay:0.6s] hover:-translate-y-1 hover:bg-naranja hover:shadow-[0_14px_30px_rgba(0,0,0,0.35)]"
+        href={clip.enlace}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute bottom-4 left-6 text-[11px] text-white/45 transition hover:text-white/80"
       >
-        <span
-          aria-hidden="true"
-          className="absolute top-0 left-[-150%] h-full w-3/5 -skew-x-12 bg-linear-to-r from-transparent via-white/50 to-transparent group-hover:animate-shine"
-        />
-        {hero.cta.label}
-        <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        Video: {clip.autor} · {clip.licencia} · Wikimedia Commons
       </a>
 
       <a
         href="#que-es"
-        aria-hidden="true"
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-float-y text-2xl text-white/70"
+        aria-label="Bajar a la siguiente sección"
+        className="absolute bottom-7 right-7 hidden h-11 w-11 animate-float-y items-center justify-center rounded-full border border-white/30 text-lg text-white/70 transition hover:border-white hover:text-white sm:flex"
       >
-        ⌄
+        ↓
       </a>
     </header>
   )

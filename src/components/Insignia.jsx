@@ -1,8 +1,10 @@
 import Tilt from './Tilt.jsx'
 import { useReveal } from '../hooks/useReveal.js'
 import { rarezas } from '../data/rarezas.js'
+import { video } from '../data/videos.js'
 
 const s = rarezas.insignia
+const clip = video.carneAsada
 
 /** Presentacion a pantalla completa del platillo insignia de la region. */
 export default function Insignia() {
@@ -49,7 +51,7 @@ export default function Insignia() {
                 src={s.img}
                 alt={s.alt}
                 loading="lazy"
-                className="w-[260px] rounded-2xl shadow-[0_30px_90px_rgba(243,185,79,0.4)] ring-2 ring-oro/50 sm:w-[300px]"
+                className="aspect-3/4 w-[280px] rounded-2xl object-cover shadow-[0_30px_90px_rgba(243,185,79,0.4)] ring-2 ring-oro/50 sm:w-[340px] lg:w-[380px]"
               />
               {visible && (
                 <span
@@ -115,6 +117,37 @@ export default function Insignia() {
           <p className="mt-2 text-[11px] text-white/40">{s.valorNota}</p>
         </div>
       </div>
+
+      {/* La carne sobre las brasas, a camara lenta */}
+      <figure
+        className={`relative mx-auto mt-16 max-w-5xl transition-all duration-1000 ease-out ${
+          visible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}
+        style={{ transitionDelay: visible ? '700ms' : '0ms' }}
+      >
+        <video
+          className="aspect-video w-full rounded-2xl bg-black/40 object-cover shadow-[0_24px_60px_rgba(0,0,0,0.55)] ring-1 ring-oro/30"
+          src={clip.src}
+          poster={clip.poster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          aria-label={clip.descripcion}
+        />
+        <figcaption className="mt-3 text-center text-xs text-white/45">
+          Así se cuece: cortes delgados, sal gruesa y brasa de mezquite.{' '}
+          <a
+            href={clip.enlace}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline-offset-2 hover:text-white/80 hover:underline"
+          >
+            Video de {clip.autor} · {clip.licencia}
+          </a>
+        </figcaption>
+      </figure>
     </section>
   )
 }

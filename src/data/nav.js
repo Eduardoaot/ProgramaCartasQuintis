@@ -6,8 +6,10 @@ export const navLinks = [
   { id: 'antecedentes', label: 'Historia' },
   { id: 'juego', label: 'Área metro' },
   { id: 'tutorial', label: 'Guía' },
+  { id: 'agenda', label: 'Mi agenda' },
   { id: 'expansiones', label: 'Municipios' },
   { id: 'rarezas', label: 'Sabores' },
+  { id: 'hilo', label: 'Palabras' },
 ]
 
 export const SITE_TITLE = 'Monterrey · Nuevo León'

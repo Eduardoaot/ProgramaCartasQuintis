@@ -151,22 +151,137 @@ img {
   transform: translateX(0) translateY(0);
 }
 
-/* ===== Animaciones de la guia ===== */
-@keyframes pin-pop {
-  0% { opacity: 0; transform: scale(0.4); }
-  70% { transform: scale(1.15); }
-  100% { opacity: 1; transform: scale(1); }
-}
-@keyframes pulse-ring {
-  0% { box-shadow: 0 0 0 0 rgba(207, 90, 34, 0.55); }
-  70% { box-shadow: 0 0 0 12px rgba(207, 90, 34, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(207, 90, 34, 0); }
-}
-.anatomy-pin {
-  animation: pin-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both, pulse-ring 2.4s ease-out infinite 0.6s;
+
+/* ===== Mapas de Leaflet ===== */
+.mty-mapa .leaflet-container {
+  font-family: var(--font-body);
+  background: transparent;
 }
 
-/* Barrido de luz sobre la foto del platillo insignia */
+/* Controles y atribucion vestidos con la paleta del sitio */
+.mty-mapa .leaflet-control-zoom a {
+  background: var(--surface);
+  color: var(--page-text);
+  border-color: var(--hairline);
+}
+.mty-mapa .leaflet-control-zoom a:hover {
+  background: var(--color-naranja);
+  color: #fff;
+}
+.mty-mapa .leaflet-control-attribution {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  color: color-mix(in srgb, var(--page-text) 65%, transparent);
+  font-size: 10px;
+}
+.mty-mapa .leaflet-control-attribution a {
+  color: var(--color-naranja);
+}
+
+/* Marcadores propios */
+.mty-pin-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0;
+}
+.mty-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  background: var(--color-naranja);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s ease;
+}
+.mty-pin:empty {
+  width: 13px;
+  height: 13px;
+  border-width: 2px;
+}
+.mty-pin--ancho {
+  width: 34px;
+  height: 26px;
+  border-radius: 8px;
+  font-size: 10px;
+  letter-spacing: 0.02em;
+}
+.mty-pin--sierra { background: var(--color-sierra); }
+.mty-pin--oro { background: var(--color-oro); color: var(--color-sierra); }
+.mty-pin--cactus { background: var(--color-cactus); }
+.mty-pin--cielo { background: var(--color-cielo); }
+
+/* Cabeceras de los cuatro municipios centrales */
+.mty-pin.mty-pin--grande {
+  width: 17px;
+  height: 17px;
+  border-width: 3px;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-naranja) 35%, transparent), 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+/* Marcador enfocado desde la lista de al lado */
+.mty-pin--activo {
+  z-index: 10;
+  animation: pin-latido 1.7s ease-out infinite;
+}
+@keyframes pin-latido {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-naranja) 70%, transparent), 0 2px 8px rgba(0, 0, 0, 0.45); }
+  70% { box-shadow: 0 0 0 15px transparent, 0 2px 8px rgba(0, 0, 0, 0.45); }
+  100% { box-shadow: 0 0 0 0 transparent, 0 2px 8px rgba(0, 0, 0, 0.45); }
+}
+
+.leaflet-marker-icon:hover .mty-pin {
+  transform: scale(1.22);
+}
+
+/* Globos de informacion */
+.mty-mapa .leaflet-popup-content-wrapper {
+  background: var(--surface);
+  color: var(--page-text);
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(27, 73, 101, 0.28);
+}
+.mty-mapa .leaflet-popup-tip {
+  background: var(--surface);
+}
+.mty-mapa .leaflet-popup-content {
+  margin: 12px 14px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.mty-popup-titulo {
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: var(--color-sierra);
+}
+.dark .mty-popup-titulo {
+  color: var(--color-naranja);
+}
+.mty-popup-texto {
+  display: block;
+  color: color-mix(in srgb, var(--page-text) 80%, transparent);
+}
+
+/* En oscuro, el teselado ya viene oscuro: solo bajamos el brillo del borde */
+.dark .mty-mapa .leaflet-control-zoom a {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ===== Video de portada ===== */
+@media (prefers-reduced-motion: reduce) {
+  .video-portada { display: none; }
+}
+
+/* ===== Barrido de luz sobre la foto del platillo insignia ===== */
 @keyframes sssp-sweep {
   0% { transform: translateX(-120%) skewX(-18deg); opacity: 0; }
   15% { opacity: 0.9; }
@@ -176,42 +291,112 @@ img {
   animation: sssp-sweep 1.8s ease 0.5s both;
 }
 
-/* Tarjetas de regionalismos que giran al pasar el cursor */
+/* ===== Aparicion escalonada de los lugares imprescindibles de la guia ===== */
+@keyframes pop-in {
+  0% { opacity: 0; transform: scale(0.3) translateY(10px); }
+  60% { transform: scale(1.15) translateY(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.pop-in {
+  animation: pop-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ===== Tarjetas de palabras: giro, elevacion y destello al pasar ===== */
 .flip {
-  perspective: 1000px;
+  perspective: 1200px;
+  cursor: pointer;
+  outline: none;
 }
 .flip-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   transform-style: preserve-3d;
+  /* Nada de transicionar filter aqui: ver la nota de abajo. */
+  transition: transform 0.75s cubic-bezier(0.34, 1.4, 0.5, 1);
 }
 .flip:hover .flip-inner,
 .flip:focus-within .flip-inner {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(18px) scale(1.05);
+}
+/* Ojo: nada de `filter` ni `opacity` en .flip-inner. Cualquiera de los dos
+   fuerza transform-style a flat y la cara trasera deja de verse al girar. */
+.flip:hover .flip-face,
+.flip:focus-within .flip-face {
+  box-shadow: 0 18px 30px rgba(27, 73, 101, 0.3);
 }
 .flip-face {
   position: absolute;
   inset: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-}
-.flip-back {
-  transform: rotateY(180deg);
+  gap: 6px;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 0.75rem;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
 }
 
-/* Aparicion de los marcadores del objetivo */
-@keyframes heart-pop {
-  0% { opacity: 0; transform: scale(0.3) translateY(10px); }
-  60% { transform: scale(1.15) translateY(0); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
+.flip-frente {
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+  transition: border-color 0.4s ease;
 }
-.heart-pop {
-  animation: heart-pop 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+.flip:hover .flip-frente,
+.flip:focus-within .flip-frente {
+  border-color: var(--color-naranja);
+}
+
+/* Destello que cruza la cara frontal al entrar el cursor */
+.flip-frente::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    color-mix(in srgb, var(--color-oro) 50%, transparent) 50%,
+    transparent 65%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.7s ease;
+}
+.flip:hover .flip-frente::after,
+.flip:focus-within .flip-frente::after {
+  transform: translateX(130%);
+}
+
+/* Pista de "girar", que se apaga en cuanto la tarjeta gira */
+.flip-pista {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--page-text) 35%, transparent);
+  transition: opacity 0.3s ease;
+}
+.flip:hover .flip-pista,
+.flip:focus-within .flip-pista {
+  opacity: 0;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-sierra), var(--color-naranja));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip:hover .flip-inner,
+  .flip:focus-within .flip-inner { transform: rotateY(180deg); }
+  .flip:hover .flip-face,
+  .flip:focus-within .flip-face { box-shadow: none; }
+  .flip-frente::after { display: none; }
 }
 
 /* ===== Barrido brillante que resalta una foto destacada ===== */
@@ -274,4 +459,9 @@ img {
 
 @media (prefers-reduced-motion: reduce) {
   .foil::before { animation: none; }
+}
+
+/* ===== Tuerca hexagonal de los marcadores numerados ===== */
+.hexagono {
+  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
 }

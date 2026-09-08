@@ -1,9 +1,128 @@
 import Section from './Section.jsx'
 import Reveal from './Reveal.jsx'
-import Tilt from './Tilt.jsx'
 import { antecedentes } from '../data/antecedentes.js'
 
 const { origen, fundaciones, hitos } = antecedentes
+
+/* ---------- Las tres fundaciones ---------- */
+function Intento({ intento, i }) {
+  return (
+    <Reveal
+      variant="up"
+      delay={i * 110}
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-(--hairline) bg-(--surface) shadow-[0_6px_16px_rgba(27,73,101,0.10)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_38px_rgba(27,73,101,0.22)]"
+    >
+      <a
+        href={intento.enlace}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative block aspect-4/3 overflow-hidden"
+      >
+        <img
+          src={intento.imagen}
+          alt={intento.nombre}
+          loading="lazy"
+          className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+        />
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 bg-linear-to-t from-sierra/85 via-sierra/15 to-transparent"
+        />
+        <span className="absolute bottom-3 left-4 font-display text-3xl font-extrabold text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">
+          {intento.anio}
+        </span>
+        {intento.perduro && (
+          <span className="absolute right-3 top-3 rounded-full bg-oro px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-sierra">
+            La que perduró
+          </span>
+        )}
+      </a>
+
+      <div className="flex flex-1 flex-col gap-1 p-5">
+        <h4 className="font-display text-lg font-bold leading-snug text-sierra dark:text-naranja">
+          {intento.nombre}
+        </h4>
+        <p className="text-sm text-(--page-text)/70">
+          Encabezada por{' '}
+          <a
+            href={intento.enlace}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-naranja underline-offset-2 hover:underline"
+          >
+            {intento.fundador}
+          </a>
+        </p>
+      </div>
+    </Reveal>
+  )
+}
+
+/* ---------- Linea del tiempo industrial ---------- */
+function Hito({ evento, i }) {
+  const derecha = i % 2 === 1
+  return (
+    <Reveal
+      as="li"
+      variant={derecha ? 'right' : 'left'}
+      delay={60}
+      className="relative md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-8"
+    >
+      {/* Columna izquierda en escritorio (vacia cuando la ficha va a la derecha) */}
+      <div className={`hidden md:block ${derecha ? '' : 'md:col-start-1'}`}>
+        {!derecha && <FichaHito evento={evento} alineada="right" />}
+      </div>
+
+      {/* Nodo de la linea */}
+      <div className="absolute left-0 top-6 flex h-full flex-col items-center md:static md:h-auto">
+        <span className="hexagono relative flex h-14 w-14 flex-none items-center justify-center bg-oro shadow-lg">
+          <span
+            aria-hidden="true"
+            className="hexagono absolute inset-[3px] bg-linear-to-br from-sierra to-naranja"
+          />
+          <span className="relative font-display text-sm font-extrabold text-white">
+            {evento.anio}
+          </span>
+        </span>
+      </div>
+
+      <div className={`hidden md:block ${derecha ? 'md:col-start-3' : ''}`}>
+        {derecha && <FichaHito evento={evento} alineada="left" />}
+      </div>
+
+      {/* Version movil: la ficha siempre a la derecha de la linea */}
+      <div className="ml-20 md:hidden">
+        <FichaHito evento={evento} alineada="left" />
+      </div>
+    </Reveal>
+  )
+}
+
+function FichaHito({ evento, alineada }) {
+  return (
+    <a
+      href={evento.enlace}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group flex gap-4 rounded-2xl border border-(--hairline) bg-(--surface) p-4 shadow-[0_6px_16px_rgba(27,73,101,0.10)] transition duration-300 hover:-translate-y-1 hover:border-naranja hover:shadow-[0_18px_32px_rgba(27,73,101,0.22)] ${
+        alineada === 'right' ? 'md:flex-row-reverse md:text-right' : ''
+      }`}
+    >
+      <img
+        src={evento.imagen}
+        alt={evento.nombre}
+        loading="lazy"
+        className="h-24 w-24 flex-none rounded-xl object-cover shadow-md transition duration-500 group-hover:scale-105"
+      />
+      <div className="min-w-0">
+        <p className="font-display text-base font-bold leading-snug text-sierra dark:text-naranja">
+          {evento.nombre}
+        </p>
+        <p className="mt-1 text-sm leading-snug text-(--page-text)/75">{evento.texto}</p>
+      </div>
+    </a>
+  )
+}
 
 export default function Antecedentes() {
   return (
@@ -13,89 +132,51 @@ export default function Antecedentes() {
       title="Historia"
       intro={antecedentes.intro}
     >
-      {/* Tres intentos */}
-      <Reveal
-        variant="left"
-        className="mx-auto max-w-3xl rounded-2xl border-l-4 border-naranja bg-(--surface) p-6 text-left shadow-[0_6px_16px_rgba(27,73,101,0.10)]"
-      >
-        <h3 className="mb-2 text-lg font-bold text-sierra dark:text-naranja">{origen.titulo}</h3>
-        <p className="text-sm leading-relaxed text-(--page-text)/90">{origen.texto}</p>
+      {/* Por que hubo tres intentos */}
+      <Reveal variant="up" className="mx-auto max-w-3xl text-center">
+        <h3 className="font-display text-2xl font-bold text-sierra dark:text-naranja">
+          {origen.titulo}
+        </h3>
+        <p className="mx-auto mt-4 text-base leading-relaxed text-(--page-text)/85">
+          {origen.texto}
+        </p>
       </Reveal>
 
       {/* Las tres fundaciones */}
-      <div className="mt-14">
-        <Reveal variant="up" className="mx-auto mb-6 max-w-3xl text-center">
-          <h3 className="text-xl font-bold uppercase tracking-wider text-naranja">{fundaciones.titulo}</h3>
-          <p className="mt-2 text-sm text-sierra/80 dark:text-arena/70">{fundaciones.texto}</p>
+      <div className="mt-16">
+        <Reveal variant="up" className="mx-auto mb-8 max-w-3xl text-center">
+          <h3 className="text-sm font-bold uppercase tracking-[0.25em] text-naranja">
+            {fundaciones.titulo}
+          </h3>
+          <p className="mt-3 text-sm text-sierra/80 dark:text-arena/70">{fundaciones.texto}</p>
         </Reveal>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {fundaciones.sets.map((set, i) => (
-            <Reveal
-              key={set.nombre}
-              variant={i % 2 === 0 ? 'left' : 'right'}
-              delay={(i % 3) * 80}
-              className="flex flex-col gap-3 rounded-2xl border-2 border-(--hairline) bg-(--surface) p-4 shadow-[0_6px_16px_rgba(27,73,101,0.10)] transition duration-300 hover:-translate-y-1 hover:border-naranja"
-            >
-              <a
-                href={set.enlace}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block overflow-hidden rounded-xl bg-(--surface-sunken) p-3 ring-1 ring-(--hairline)"
-              >
-                <img
-                  src={set.caja}
-                  alt={set.nombre}
-                  loading="lazy"
-                  className="mx-auto block h-48 w-auto max-w-full object-contain transition duration-500 hover:scale-105"
-                />
-              </a>
-              <div>
-                <p className="font-bold text-sierra dark:text-naranja">{set.nombre}</p>
-                <p className="mt-1 text-xs text-(--page-text)/70">📜 {set.periodo}</p>
-              </div>
-            </Reveal>
+          {fundaciones.intentos.map((intento, i) => (
+            <Intento key={intento.anio} intento={intento} i={i} />
           ))}
         </div>
       </div>
 
-      {/* Hitos industriales */}
-      <div className="mt-14">
-        <Reveal variant="up" className="mx-auto mb-6 max-w-3xl text-center">
-          <h3 className="text-xl font-bold uppercase tracking-wider text-naranja">{hitos.titulo}</h3>
-          <p className="mt-2 text-sm text-sierra/80 dark:text-arena/70">{hitos.texto}</p>
+      {/* Linea del tiempo industrial */}
+      <div className="mt-20">
+        <Reveal variant="up" className="mx-auto mb-10 max-w-3xl text-center">
+          <h3 className="text-sm font-bold uppercase tracking-[0.25em] text-naranja">
+            {hitos.titulo}
+          </h3>
+          <p className="mt-3 text-sm text-sierra/80 dark:text-arena/70">{hitos.texto}</p>
         </Reveal>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {hitos.cartas.map((c, i) => (
-            <Reveal
-              key={c.nombre}
-              variant="scale"
-              delay={i * 90}
-              className="group flex flex-col gap-3 rounded-2xl border-2 border-(--hairline) bg-(--surface) p-4 text-center shadow-[0_6px_16px_rgba(27,73,101,0.10)] transition duration-300 hover:-translate-y-2 hover:border-naranja hover:shadow-[0_20px_35px_rgba(27,73,101,0.28)]"
-            >
-              <a href={c.enlace} target="_blank" rel="noopener noreferrer" className="block">
-                <Tilt className="rounded-lg bg-(--surface-sunken) p-2">
-                  <img
-                    src={c.img}
-                    alt={c.nombre}
-                    loading="lazy"
-                    className="mx-auto block w-full max-w-45 rounded-md shadow-lg"
-                  />
-                </Tilt>
-              </a>
-              <p className="text-xs text-(--page-text)/80">{c.nombre}</p>
-              <a
-                href={c.enlace}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-auto rounded-lg bg-linear-to-br from-sierra to-naranja px-2 py-1.5 text-sm font-extrabold text-white transition hover:brightness-110"
-              >
-                {c.valor}
-              </a>
-            </Reveal>
+        <ol className="relative mx-auto flex max-w-4xl flex-col gap-10">
+          {/* Riel de la linea del tiempo */}
+          <span
+            aria-hidden="true"
+            className="absolute bottom-6 left-7 top-6 w-0.5 bg-linear-to-b from-sierra via-naranja to-oro md:left-1/2 md:-translate-x-1/2"
+          />
+          {hitos.eventos.map((evento, i) => (
+            <Hito key={evento.anio} evento={evento} i={i} />
           ))}
-        </div>
+        </ol>
       </div>
     </Section>
   )

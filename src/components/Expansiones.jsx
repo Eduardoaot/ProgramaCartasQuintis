@@ -1,80 +1,83 @@
 import Section from './Section.jsx'
 import Reveal from './Reveal.jsx'
+import Icono from './Icono.jsx'
 import { expansiones } from '../data/expansiones.js'
 
-/** Foto del municipio. Sin efecto 3D (a diferencia de las tarjetas de sabores). */
-function FotoMunicipio({ set }) {
-  if (set.caja) {
-    return (
-      <div className="flex items-center justify-center overflow-hidden rounded-xl bg-(--surface-sunken) p-3 ring-1 ring-(--hairline)">
-        <img
-          src={set.caja}
-          alt={set.titulo}
-          loading="lazy"
-          className="block h-44 w-auto max-w-full object-contain transition duration-500 hover:scale-105"
-        />
-      </div>
-    )
-  }
-  return (
-    <div className="flex aspect-4/3 w-full flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-(--hairline) bg-(--surface-alt) text-center">
-      <span className="text-4xl">🏙️</span>
-      <span className="text-sm font-extrabold text-sierra dark:text-naranja">{set.codigo}</span>
-      <span className="px-4 text-[10px] leading-tight text-(--page-text)/55">
-        Añade la foto del municipio en src/data/expansiones.js
-      </span>
-    </div>
-  )
-}
-
-function MunicipioCard({ set, delay, side }) {
+/** Ficha de un municipio: foto de portada arriba y datos abajo. */
+function MunicipioCard({ municipio, delay }) {
   return (
     <Reveal
-      variant={side}
+      variant="up"
       delay={delay}
-      className="group flex flex-col gap-3 overflow-hidden rounded-2xl border-2 border-(--hairline) bg-(--surface) p-5 shadow-[0_6px_16px_rgba(27,73,101,0.10)] transition duration-300 hover:-translate-y-2 hover:border-naranja hover:shadow-[0_20px_35px_rgba(27,73,101,0.28)]"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-(--hairline) bg-(--surface) shadow-[0_6px_16px_rgba(27,73,101,0.10)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_38px_rgba(27,73,101,0.22)]"
     >
-      <FotoMunicipio set={set} />
-
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-        <span className="inline-flex items-center justify-center rounded-lg bg-linear-to-br from-sierra to-naranja px-2.5 py-1 text-sm font-extrabold text-white">
-          {set.codigo}
-        </span>
-        <h4 className="text-lg font-bold text-sierra dark:text-naranja">{set.titulo}</h4>
-        {set.lanzamiento && (
-          <span className="rounded-full bg-(--surface-alt) px-2.5 py-0.5 text-xs font-semibold text-(--page-text)/70 ring-1 ring-(--hairline)">
-            {set.lanzamiento}
+      <div className="relative aspect-16/10 overflow-hidden bg-(--surface-sunken)">
+        {municipio.imagen ? (
+          <img
+            src={municipio.imagen}
+            alt={municipio.titulo}
+            loading="lazy"
+            className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+          />
+        ) : (
+          // Sin foto libre en Commons: se rellena con la clave del municipio
+          <span className="flex h-full w-full flex-col items-center justify-center gap-1 bg-linear-to-br from-sierra to-sierra-oscuro">
+            <Icono nombre="lucide/building-2" tam={28} color="ffffff" className="opacity-25" />
+            <span className="font-display text-2xl font-extrabold text-white/25">
+              {municipio.clave}
+            </span>
+            <span className="text-[10px] uppercase tracking-widest text-white/35">
+              Sin fotografía libre
+            </span>
           </span>
         )}
+        <span
+          aria-hidden="true"
+          className="absolute inset-0 bg-linear-to-t from-sierra/85 via-sierra/10 to-transparent"
+        />
+        <span className="absolute bottom-3 left-4 right-4">
+          <span className="block text-[10px] font-bold uppercase tracking-[0.25em] text-oro">
+            {municipio.clave}
+          </span>
+          <h4 className="font-display text-lg font-bold leading-tight text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">
+            {municipio.titulo}
+          </h4>
+        </span>
       </div>
 
-      <p className="text-sm leading-relaxed text-(--page-text)/90">{set.descripcion}</p>
+      <div className="flex flex-1 flex-col gap-3 p-5">
+        <dl className="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+          {municipio.fundacion && (
+            <div className="flex items-center gap-1.5">
+              <dt className="sr-only">Fundación</dt>
+              <dd className="flex items-center gap-1.5 text-(--page-text)/65">
+                <Icono nombre="lucide/calendar" tam={13} /> {municipio.fundacion}
+              </dd>
+            </div>
+          )}
+          {municipio.poblacion && (
+            <div className="flex items-center gap-1.5">
+              <dt className="sr-only">Población</dt>
+              <dd className="flex items-center gap-1.5 text-(--page-text)/65">
+                <Icono nombre="lucide/users" tam={13} /> {municipio.poblacion}
+              </dd>
+            </div>
+          )}
+        </dl>
 
-      <dl className="mt-auto flex flex-col gap-1 pt-1 text-sm">
-        {set.poblacion && (
-          <div>
-            <dt className="inline text-[11px] font-semibold uppercase tracking-wider text-naranja/80">
-              Población:{' '}
-            </dt>
-            <dd className="inline text-(--page-text)/80">{set.poblacion}</dd>
-          </div>
+        <p className="text-sm leading-relaxed text-(--page-text)/85">{municipio.descripcion}</p>
+
+        {municipio.destacado && (
+          <p className="mt-auto border-l-2 border-naranja pl-3 text-sm font-semibold leading-snug text-sierra dark:text-naranja">
+            {municipio.destacado}
+          </p>
         )}
-        {set.destacado && (
-          <div>
-            <dt className="inline text-[11px] font-semibold uppercase tracking-wider text-naranja/80">
-              Destaca:{' '}
-            </dt>
-            <dd className="inline text-(--page-text)/80">{set.destacado}</dd>
-          </div>
-        )}
-      </dl>
+      </div>
     </Reveal>
   )
 }
 
 export default function Expansiones() {
-  const { fichaComun } = expansiones
-
   return (
     <Section
       id="expansiones"
@@ -83,30 +86,45 @@ export default function Expansiones() {
       intro={expansiones.intro}
       alt
     >
-      {fichaComun && (
-        <Reveal variant="up" className="mx-auto mb-10 flex max-w-lg flex-wrap justify-center gap-3 text-sm">
-          <span className="rounded-full bg-(--surface) px-4 py-1.5 font-semibold text-sierra ring-1 ring-(--hairline) dark:text-naranja">
-            {fichaComun.poblacion}
-          </span>
-          <span className="rounded-full bg-(--surface) px-4 py-1.5 font-semibold text-sierra ring-1 ring-(--hairline) dark:text-naranja">
-            {fichaComun.municipios}
-          </span>
+      {/* Cifras del area metropolitana */}
+      {expansiones.resumen && (
+        <Reveal variant="up" className="mx-auto mb-14 grid max-w-2xl gap-4 sm:grid-cols-2">
+          {expansiones.resumen.map((r) => (
+            <div
+              key={r.label}
+              className="rounded-2xl border border-(--hairline) bg-(--surface) p-5 text-center shadow-[0_6px_16px_rgba(27,73,101,0.10)]"
+            >
+              <p className="font-display text-3xl font-extrabold leading-none text-naranja sm:text-4xl">
+                {r.dato}
+              </p>
+              <p className="mt-2 text-sm text-(--page-text)/75">{r.label}</p>
+              {r.fuente && (
+                <p className="mt-1 text-[11px] uppercase tracking-widest text-(--page-text)/45">
+                  {r.fuente}
+                </p>
+              )}
+            </div>
+          ))}
         </Reveal>
       )}
 
       {expansiones.grupos.map((grupo) => (
-        <div key={grupo.nombre} className="mb-12 last:mb-0">
-          <Reveal as="h3" variant="up" className="mb-6 text-xl font-bold uppercase tracking-wider text-naranja">
-            {grupo.nombre}
+        <div key={grupo.nombre} className="mb-16 last:mb-0">
+          <Reveal variant="up" className="mb-8 flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-(--hairline) pb-3">
+            <h3 className="font-display text-xl font-bold text-sierra dark:text-naranja">
+              {grupo.nombre}
+            </h3>
+            <span className="rounded-full bg-(--surface) px-2.5 py-0.5 text-xs font-bold text-naranja ring-1 ring-(--hairline)">
+              {grupo.municipios.length}
+            </span>
+            {grupo.nota && (
+              <p className="text-sm text-(--page-text)/60">{grupo.nota}</p>
+            )}
           </Reveal>
-          <div className="grid gap-6 sm:grid-cols-2">
-            {grupo.municipios.map((set, i) => (
-              <MunicipioCard
-                key={set.codigo}
-                set={set}
-                delay={(i % 3) * 80}
-                side={i % 2 === 0 ? 'left' : 'right'}
-              />
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {grupo.municipios.map((municipio, i) => (
+              <MunicipioCard key={municipio.clave} municipio={municipio} delay={(i % 4) * 80} />
             ))}
           </div>
         </div>

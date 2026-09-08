@@ -68,13 +68,13 @@ export default function Navbar() {
         </a>
 
         {/* Escritorio */}
-        <div className="hidden items-center gap-6 md:flex">
-          <ul className="flex items-center gap-6">
+        <div className="hidden items-center gap-4 lg:flex">
+          <ul className="flex items-center gap-4">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <a
                   href={`#${link.id}`}
-                  className="group relative pb-1 text-sm font-semibold transition-colors hover:text-naranja dark:hover:text-oro"
+                  className="group relative pb-1 text-[13px] font-semibold transition-colors hover:text-naranja dark:hover:text-oro"
                 >
                   {link.label}
                   <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-naranja transition-all duration-300 group-hover:w-full dark:bg-oro" />
@@ -86,7 +86,7 @@ export default function Navbar() {
         </div>
 
         {/* Móvil */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <ThemeToggle />
           <button
             type="button"
@@ -104,7 +104,7 @@ export default function Navbar() {
 
       {/* Móvil: panel */}
       <ul
-        className={`flex flex-col gap-1 overflow-hidden px-6 text-(--nav-text) transition-all duration-300 md:hidden ${
+        className={`flex flex-col gap-1 overflow-hidden px-6 text-(--nav-text) transition-all duration-300 lg:hidden ${
           open ? 'max-h-96 py-4' : 'max-h-0 py-0'
         }`}
         style={{ background: 'var(--nav-panel-bg)' }}
