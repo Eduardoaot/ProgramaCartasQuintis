@@ -10,12 +10,12 @@ export const juego = {
     {
       titulo: 'Cómo se formó',
       texto:
-        'Hasta los años cuarenta Monterrey cabía en su centro histórico. La industria atrajo migración del campo y la mancha urbana se fue comiendo a los municipios vecinos: primero San Nicolás y Guadalupe, después Santa Catarina, Apodaca, Escobedo, García y Juárez. Hoy los límites municipales son invisibles en el paisaje: se cruzan sin darse cuenta.',
+        'El Área Metropolitana de Monterrey comenzó a consolidarse desde mediados del siglo XX, impulsada por la industrialización y el crecimiento de la población. Monterrey se expandió hacia municipios vecinos como San Nicolás, Guadalupe, San Pedro y Santa Catarina, y posteriormente hacia Apodaca, Escobedo, García y Juárez. Con el tiempo, estos municipios quedaron integrados en una misma mancha urbana..',
     },
     {
       titulo: 'Qué es hoy',
       texto:
-        'La tercera zona metropolitana de México por población, después del Valle de México y Guadalajara: más de cinco millones de habitantes repartidos en una docena de municipios conurbados que funcionan como una sola ciudad, con un solo mercado de trabajo y un solo sistema de transporte.',
+        'El Área Metropolitana de Monterrey es una de las principales zonas urbanas de México. Está formada por varios municipios conurbados que, aunque mantienen sus propios gobiernos, funcionan como una misma ciudad. Millones de personas viven, trabajan, estudian y se desplazan diariamente entre ellos, creando una ciudad integrada por una misma dinámica económica y urbana..',
     },
   ],
   arena: {
