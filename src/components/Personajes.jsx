@@ -41,7 +41,7 @@ function FondoSeccion({ activo }) {
           style={{ backgroundImage: `url('${fondos[id]}')`, opacity: activo === id ? 1 : 0 }}
         />
       ))}
-      <div className="absolute inset-0 bg-(--page-bg)/78 backdrop-blur-[4px] dark:bg-(--page-bg)/82" />
+      <div className="absolute inset-0 bg-(--page-bg)/68 backdrop-blur-[2px] dark:bg-(--page-bg)/75" />
     </div>
   )
 }
