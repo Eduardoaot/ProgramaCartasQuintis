@@ -2,23 +2,6 @@ import Section from './Section.jsx'
 import Reveal from './Reveal.jsx'
 import { queEs } from '../data/queEs.js'
 import {useEffect,useState} from 'react'
-import { useReveal } from '../hooks/useReveal.js'
-
-function QueEsBackdrop() {
-  const [backdropRef, visible] = useReveal({ threshold: 0.05, rootMargin: '0px' })
-
-  return (
-    <div
-      ref={backdropRef}
-      aria-hidden="true"
-      className={`que-es-backdrop ${visible ? 'que-es-backdrop--visible' : ''}`}
-    >
-      <div className="que-es-backdrop__grid" />
-      <div className="que-es-backdrop__ribbon que-es-backdrop__ribbon--one" />
-      <div className="que-es-backdrop__ribbon que-es-backdrop__ribbon--two" />
-    </div>
-  )
-}
 
 export default function QueEs() {
   const [figuraSeleccionada, setFiguraSeleccionada] = useState(null)
@@ -53,7 +36,16 @@ export default function QueEs() {
       eyebrow="La ciudad"
       title="Qué es Monterrey"
       intro={queEs.intro}
-      backdrop={<QueEsBackdrop />}
+      backdrop={
+        <Reveal
+          aria-hidden="true"
+          className="absolute inset-0 overflow-hidden bg-linear-to-br from-arena via-white to-arena bg-size-[200%_200%] animate-gradient"
+        >
+          <div className="absolute -inset-1/4 rotate-[-8deg] opacity-40 [background-image:linear-gradient(rgba(27,73,101,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(27,73,101,0.08)_1px,transparent_1px)] [background-size:54px_54px]" />
+          <div className="absolute -left-[18%] top-[18%] h-60 w-[75vw] rounded-[50%] border border-naranja/20 animate-float-y" />
+          <div className="absolute -right-[22%] bottom-[14%] h-60 w-[75vw] rotate-[-16deg] rounded-[50%] border border-oro/25 animate-float-y [animation-delay:-2s]" />
+        </Reveal>
+      }
     >
 {/* SINOPSIS + IMAGEN */}
 <div className="mb-14 grid items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
