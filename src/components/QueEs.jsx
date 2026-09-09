@@ -18,24 +18,22 @@ export default function QueEs() {
   }
 }, [])
 
-  // Clases de hover por figura. Tailwind necesita la clase completa escrita,
-  // por eso van en un mapa y no construidas al vuelo.
-  const coloresHover = {
-    blue: 'hover:bg-blue-100 hover:border-blue-300 dark:hover:bg-blue-400/20 dark:hover:border-blue-400/50',
-    red: 'hover:bg-red-100 hover:border-red-300 dark:hover:bg-red-400/20 dark:hover:border-red-400/50',
-    green: 'hover:bg-green-100 hover:border-green-300 dark:hover:bg-green-400/20 dark:hover:border-green-400/50',
-    purple: 'hover:bg-purple-100 hover:border-purple-300 dark:hover:bg-purple-400/20 dark:hover:border-purple-400/50',
-    yellow: 'hover:bg-yellow-100 hover:border-yellow-300 dark:hover:bg-yellow-400/20 dark:hover:border-yellow-400/50',
-    slate: 'hover:bg-slate-100 hover:border-slate-300 dark:hover:bg-slate-400/20 dark:hover:border-slate-400/50',
-  }
-
-  
   return (
     <Section
       id="que-es"
       eyebrow="La ciudad"
       title="Qué es Monterrey"
       intro={queEs.intro}
+      backdrop={
+        <Reveal
+          aria-hidden="true"
+          className="absolute inset-0 overflow-hidden bg-linear-to-br from-arena via-white to-arena bg-size-[200%_200%] animate-gradient"
+        >
+          <div className="absolute -inset-1/4 rotate-[-8deg] opacity-40 [background-image:linear-gradient(rgba(27,73,101,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(27,73,101,0.08)_1px,transparent_1px)] [background-size:54px_54px]" />
+          <div className="absolute -left-[18%] top-[18%] h-60 w-[75vw] rounded-[50%] border border-naranja/20 animate-float-y" />
+          <div className="absolute -right-[22%] bottom-[14%] h-60 w-[75vw] rotate-[-16deg] rounded-[50%] border border-oro/25 animate-float-y [animation-delay:-2s]" />
+        </Reveal>
+      }
     >
 {/* SINOPSIS + IMAGEN */}
 <div className="mb-14 grid items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
@@ -46,23 +44,9 @@ export default function QueEs() {
     <Reveal
       delay={0}
       className="
-        relative flex h-full flex-col overflow-hidden
-        rounded-[28px]
-        border border-naranja/20
-        bg-(--surface)
+        relative flex h-full flex-col
         p-7
         text-left
-        shadow-[0_10px_30px_rgba(27,73,101,0.07)]
-
-        transition-all
-        duration-500
-        ease-out
-
-        group-hover:-translate-y-1
-        group-hover:border-naranja/35
-        group-hover:bg-naranja/10
-        group-hover:shadow-[0_18px_40px_rgba(27,73,101,0.13)]
-
         lg:p-8
       "
     >
@@ -264,7 +248,11 @@ export default function QueEs() {
 
       {/* FIGURAS Y CONTEXTO */}
       <div className="grid gap-6 lg:grid-cols-[1.45fr_0.55fr]">
-        <Reveal delay={160} className="rounded-[28px] border border-naranja/20 bg-(--surface) p-6 text-left shadow-[0_8px_25px_rgba(27,73,101,0.06)] sm:p-7">
+        <Reveal
+          delay={160}
+          variant="scale"
+          className="relative isolate p-2 text-left sm:p-3"
+        >
           <div className="mb-5 flex items-end justify-between gap-4">
             <div>
               <p className="mb-2 text-xs font-bold uppercase tracking-[0.22em] text-naranja">{queEs.tituloFiguras}</p>
@@ -288,7 +276,9 @@ export default function QueEs() {
       {/* TARJETA */}
       <Reveal
         delay={200 + index * 50}
+        variant={index % 3 === 0 ? 'left' : index % 3 === 1 ? 'scale' : 'right'}
         className={`
+          group
           cursor-pointer
           rounded-2xl
           border border-naranja/15
@@ -298,23 +288,25 @@ export default function QueEs() {
 
           hover:-translate-y-1
           hover:shadow-lg
-
-          ${coloresHover[figura.hover]}
+          hover:bg-sierra
+          hover:border-sierra
+          dark:hover:bg-sierra/40
+          dark:hover:border-cielo
         `}
       >
         <div className="flex items-baseline justify-between gap-3">
 
-          <h4 className="text-sm font-extrabold text-sierra dark:text-naranja">
+          <h4 className="text-sm font-extrabold text-sierra transition-colors group-hover:text-white dark:text-naranja dark:group-hover:text-white">
             {figura.nombre}
           </h4>
 
-          <span className="shrink-0 text-xs text-(--page-text)/55">
+          <span className="shrink-0 text-xs text-(--page-text)/55 transition-colors group-hover:text-white/75">
             {figura.oficio}
           </span>
 
         </div>
 
-        <p className="mt-2 text-xs leading-5 text-(--page-text)/70">
+        <p className="mt-2 text-xs leading-5 text-(--page-text)/70 transition-colors group-hover:text-white/85">
           {figura.texto}
         </p>
       </Reveal>
