@@ -2,6 +2,23 @@ import Section from './Section.jsx'
 import Reveal from './Reveal.jsx'
 import { queEs } from '../data/queEs.js'
 import {useEffect,useState} from 'react'
+import { useReveal } from '../hooks/useReveal.js'
+
+function QueEsBackdrop() {
+  const [backdropRef, visible] = useReveal({ threshold: 0.05, rootMargin: '0px' })
+
+  return (
+    <div
+      ref={backdropRef}
+      aria-hidden="true"
+      className={`que-es-backdrop ${visible ? 'que-es-backdrop--visible' : ''}`}
+    >
+      <div className="que-es-backdrop__grid" />
+      <div className="que-es-backdrop__ribbon que-es-backdrop__ribbon--one" />
+      <div className="que-es-backdrop__ribbon que-es-backdrop__ribbon--two" />
+    </div>
+  )
+}
 
 export default function QueEs() {
   const [figuraSeleccionada, setFiguraSeleccionada] = useState(null)
@@ -36,6 +53,7 @@ export default function QueEs() {
       eyebrow="La ciudad"
       title="Qué es Monterrey"
       intro={queEs.intro}
+      backdrop={<QueEsBackdrop />}
     >
 {/* SINOPSIS + IMAGEN */}
 <div className="mb-14 grid items-stretch gap-8 lg:grid-cols-2 lg:gap-10">
@@ -46,23 +64,9 @@ export default function QueEs() {
     <Reveal
       delay={0}
       className="
-        relative flex h-full flex-col overflow-hidden
-        rounded-[28px]
-        border border-naranja/20
-        bg-(--surface)
+        relative flex h-full flex-col
         p-7
         text-left
-        shadow-[0_10px_30px_rgba(27,73,101,0.07)]
-
-        transition-all
-        duration-500
-        ease-out
-
-        group-hover:-translate-y-1
-        group-hover:border-naranja/35
-        group-hover:bg-naranja/10
-        group-hover:shadow-[0_18px_40px_rgba(27,73,101,0.13)]
-
         lg:p-8
       "
     >
@@ -264,7 +268,11 @@ export default function QueEs() {
 
       {/* FIGURAS Y CONTEXTO */}
       <div className="grid gap-6 lg:grid-cols-[1.45fr_0.55fr]">
-        <Reveal delay={160} className="rounded-[28px] border border-naranja/20 bg-(--surface) p-6 text-left shadow-[0_8px_25px_rgba(27,73,101,0.06)] sm:p-7">
+        <Reveal
+          delay={160}
+          variant="scale"
+          className="relative isolate p-2 text-left sm:p-3"
+        >
           <div className="mb-5 flex items-end justify-between gap-4">
             <div>
               <p className="mb-2 text-xs font-bold uppercase tracking-[0.22em] text-naranja">{queEs.tituloFiguras}</p>
@@ -288,6 +296,7 @@ export default function QueEs() {
       {/* TARJETA */}
       <Reveal
         delay={200 + index * 50}
+        variant={index % 3 === 0 ? 'left' : index % 3 === 1 ? 'scale' : 'right'}
         className={`
           cursor-pointer
           rounded-2xl
