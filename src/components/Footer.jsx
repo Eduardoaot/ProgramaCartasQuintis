@@ -7,8 +7,8 @@ export default function Footer() {
         <img
           src={SITE_LOGO_BLANCO}
           alt={SITE_TITLE}
-          width="260"
-          height="78"
+          width="452"
+          height="100"
           className="mx-auto h-14 w-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]"
         />
 

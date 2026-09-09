@@ -61,9 +61,9 @@ export default function Navbar() {
           <img
             src={SITE_LOGO}
             alt={SITE_TITLE}
-            width="200"
-            height="60"
-            className="h-9 w-auto drop-shadow-[0_1px_3px_rgba(0,,0,0.45)] sm:h-10"
+            width="452"
+            height="100"
+            className="h-9 w-auto drop-shadow-[0_1px_3px_rgba(0,0,0,0.45)] sm:h-10"
           />
         </a>
 

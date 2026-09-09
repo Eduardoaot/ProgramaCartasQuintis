@@ -1,10 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 100" role="img" aria-label="Monterrey, Nuevo Leon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 452 100" role="img" aria-label="Monterrey, Nuevo Leon">
+  <!--
+    Al cargarse con <img>, este SVG se dibuja en un documento aparte que NO
+    hereda las webfonts de la pagina: "Poppins" no llega y cada sistema
+    resuelve una fuente distinta (Trebuchet en Windows, DejaVu en Linux...).
+    Como cada una mide diferente, el texto se salia del viewBox y la ultima Y
+    quedaba cortada. Con textLength el ancho queda fijado y ya no depende de
+    que fuente resuelva el navegador.
+  -->
   <!-- Silueta del Cerro de la Silla -->
   <path d="M8 74 L44 26 L62 48 L78 34 L96 46 L112 22 L150 74 Z" fill="#1b4965"/>
   <path d="M62 48 L78 34 L96 46 L86 52 L74 47 Z" fill="#cf5a22" opacity="0.85"/>
   <circle cx="122" cy="20" r="7" fill="#cf5a22"/>
   <text x="164" y="52" font-family="Poppins, Trebuchet MS, sans-serif" font-size="34" font-weight="800"
-        letter-spacing="1.5" fill="#1b4965">MONTERREY</text>
+        textLength="272" lengthAdjust="spacingAndGlyphs" fill="#1b4965">MONTERREY</text>
   <text x="166" y="76" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="600"
-        letter-spacing="5.5" fill="#cf5a22">NUEVO LEON</text>
+        textLength="268" lengthAdjust="spacing" fill="#cf5a22">NUEVO LEON</text>
 </svg>
