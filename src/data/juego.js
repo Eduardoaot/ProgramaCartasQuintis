@@ -33,7 +33,7 @@ export const juego = {
     ],
   },
   motorDelNorte:
-    'Monterrey concentra la mayor densidad de corporativos de México y es la puerta industrial hacia Estados Unidos: acero, cemento, vidrio y cerveza primero; electrónica, autopartes y armadoras después. Su cercanía con la frontera —poco más de 200 km hasta Nuevo Laredo— la convirtió en el nodo logístico del norte del país.',
+    'Monterrey concentra la mayor densidad de corporativos de México y es la puerta industrial hacia Estados Unidos: acero, cemento, vidrio y cerveza primero; electrónica, autopartes y armadoras después. Su cercanía con la frontera , poco más de 200 km hasta Nuevo Laredo, la convirtió en el nodo logístico del norte del país.',
   tiposZona: [
     { nombre: 'Industrial', texto: 'Parques y naves en Apodaca, Escobedo, Santa Catarina y Pesquería. Es donde trabaja buena parte del área metropolitana.' },
     { nombre: 'Corporativa', texto: 'Valle Oriente y San Pedro Garza García: torres de oficinas, banca y los rascacielos más altos de México.' },

@@ -1,4 +1,4 @@
-// Seccion "Que es Monterrey" — la identidad de la ciudad, quien la fundo,
+// Seccion "Que es Monterrey": la identidad de la ciudad, quien la fundo,
 // las figuras que salieron de ella y el contexto que la explica.
 import { foto } from './imagenes.js'
 
@@ -9,7 +9,7 @@ export const queEs = {
   tituloSinopsis: 'La Sultana del Norte',
   sinopsis:
     'Monterrey es la capital de Nuevo León y el centro de la tercera zona metropolitana más grande de México. Fundada en 1596 en un valle semiárido al pie de la Sierra Madre Oriental, pasó de ser un puesto fronterizo olvidado a convertirse en el mayor polo industrial y corporativo del norte del país. Hoy su área metropolitana reúne a más de cinco millones de personas repartidas en una docena de municipios que funcionan como una sola ciudad.',
-  fechaCreacion: '1596 — hoy',
+  fechaCreacion: 'De 1596 a hoy',
   autor: {
     profesion: 'Fundador',
     nombre: 'Diego de Montemayor',

@@ -12,7 +12,7 @@ import { foto } from './imagenes.js'
 
 export const expansiones = {
   intro:
-    'El área metropolitana de Monterrey la forman dieciséis municipios que crecieron hasta pegarse unos con otros. Aquí están los cuatro centrales —donde vive y trabaja la mayor parte de la gente— y los doce conurbados que recibieron el crecimiento de las últimas décadas.',
+    'El área metropolitana de Monterrey la forman dieciséis municipios que crecieron hasta pegarse unos con otros. Aquí están los cuatro centrales, donde vive y trabaja la mayor parte de la gente, y los doce conurbados que recibieron el crecimiento de las últimas décadas.',
 
   resumen: [
     { dato: '5 322 117', label: 'Habitantes en el área metropolitana', fuente: 'Censo 2020, INEGI' },
@@ -155,6 +155,7 @@ export const expansiones = {
           descripcion:
             'Al norte, conocido por su rodeo y por sus cruces de ferrocarril. Se incorporó a la zona metropolitana en 2014, cuando los fraccionamientos alcanzaron su territorio.',
           destacado: 'Se sumó al área metropolitana en 2014',
+          imagen: foto.zuazua,
         },
         {
           clave: 'SAV',
@@ -173,6 +174,7 @@ export const expansiones = {
           descripcion:
             'Municipio del norte sobre el eje carretero a Nuevo Laredo. Comparte con Salinas Victoria y Zuazua el crecimiento logístico e industrial del último tramo.',
           destacado: 'Sobre el corredor carretero a la frontera',
+          imagen: foto.cienegaFlores,
         },
         {
           clave: 'STG',

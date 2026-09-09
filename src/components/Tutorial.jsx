@@ -146,8 +146,23 @@ function Transporte() {
       >
         <div className="grid gap-8 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)]">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-linear-to-br from-sierra to-naranja px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-white">
-              <Icono nombre="lucide/smartphone-nfc" tam={16} color="ffffff" /> {app.nombre}
+            <span className="inline-flex items-center gap-2.5 rounded-full bg-linear-to-br from-sierra to-naranja py-1.5 pl-2 pr-4 text-xs font-bold uppercase tracking-[0.2em] text-white">
+              {/* Logotipo de la app. Si no carga, queda el icono generico. */}
+              <span className="flex h-6 w-6 items-center justify-center overflow-hidden rounded-full bg-white">
+                <img
+                  src={app.icono}
+                  alt=""
+                  width={24}
+                  height={24}
+                  loading="lazy"
+                  className="h-4 w-auto"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none'
+                    e.currentTarget.parentElement.dataset.respaldo = 'si'
+                  }}
+                />
+              </span>
+              {app.nombre}
             </span>
             <h4 className="mt-4 font-display text-xl font-bold text-sierra dark:text-naranja">
               {app.titular}

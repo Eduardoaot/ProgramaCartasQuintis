@@ -1,8 +1,11 @@
-// Videos de Wikimedia Commons (todos CC BY-SA 4.0).
+// Videos del sitio, cada uno con su fuente y su licencia.
 //
-// Se enlazan las versiones ya transcodificadas a 480p que genera Commons: el
-// original de la Macroplaza son 4K y pesa demasiado para una portada.
-// Cada entrada lleva su credito porque la licencia obliga a atribuir.
+// Los de Wikimedia Commons van CC BY-SA 4.0 y se enlazan a la version ya
+// transcodificada que genera Commons: el original de la Macroplaza es 4K y
+// pesa demasiado para una portada. El de la carne asada viene de Pexels.
+// Cada entrada lleva su credito porque las dos licencias obligan a atribuir.
+import { foto } from './imagenes.js'
+
 const T = 'https://upload.wikimedia.org/wikipedia/commons/transcoded'
 const C = 'https://upload.wikimedia.org/wikipedia/commons'
 
@@ -27,13 +30,15 @@ export const video = {
     descripcion: 'La ciudad desde el mirador del Obispado.',
   },
 
-  // Carne sobre las brasas a camara lenta. Escaparate del platillo insignia.
+  // Escaparate del platillo insignia. Este no es de Commons sino de Pexels,
+  // que lo sirve ya comprimido a 720p. Es carne sobre carbon, no una toma
+  // documentada en Monterrey: vale como ambiente, no como testimonio.
   carneAsada: {
-    src: `${T}/9/96/Carnita_asada.webm/Carnita_asada.webm.480p.vp9.webm`,
-    poster: `${C}/thumb/9/96/Carnita_asada.webm/1280px--Carnita_asada.webm.jpg`,
-    autor: 'ProtoplasmaKid',
-    licencia: 'CC BY-SA 4.0',
-    enlace: 'https://commons.wikimedia.org/wiki/File:Carnita_asada.webm',
-    descripcion: 'Carne asándose sobre las brasas, a cámara lenta.',
+    src: 'https://videos.pexels.com/video-files/4399560/4399560-hd_1280_720_24fps.mp4',
+    poster: foto.parrillada,
+    autor: 'Adrian Hoparda',
+    licencia: 'Licencia Pexels',
+    enlace: 'https://www.pexels.com/video/the-sizzling-sound-of-grilling-meat-4399560/',
+    descripcion: 'Carne chisporroteando sobre un asador de carbón.',
   },
 }

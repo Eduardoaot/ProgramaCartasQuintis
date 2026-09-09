@@ -79,7 +79,7 @@ export const personajes = {
     {
       id: 'paseo-santa-lucia',
       nombre: 'Paseo Santa Lucía',
-      ubicacion: 'Centro — Fundidora',
+      ubicacion: 'Centro y Fundidora',
       categoria: 'Río artificial',
       distintivo: 'El paseo del agua',
       color: 'Verde agua',
@@ -118,7 +118,7 @@ export const personajes = {
         ['Municipios', 'Santa Catarina, San Pedro, Santiago'],
       ],
       descripcion:
-        'El parque nacional que cierra la ciudad por el poniente y por el sur. Dentro caben la meseta de Chipinque —bosque de pinos a veinte minutos de las torres corporativas—, el cañón de La Huasteca con sus paredes verticales y la cascada Cola de Caballo, en Santiago.',
+        'El parque nacional que cierra la ciudad por el poniente y por el sur. Dentro caben la meseta de Chipinque, bosque de pinos a veinte minutos de las torres corporativas, el cañón de La Huasteca con sus paredes verticales y la cascada Cola de Caballo, en Santiago.',
       imperdible: 'Subir temprano a la meseta de Chipinque y ver la ciudad completa desde arriba.',
       dato: 'Es de los pocos bosques de montaña del país pegados a una metrópoli de cinco millones.',
     },

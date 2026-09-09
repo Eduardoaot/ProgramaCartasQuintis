@@ -34,10 +34,7 @@ export const rarezas = {
             'Cocción vertical de varias horas',
             'Se pide por pieza, no por plato',
           ],
-          images: [
-            { src: foto.cabrito, alt: 'Cabrito al pastor cocinándose alrededor del fuego' },
-            { src: foto.cabritos, alt: 'Cabritos ensartados en varilla junto a las brasas' },
-          ],
+          images: [{ src: foto.cabrito, alt: 'Cabrito al pastor cocinándose alrededor del fuego' }],
         },
         {
           codigo: 'MAC',
@@ -45,10 +42,7 @@ export const rarezas = {
           donde: 'Fondas, cenadurías y taquerías de barrio',
           cuando: 'Desayuno, cualquier día',
           caracteristicas: ['Carne seca deshebrada', 'Revuelta con huevo', 'Se come en burrito de harina'],
-          images: [
-            { src: foto.machacado, alt: 'Plato de machacado con huevo' },
-            { src: foto.machaca, alt: 'Huevo con machaca servido con frijoles' },
-          ],
+          images: [{ src: foto.machacado, alt: 'Plato de machacado con huevo' }],
         },
         {
           codigo: 'ASP',
@@ -84,10 +78,7 @@ export const rarezas = {
             'Se estiran a mano y se cuecen en comal',
             'Envuelven la asada, la machaca y la discada',
           ],
-          images: [
-            { src: foto.tortillasHarina, alt: 'Señora estirando tortillas de harina' },
-            { src: foto.tortillasHarina2, alt: 'Tortillas de harina cociéndose en el comal' },
-          ],
+          images: [{ src: foto.tortillasHarina, alt: 'Señora estirando tortillas de harina' }],
         },
       ],
     },
@@ -95,12 +86,12 @@ export const rarezas = {
       nombre: 'Para llevar',
       columnas: 1,
       nota:
-        'Lo que se compra de salida: el dulce típico del estado y el mercado donde cabe toda la despensa regia. Cada tarjeta muestra dos vistas.',
+        'Lo que se compra de salida y aguanta el viaje: el dulce típico del estado, la carne que se conserva sin frío y el mercado donde cabe toda la despensa regia.',
       cartas: [
         {
           codigo: 'GLO',
           nombre: 'Glorias de Linares',
-          donde: 'Linares, Nuevo León — y en toda la ciudad',
+          donde: 'Linares, Nuevo León, y en toda la ciudad',
           cuando: 'De regreso a casa, siempre',
           caracteristicas: [
             'Leche quemada de cabra',
@@ -109,6 +100,19 @@ export const rarezas = {
             'El dulce típico del estado',
           ],
           images: [{ src: foto.glorias, alt: 'Bolsa de glorias de Linares', destacada: true }],
+        },
+        {
+          codigo: 'SEC',
+          nombre: 'Carne seca',
+          donde: 'Mercado Juárez y carnicerías de barrio',
+          cuando: 'Para llevarse a casa, se vende al peso',
+          caracteristicas: [
+            'Res salada y secada al sol',
+            'Aguanta meses sin refrigeración',
+            'Se machaca para el machacado con huevo',
+            'Se pide en bolsa, por kilo o por cuarto',
+          ],
+          images: [{ src: foto.machaca, alt: 'Carne seca deshebrada, lista para machacar' }],
         },
         {
           codigo: 'MER',
@@ -121,8 +125,7 @@ export const rarezas = {
             'Artesanía, botas y sombreros',
           ],
           images: [
-            { src: foto.mercadoJuarez, alt: 'Interior del Mercado Juárez de Monterrey' },
-            { src: foto.mercadoJuarez2, alt: 'Puestos del Mercado Juárez', destacada: true },
+            { src: foto.mercadoJuarez, alt: 'Interior del Mercado Juárez de Monterrey', destacada: true },
           ],
         },
       ],
@@ -135,7 +138,7 @@ export const rarezas = {
     nombre: 'Carne asada',
     titular: 'El platillo insignia de Nuevo León',
     descripcion:
-      'Hablar de Monterrey es hablar de carne asada, y aquí es menos un platillo que un ritual: el asador se prende el fin de semana y alrededor se junta la familia entera. Lo que la distingue del resto del país es la contención — cortes delgados, sal gruesa y leña o carbón de mezquite, que perfuma la carne con un humo dulce e inconfundible. El corte estrella es la arrachera, aunque la aguja norteña le pelea el lugar.',
+      'Hablar de Monterrey es hablar de carne asada, y aquí es menos un platillo que un ritual: el asador se prende el fin de semana y alrededor se junta la familia entera. Lo que la distingue del resto del país es la contención: cortes delgados, sal gruesa y leña o carbón de mezquite, que perfuma la carne con un humo dulce e inconfundible. El corte estrella es la arrachera, aunque la aguja norteña le pelea el lugar.',
     donde: 'En el patio de cualquier casa',
     cuando: 'Sábado o domingo, sin falta',
     temporada: 'Todo el año',
@@ -148,7 +151,7 @@ export const rarezas = {
     ],
     // Precio de referencia de un kilo de arrachera en Monterrey (revisar).
     valor: '$300 – $500 MXN',
-    valorNota: 'Precio orientativo del kilo de arrachera en la ciudad. Valor de referencia — actualizar.',
+    valorNota: 'Precio orientativo del kilo de arrachera en la ciudad. Valor de referencia: actualizar.',
     img: foto.carneAsadaVertical,
     alt: 'Carne asada recién salida del asador',
   },

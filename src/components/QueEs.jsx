@@ -265,7 +265,7 @@ export default function QueEs() {
 
     <div
       key={figura.nombre}
-      className="relative"
+      className="relative h-full"
       onClick={(e) => {
         e.stopPropagation()
         
@@ -279,6 +279,7 @@ export default function QueEs() {
         variant={index % 3 === 0 ? 'left' : index % 3 === 1 ? 'scale' : 'right'}
         className={`
           group
+          flex h-full flex-col
           cursor-pointer
           rounded-2xl
           border border-naranja/15

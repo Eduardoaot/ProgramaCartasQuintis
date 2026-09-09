@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import Section from './Section.jsx'
 import Reveal from './Reveal.jsx'
 import { personajes } from '../data/personajes.js'
-import { foto } from '../data/imagenes.js'
+import { mini, ANCHO } from '../data/imagenes.js'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Autoplay, Navigation, Keyboard, Mousewheel } from 'swiper/modules'
@@ -16,12 +16,12 @@ import 'swiper/css/navigation'
  * queda de fondo de toda la seccion cuando ese icono esta activo.
  */
 const fondos = {
-  'cerro-de-la-silla': foto.cerroSilla,
-  macroplaza: foto.macroplaza,
-  'parque-fundidora': foto.fundidora,
-  'paseo-santa-lucia': foto.santaLucia,
-  'cumbres-chipinque': foto.huasteca,
-  'barrio-antiguo': foto.barrioAntiguoNoche,
+  'cerro-de-la-silla': mini('cerroSilla', ANCHO.grande),
+  macroplaza: mini('macroplaza', ANCHO.grande),
+  'parque-fundidora': mini('fundidora', ANCHO.grande),
+  'paseo-santa-lucia': mini('santaLucia', ANCHO.grande),
+  'cumbres-chipinque': mini('huasteca', ANCHO.grande),
+  'barrio-antiguo': mini('barrioAntiguoNoche', ANCHO.grande),
 }
 
 const ordenCarrusel = Object.keys(fondos)
@@ -37,11 +37,11 @@ function FondoSeccion({ activo }) {
       {ordenCarrusel.map((id) => (
         <div
           key={id}
-          className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-out sm:bg-fixed"
+          className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-out"
           style={{ backgroundImage: `url('${fondos[id]}')`, opacity: activo === id ? 1 : 0 }}
         />
       ))}
-      <div className="absolute inset-0 bg-(--page-bg)/78 backdrop-blur-[4px] dark:bg-(--page-bg)/82" />
+      <div className="absolute inset-0 bg-(--page-bg)/82 dark:bg-(--page-bg)/86" />
     </div>
   )
 }
@@ -53,7 +53,7 @@ function FichaPersonaje({ ficha, indice, fichaRef }) {
       id={ficha.id}
       ref={fichaRef}
       variant={indice % 2 === 0 ? 'left' : 'right'}
-      className="group scroll-mt-24 overflow-hidden rounded-3xl border border-(--hairline) bg-(--surface)/88 shadow-[0_10px_35px_rgba(0,0,0,0.18)] backdrop-blur-md transition duration-300 hover:-translate-y-1"
+      className="group scroll-mt-24 overflow-hidden rounded-3xl border border-(--hairline) bg-(--surface)/95 shadow-[0_10px_35px_rgba(0,0,0,0.18)] transition duration-300 hover:-translate-y-1"
     >
       {/* franja con el color del icono */}
       <div className="h-1.5 w-full" style={{ backgroundColor: ficha.colorHex }} />
@@ -70,6 +70,7 @@ function FichaPersonaje({ ficha, indice, fichaRef }) {
           </span>
           <img
             src={ficha.retrato}
+            loading="lazy"
             alt={ficha.nombre}
             width="358"
             height="556"

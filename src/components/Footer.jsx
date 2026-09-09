@@ -23,7 +23,7 @@ export default function Footer() {
         </ul>
 
         <p className="mt-8 text-sm text-white/80">
-          Hecho por Eduardo Alberto — Monterrey y su área metropolitana, Nuevo León, México
+          Hecho por Eduardo Alberto: Monterrey y su área metropolitana, Nuevo León, México
         </p>
         <p className="mt-1 text-xs text-white/60">
           Proyecto sin fines de lucro. Fotografías de Wikimedia Commons; cada una pertenece a su autor.

@@ -168,11 +168,15 @@ export default function Antecedentes() {
         </Reveal>
 
         <ol className="relative mx-auto flex max-w-4xl flex-col gap-10">
-          {/* Riel de la linea del tiempo */}
+          {/* Riel de la linea del tiempo, con punta de flecha arriba y abajo */}
           <span
             aria-hidden="true"
-            className="absolute bottom-6 left-7 top-6 w-0.5 bg-linear-to-b from-sierra via-naranja to-oro md:left-1/2 md:-translate-x-1/2"
-          />
+            className="absolute bottom-2 left-7 top-2 flex flex-col items-center md:left-1/2 md:-translate-x-1/2"
+          >
+            <span className="h-2.5 w-3.5 flex-none bg-sierra [clip-path:polygon(50%_0%,100%_100%,0%_100%)] dark:bg-arena" />
+            <span className="w-0.5 flex-1 bg-linear-to-b from-sierra via-naranja to-oro" />
+            <span className="h-2.5 w-3.5 flex-none bg-oro [clip-path:polygon(50%_100%,0%_0%,100%_0%)]" />
+          </span>
           {hitos.eventos.map((evento, i) => (
             <Hito key={evento.anio} evento={evento} i={i} />
           ))}

@@ -64,6 +64,9 @@ export const tutorial = {
     app: {
       nombre: 'Urbani',
       titular: 'La app con la que se paga el transporte',
+      // Logotipo servido por la propia Urbani. Se usa solo para identificarla.
+      icono:
+        'https://static.wixstatic.com/media/cedf2d_956805737ebb470995877d413f734110~mv2.png',
       texto:
         'Desde 2021 el transporte público del área metropolitana se paga con Urbani, la app de movilidad del estado. Sustituye a la tarjeta física: la instalas, le cargas saldo y entras con ella. Para un visitante es la diferencia entre pelearse con las máquinas de la estación o no.',
       sirvePara: ['Metro', 'Transmetro', 'Ruta Express', 'Rutas Integradas'],
@@ -125,7 +128,7 @@ export const tutorial = {
         dias: 0.5,
         imagen: foto.horno3,
         texto:
-          'Las 144 hectáreas de parque sobre la antigua acería —76 de ellas verdes— y el museo del acero dentro del alto horno original.',
+          'Las 144 hectáreas de parque sobre la antigua acería, 76 de ellas verdes, y el museo del acero dentro del alto horno original.',
         consejo:
           'Revisa el horario del recorrido del Horno3 antes de ir; es lo que hay que apartar.',
       },
@@ -172,7 +175,7 @@ export const tutorial = {
         dias: 1,
         imagen: foto.grutasBustamante,
         texto:
-          'Pueblo Mágico a 107 km al noroeste, apodado el Jardín de Nuevo León. Se va por sus Grutas del Palmito —casi 3 km de recorrido señalizado y trece de los dieciséis tipos de formación que se conocen en el mundo— y se vuelve con pan de la panadería artesanal del pueblo.',
+          'Pueblo Mágico a 107 km al noroeste, apodado el Jardín de Nuevo León. Se va por sus Grutas del Palmito: casi 3 km de recorrido señalizado y trece de los dieciséis tipos de formación que se conocen en el mundo, y se vuelve con pan de la panadería artesanal del pueblo.',
         consejo:
           'Hora y tres cuartos en auto desde Monterrey. Sal temprano: la gruta se recorre en grupo y con guía, y el pueblo se disfruta a media tarde.',
       },
@@ -208,7 +211,7 @@ export const tutorial = {
       {
         titulo: 'Reparte los días',
         texto:
-          'Un día para el centro y Fundidora, otro para la sierra —Chipinque o La Huasteca— y uno más si quieres Santiago o las Grutas de García.',
+          'Un día para el centro y Fundidora, otro para la sierra, Chipinque o La Huasteca, y uno más si quieres Santiago o las Grutas de García.',
       },
       {
         titulo: 'Deja margen para el clima',
