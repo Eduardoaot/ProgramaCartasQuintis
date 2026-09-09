@@ -18,18 +18,6 @@ export default function QueEs() {
   }
 }, [])
 
-  // Clases de hover por figura. Tailwind necesita la clase completa escrita,
-  // por eso van en un mapa y no construidas al vuelo.
-  const coloresHover = {
-    blue: 'hover:bg-blue-100 hover:border-blue-300 dark:hover:bg-blue-400/20 dark:hover:border-blue-400/50',
-    red: 'hover:bg-red-100 hover:border-red-300 dark:hover:bg-red-400/20 dark:hover:border-red-400/50',
-    green: 'hover:bg-green-100 hover:border-green-300 dark:hover:bg-green-400/20 dark:hover:border-green-400/50',
-    purple: 'hover:bg-purple-100 hover:border-purple-300 dark:hover:bg-purple-400/20 dark:hover:border-purple-400/50',
-    yellow: 'hover:bg-yellow-100 hover:border-yellow-300 dark:hover:bg-yellow-400/20 dark:hover:border-yellow-400/50',
-    slate: 'hover:bg-slate-100 hover:border-slate-300 dark:hover:bg-slate-400/20 dark:hover:border-slate-400/50',
-  }
-
-  
   return (
     <Section
       id="que-es"
@@ -290,6 +278,7 @@ export default function QueEs() {
         delay={200 + index * 50}
         variant={index % 3 === 0 ? 'left' : index % 3 === 1 ? 'scale' : 'right'}
         className={`
+          group
           cursor-pointer
           rounded-2xl
           border border-naranja/15
@@ -299,23 +288,25 @@ export default function QueEs() {
 
           hover:-translate-y-1
           hover:shadow-lg
-
-          ${coloresHover[figura.hover]}
+          hover:bg-sierra
+          hover:border-sierra
+          dark:hover:bg-sierra/40
+          dark:hover:border-cielo
         `}
       >
         <div className="flex items-baseline justify-between gap-3">
 
-          <h4 className="text-sm font-extrabold text-sierra dark:text-naranja">
+          <h4 className="text-sm font-extrabold text-sierra transition-colors group-hover:text-white dark:text-naranja dark:group-hover:text-white">
             {figura.nombre}
           </h4>
 
-          <span className="shrink-0 text-xs text-(--page-text)/55">
+          <span className="shrink-0 text-xs text-(--page-text)/55 transition-colors group-hover:text-white/75">
             {figura.oficio}
           </span>
 
         </div>
 
-        <p className="mt-2 text-xs leading-5 text-(--page-text)/70">
+        <p className="mt-2 text-xs leading-5 text-(--page-text)/70 transition-colors group-hover:text-white/85">
           {figura.texto}
         </p>
       </Reveal>

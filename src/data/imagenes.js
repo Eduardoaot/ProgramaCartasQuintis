@@ -34,7 +34,7 @@ export const foto = {
   laPastora: `${C}/b/b7/Rio_la_Silla_en_el_Bosque_la_Pastora.png`,
 
   // Historia e industria
-  montemayorMural: `${C}/f/fb/Diego_de_Montemayor_Mural.jpg`,
+  montemayorMural: 'https://diariojudio.com/wp-content/uploads/2012/07/diego-de-montemayor.jpg',
   montemayor: `${C}/8/80/Diego_de_Montemayor.jpg`,
   cerveceria1890: `${C}/6/6c/Cervecer%C3%ADa_Cuauhtemoc_Monterrey_1890.jpg`,
   tecDeMonterrey: `${C}/b/bf/Hub_de_Innovaci%C3%B3n_y_Emprendimiento_-_Campus_Monterrey_%28ITESM%29.jpg`,
