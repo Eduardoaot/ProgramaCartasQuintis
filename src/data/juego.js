@@ -10,26 +10,26 @@ export const juego = {
     {
       titulo: 'Cómo se formó',
       texto:
-        'Hasta los años cuarenta Monterrey cabía en su centro histórico. La industria atrajo migración del campo y la mancha urbana se fue comiendo a los municipios vecinos: primero San Nicolás y Guadalupe, después Santa Catarina, Apodaca, Escobedo, García y Juárez. Hoy los límites municipales son invisibles en el paisaje: se cruzan sin darse cuenta.',
+        'El Área Metropolitana de Monterrey comenzó a consolidarse desde mediados del siglo XX, impulsada por la industrialización y el crecimiento de la población. Monterrey se expandió hacia municipios vecinos como San Nicolás, Guadalupe, San Pedro y Santa Catarina, y posteriormente hacia Apodaca, Escobedo, García y Juárez. Con el tiempo, estos municipios quedaron integrados en una misma mancha urbana..',
     },
     {
       titulo: 'Qué es hoy',
       texto:
-        'La tercera zona metropolitana de México por población, después del Valle de México y Guadalajara: más de cinco millones de habitantes repartidos en una docena de municipios conurbados que funcionan como una sola ciudad, con un solo mercado de trabajo y un solo sistema de transporte.',
+        'El Área Metropolitana de Monterrey es una de las principales zonas urbanas de México. Está formada por varios municipios conurbados que, aunque mantienen sus propios gobiernos, funcionan como una misma ciudad. Millones de personas viven, trabajan, estudian y se desplazan diariamente entre ellos, creando una ciudad integrada por una misma dinámica económica y urbana..',
     },
   ],
   arena: {
     titulo: 'Cómo está armada la ciudad',
     partes: [
-      { nombre: 'Centro histórico', texto: 'El casco original, entre la Catedral, el Barrio Antiguo y el Palacio de Gobierno.' },
-      { nombre: 'Macroplaza', texto: 'El eje cívico que parte el centro de norte a sur, con el Faro del Comercio en medio.' },
-      { nombre: 'Barrio Antiguo', texto: 'Diez manzanas de casonas de los siglos XVIII y XIX; de noche, la zona de bares.' },
-      { nombre: 'Distrito Fundidora', texto: 'La antigua acería vuelta parque, museos y recintos de espectáculos, al oriente.' },
-      { nombre: 'Valle Oriente y San Pedro', texto: 'El distrito corporativo: torres de oficinas, banca y los edificios más altos del país.' },
-      { nombre: 'Río Santa Catarina', texto: 'El cauce, seco casi todo el año, que atraviesa la ciudad de poniente a oriente.' },
-      { nombre: 'Anillo Periférico', texto: 'El arco vial que rodea la mancha urbana y enlaza a los municipios conurbados.' },
-      { nombre: 'Corredor industrial norte', texto: 'Apodaca, Escobedo y Salinas Victoria: parques industriales, aeropuerto y armadoras.' },
-      { nombre: 'La sierra', texto: 'La Sierra Madre Oriental y el Parque Nacional Cumbres, que cierran la ciudad por el poniente y el sur.' },
+      { nombre: 'Centro histórico', texto: 'El núcleo original de Monterrey, alrededor de la Catedral, el Barrio Antiguo y el Palacio de Gobierno.' },
+      { nombre: 'Macroplaza', texto: 'El gran eje cívico y cultural del centro, con el Faro del Comercio como uno de sus principales símbolos.' },
+      { nombre: 'Barrio Antiguo', texto: 'Zona histórica de calles y casonas antiguas, actualmente conocida también por sus restaurantes, bares y vida nocturna.' },
+      { nombre: 'Distrito Fundidora', texto: 'La antigua zona industrial de la Fundidora, transformada en parque, museos y espacios para eventos.' },
+      { nombre: 'Valle Oriente y San Pedro', texto: 'Uno de los principales distritos corporativos y financieros de la metrópoli, con torres de oficinas y edificios de gran altura.' },
+      { nombre: 'Río Santa Catarina', texto: 'El cauce que atraviesa Monterrey de poniente a oriente y separa geográficamente distintos sectores de la ciudad.' },
+      { nombre: 'Anillo Periférico', texto: 'Importante sistema vial que conecta Monterrey con los municipios metropolitanos y facilita los desplazamientos alrededor de la zona urbana.' },
+      { nombre: 'Corredor industrial norte', texto: 'Zona de fuerte actividad industrial y logística, especialmente en Apodaca, Escobedo y Salinas Victoria.' },
+      { nombre: 'La sierra', texto: 'La Sierra Madre Oriental y el Parque Nacional Cumbres, que forman el gran paisaje montañoso al sur y suroeste de Monterrey.' },
     ],
   },
   motorDelNorte:

@@ -44,7 +44,7 @@ export default function JuegoCartas() {
         <h3 className="mb-5 text-center text-xl font-bold uppercase tracking-wider text-naranja">
           {juego.arena.titulo}
         </h3>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {juego.arena.partes.map((p, i) => {
             const posicion = i % 3 === 0 ? 'left' : i % 3 === 2 ? 'right' : 'center'
 
